@@ -1,0 +1,1185 @@
+{
+  "connect": "Connect",
+  "phantomWarning": {
+    "title": "Notice",
+    "message": "Copy trade feature only supports accounts logged in via Telegram or Google",
+    "understand": "I understand"
+  },
+  "over view": "Overview",
+  "overview": {
+    "launchToken": {
+      "title": "Launch your own token",
+      "description": "Customize name, symbol, tax, and supply in just a few simple steps",
+      "createNow": "Create Now",
+      "description2": "Create a new coin on Pumpfun and Meme Pumpfun"
+    },
+    "universalAccount": {
+      "title": "UNIVERSAL ACCOUNT",
+      "receive": "Receive",
+      "send": "Send"
+    },
+    "masterTrade": {
+      "title": "Master trade",
+      "description": "Copy trades from top traders with just one click",
+      "explore": "Explore"
+    },
+    "memeMetaPump": {
+      "title": "Meme Meta Pump",
+      "description": "Fuel Your Trades, Meme the Future",
+      "buy": "Buy"
+    },
+    "memeProfitBank": {
+      "title": "Meme Profit Bank",
+      "description": "The value of memes returns as real profit",
+      "buy": "Buy"
+    },
+    "topVolumeChange": "Top Volume 24h Change",
+    "topPumfun": "Top Pumpfun 24h Volume Change"
+  },
+  "trade": "Trade",
+  "create coin": "Create Coin",
+  "listWalletss": {
+      "walletType": {
+        "main": "Main",
+        "import": "Imported",
+        "other": "Other",
+        "master": "Master",
+        "member": "Member"
+      }
+    },
+  "createCoin": {
+    "title": "CREATE NEW COIN",
+    "subtitle": "Create a new coin on Pumpfun",
+    "subtitleMemePump": "Create a new coin on MemePump",
+    "error": "Failed to create coin",
+    "success": "Coin created successfully",
+    "form": {
+      "name": {
+        "label": "Name",
+        "placeholder": "Enter coin name",
+        "required": "Coin name is required"
+      },
+      "symbol": {
+        "label": "Symbol",
+        "placeholder": "Enter coin symbol",
+        "required": "Coin symbol is required",
+        "maxLength": "Symbol should be 10 characters or less"
+      },
+      "amount": {
+        "label": "Amount",
+        "placeholder": "Enter initial liquidity amount in SOL",
+        "required": "Initial liquidity amount is required",
+        "invalid": "Please enter a valid amount",
+        "tooltip": "Enter the initial liquidity amount in SOL that you want to provide for your token"
+      },
+      "totalSupply": {
+        "label": "Total Supply",
+        "placeholder": "Enter total supply amount",
+        "required": "Total supply is required",
+        "invalid": "Please enter a valid total supply amount"
+      },
+      "allowMinting": {
+        "label": "Allow Minting"
+      },
+      "categories": {
+        "label": "Categories",
+        "placeholder": "Select categories...",
+        "search": "Search categories...",
+        "noResults": "No categories found",
+        "loading": "Loading categories...",
+        "required": "At least one category is required"
+      },
+      "description": {
+        "label": "Description",
+        "placeholder": "Enter coin description"
+      },
+      "logo": {
+        "label": "Logo",
+        "required": "Coin logo is required",
+        "upload": "Click to upload",
+        "invalidType": "Please upload an image file",
+        "maxSize": "Image size should be less than 2MB"
+      },
+      "preview": {
+        "label": "Preview",
+        "name": "YOUR COIN NAME",
+        "symbol": "SYMBOL",
+        "description": "Your coin description will appear here",
+        "undo": "Undo"
+      },
+      "otherOptions": {
+        "title": "Other Options",
+        "telegram": {
+          "label": "Telegram",
+          "placeholder": "Enter telegram group link"
+        },
+        "twitter": {
+          "label": "Twitter",
+          "placeholder": "Enter twitter username"
+        },
+        "website": {
+          "label": "Website",
+          "placeholder": "Enter coin website",
+          "invalid": "Please enter a valid URL starting with http:// or https://"
+        }
+      },
+      "submit": {
+        "create": "CREATE COIN",
+        "creating": "CREATING..."
+      }
+    },
+    "tabs": {
+        "today": "Today",
+        "last8days": "Last 8 Days",
+        "lastMonth": "Last Month",
+        "noCoins": "No coins created recently",
+        "seeAll": "See all my coins",
+        "trade": "Trade"
+      },
+    "myCoins": {
+      "title": "MY COINS",
+      "createCoin": "CREATE COIN",
+      "searchPlaceholder": "Token Name/ Address",
+      "table": {
+        "time": "Time",
+        "memeCoin": "Meme coin",
+        "symbol": "Symbol",
+        "address": "Address",
+        "decimals": "Decimals",
+        "actions": "Actions"
+      },
+      "actions": {
+        "copy": "Copy address",
+        "copied": "Address copied to clipboard",
+        "convert": "Convert"
+      }   
+    },
+    "guide": {
+      "title": "GUIDE",
+      "rules": [
+        "Cannot be deleted or edited after creation",
+        "Deployed on Solana",
+        "Tradable if eligible",
+        "Each coin has a unique wallet and token - store securely"
+      ]
+    },
+    "confirmation": {
+      "title": "Confirmation",
+      "description": "You need to spend <span class=\"font-bold\">0.025 SOL</span> to create this token",
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "description1": "To create this token, you need to spend",
+      "description2": " <span class=\"font-bold\">",
+      "description3": ""
+    },
+    "maintenance": {
+      "title": "Feature is being updated",
+      "close": "Close",
+      "returnDashboard": "Return to dashboard"
+    },
+    "bondingCurve": {
+      "title": "Update Notification",
+      "description": "MemePump's coin creation feature will be updated after completing the Bonding Curve trading program",
+      "understood": "Understood"
+    }
+  },
+  "masterTrade": {
+    "tabs": {
+      "trade": "TRADE",
+      "chat": "CHAT",
+      "member": "MEMBER",
+      "chatAll": "CHAT ALL",
+      "chatWithToken": "CHAT WITH TOKEN"
+    },
+    "unreadCount": "unread messages",
+    "loading": "Loading...",
+    "page": {
+      "filters": {
+        "all": "All",
+        "notConnected": "No Connect",
+        "connected": "Connected",
+        "disconnected": "Disconnected",
+        "paused": "Paused",
+        "pending": "Pending",
+        "1d": "1D",
+        "7d": "7D",
+        "30d": "30D"
+      },
+      "search": {
+        "placeholder": "Search by wallet address..."
+      },
+      "manageMaster": "Manage Master",
+      "table": {
+        "address": "Address",
+        "pnl7d": "7D PnL",
+        "pnl30d": "30D PnL",
+        "winRate7d": "7D Win Rate",
+        "transactions7d": "7D Transactions",
+        "lastTime": "Last Time",
+        "type": "Type",
+        "status": "Status",
+        "action": "Action",
+        "noData": "No data available",
+        "copyAddress": "Copy address",
+        "copySuccess": "Copied address: {address}",
+        "details": "Details",
+        "nickname": "Nickname"
+      },
+      "traderType": {
+        "vip": "VIP",
+        "normal": "NORMAL"
+      },
+      "actions": {
+        "connect": "Connect",
+        "reconnect": "Reconnect",
+        "details": "Details",
+        "pause": "Pause",
+        "disconnect": "Disconnect"
+      },
+      "status": {
+        "not connected": "No Connected",
+        "connect": "Connected",
+        "disconnect": "Disconnected",
+        "pause": "Paused",
+        "pending": "Pending",
+        "block": "Blocked"
+      },
+      "timeAgo": {
+        "seconds": "{count} seconds ago",
+        "minute": "{count} minute ago",
+        "minutes": "{count} minutes ago",
+        "hour": "{count} hour ago",
+        "hours": "{count} hours ago",
+        "day": "{count} day ago",
+        "days": "{count} days ago",
+        "week": "{count} week ago",
+        "weeks": "{count} weeks ago",
+        "month": "{count} month ago",
+        "months": "{count} months ago",
+        "year": "{count} year ago",
+        "years": "{count} years ago",
+        "updating": "updating"
+      }
+    },
+    "manage": {
+      "loading": "Loading...",
+      "confirm": "Confirm",
+      "cancel": "Cancel",
+      "join": "Join",
+      "joinSuccess": "Successfully joined group",
+      "joinError": "Failed to join group",
+      "connectSuccess": "Successfully connected",
+      "blockSuccess": "Successfully blocked",
+      "chooseGroup": "Choose group",
+      "connect": "Connect",
+      "block": "Block",
+      "pause": "Pause",
+      "disconnect": "Disconnect",
+      "unblock": "Unblock",
+      "bulkConnect": "Bulk Connect",
+      "bulkBlock": "Bulk Block",
+      "createNewGroup": {
+        "success": "Group created successfully",
+        "error": "Failed to create group",
+        "title": "CREATE GROUP",
+        "groupName": "Group Name",
+        "enterGroupName": "Enter group name",
+        "create": "CREATE"
+      },
+      "connectionManagement": {
+        "joinSuccess": "Successfully joined group",
+        "searchGroup": "Search group...",
+        "joinError": "Failed to join group",
+        "connectSuccess": "Successfully connected",
+        "blockSuccess": "Successfully blocked",
+        "chooseGroup": "Choose group",
+        "pauseSuccess": "Successfully paused",
+        "joinSuccessDescription": "You have successfully joined the group",
+        "joinSuccessDescription2": "You can connect your wallet to this group",
+        "bulkConnectSuccess": "Successfully connected",
+        "bulkBlockSuccess": "Successfully blocked",
+        "bulkActionError": "An error occurred",
+        "unblockSuccess": "Successfully unblocked",
+        "error": "An error occurred",
+        "confirmJoin": "Confirm joining {count} selected wallets to group \"{groupName}\"",
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "all": "All",
+        "notConnected": "notConnected",
+        "connect": "Connected",
+        "disconnect": "Disconnected",
+        "pause": "Paused",
+        "pending": "Pending",
+        "block": "Blocked",
+        "warningChangeRole": "Warning: (If you change the stream, all connection and master group data will be deleted)",
+        "normal": "Normal",
+        "vip": "VIP",
+        "changeRoleTitle": "Change Role",
+        "to": "to",
+        "confirmChangeRole": "Are you sure you want to change the role of {count} selected wallets from {currentRole} to {newRole}?",
+        "confirmChangeRolePassword": "Password to change role",
+        "passwordPlaceholder": "Enter password"
+      },
+      "groupManagement": {
+        "createGroup": "CREATE GROUP",
+        "groupName": "Group Name",
+        "enterGroupName": "Enter group name",
+        "create": "CREATE",
+        "on": "On",
+        "off": "Off",
+        "delete": "Delete",
+        "status": "Status",
+        "action": "Action",
+        "noGroup": "No group",
+        "onCount": "On ({count})",
+        "offCount": "Off ({count})",
+        "deleteCount": "Delete ({count})"
+      },
+      "connectionTable": {
+        "nickname": "Nickname",
+        "address": "Address",
+        "group": "Group",
+        "status": "Status",
+        "action": "Action",
+        "connect": "Connect",
+        "block": "Block",
+        "unblock": "Unblock",
+        "chooseGroup": "Choose group",
+        "searchGroup": "Search group...",
+        "noGroup": "No group",
+        "copyAddress": "Copy address",
+        "addressCopied": "Address copied"
+      },
+      "chat": {
+        "title": "MASTER CHATROOM",
+        "selectGroup": "Select a group...",
+        "typeMessage": "Type a message...",
+        "connectWithMaster": "Connect with other Master",
+        "send": "Send",
+        "noMessages": "No messages yet",
+        "communityChatroom": "Community Chatroom",
+        "type_a_message": "Type a message...",
+        "stream": "Allow role change"
+      },
+      "guide": {
+        "title": "Master Flow Guide",
+        "description": "Master can choose to switch between 2 flows: Normal and VIP",
+        "subtitle": "Add Groups to help Master easily manage when activating copy trade for Users",
+        "normalFlow": {
+          "title": "For Normal Flow:",
+          "description": "Other users can connect for authorization without confirmation"
+        },
+        "vipFlow": {
+          "title": "For VIP Flow:",
+          "points": {
+            "0": "When other users send authorization requests, they must wait for Master's approval before being authorized for copy-trade",
+            "1": "The copy amount for each transaction will not exceed the balance in Master's wallet"
+          }
+        },
+        "warning": {
+          "title": "⚠️ Important Note:",
+          "description": "When changing flows, all connection data of the current flow will be completely deleted. Please consider this change carefully"
+        },
+        "understood": "Understood"
+      }
+    }
+  },
+  "selectNetwork": "Select Network",
+  "wallet": {
+    "solana": "Solana",
+    "eth": "ETH",
+    "bnb": "BNB",
+    "wallet": "Wallet",
+    "solBalance": "SOL Balance",
+    "usdtBalance": "USDT Balance",
+    "totalPortfolio": "Total Portfolio",
+    "tokens": "Tokens",
+    "importWallets": "Import Wallets",
+    "importWalletsNote": "Enter multiple private keys separated by dots (.) or new lines. Each key will be imported as a separate wallet.",
+    "addWallets": "Add Wallets",
+    "walletPerixName": "Wallet Name Prefix",
+    "quantityWallet": "Quantity",
+    "enterQuantityWallet": "Enter the number of wallets you want to add",
+    "walletPerixNameNote": "Enter wallet name prefix (e.g. A) → system automatically creates list: A1, A2, A3,...",
+    "connectMaster": "Connect Master",
+    "walletNicknameRequired": "Nickname is required",
+    "walletNicknameMustBeAtLeast3CharactersLong": "Nickname must be at least 3 characters long",
+    "privateKeyRequired": "Private key is required",
+    "resultTitleImport": "Import Wallet Result",
+    "importedFailed": "Imported failed",
+    "importedSuccessfully": "Imported successfully",
+    "walletNameAlreadyExists": "Wallet name already exists",
+    "invalidWalletType": "Invalid wallet type",
+    "userNotFound": "User not found",
+    "walletNicknameDuplicate": "Wallet nickname already exists",
+    "failedToCreateWallet": "Failed to create wallet. Please try again.",
+    "failedToCreateOrGetWalletAuthRecord": "Failed to create or get wallet_auth record",
+    "universalAccount": "Universal Account",
+    "receive": "Receive",
+    "send": "Send",
+    "getPrivateKey": "Get Private Key",
+    "solanaWallet": "SOLANA WALLET",
+    "addWallet": "Add Wallet",
+    "importWallet": "Import Wallet",
+    "assets": "ASSETS",
+    "token": "Token",
+    "balance": "Balance",
+    "price": "Price",
+    "value": "Value",
+    "address": "Address",
+    "walletName": "Wallet Name",
+    "nickname": "Nickname",
+    "network": "Network",
+    "nicknameDuplicate": "Wallet nickname already exists",
+    "privateKeys": "Private Keys",
+    "solanaPrivateKey": "Solana Private Key",
+    "ethereumPrivateKey": "Ethereum Private Key",
+    "bnbPrivateKey": "BNB Private Key",
+    "createPassword": "Create Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password",
+    "passwordRequirements": "(i) Password must be at least 8 characters long and contain uppercase, lowercase, number and special character.\nThis password will be required to view your private keys in the future.",
+    "creating": "Creating...",
+    "enterPassword": "Enter Password",
+    "password": "Password",
+    "enterPasswordToView": "(i) Enter your password to view your private keys",
+    "verifying": "Verifying...",
+    "submit": "Submit",
+    "adding": "Adding...",
+    "privateKeySecurity": "Your private key will be encrypted and stored securely",
+    "walletNickname": "Wallet Nickname",
+    "country": "Country",
+    "solanaAddress": "Solana Address",
+    "ethAddress": "Ethereum Address",
+    "walletKey": "Wallet Key",
+    "type": "Type",
+    "actions": "Actions",
+    "updateSuccess": "Wallet updated successfully",
+    "updateFailed": "Failed to update wallet",
+    "switchSuccess": "Wallet switched successfully",
+    "passwordMustContainAtLeastOneLowercaseLetter": "Password must contain at least one lowercase letter",
+    "passwordMustContainAtLeastOneUppercaseLetter": "Password must contain at least one uppercase letter",
+    "passwordMustContainAtLeastOneNumber": "Password must contain at least one number",
+    "passwordMustContainAtLeastOneSpecialCharacter": "Password must contain at least one special character",
+    "passwordMustBeAtLeast8CharactersLong": "Password must be at least 8 characters long",
+    "switchFailed": "Failed to switch wallet",
+    "deleteSuccess": "Wallet deleted successfully",
+    "deleteFailed": "Failed to delete wallet",
+    "walletLevel": "Wallet Level",
+    "active": "Active",
+    "switch": "Switch",
+    "deleteConfirm": {
+      "title": "Confirm Delete Wallet",
+      "description": "Are you sure you want to delete wallet {name}? This action cannot be undone.",
+      "cancel": "Cancel",
+      "delete": "Delete"
+    },
+    "addNewWallet": "Add Wallet",
+    "enterWalletName": "Enter Wallet Name",
+    "enterNickname": "Enter Nickname",
+    "nicknameValidationError": "Nickname can only contain letters without accents, numbers and underscores",
+    "enterSolanaPrivateKey": "Enter Solana Private Key",
+    "enterWalletNickname": "Enter Wallet Nickname",
+    "walletAddedSuccess": "Wallet added successfully",
+    "walletImportedSuccessfully": "Wallet imported successfully",
+    "walletsImportedSuccessfully": "wallets imported successfully",
+    "resultTitle": "Result",
+    "createdCount": "Created",
+    "failedCount": "Failed To Import",
+    "privateKeyFormatHint": "Enter multiple private keys separated by new lines. Each key will be imported as a separate wallet. Use copy and paste to enter multiple private keys.",
+    "walletAddFailed": "Failed to add wallet. Please try again.",
+    "failedToAddWallet": "Failed to add wallet. Please try again.",
+    "failedToFetchWallets": "Failed to fetch wallets. Please try again.",
+    "success": "Success",
+    "passwordCreatedSuccess": "Password created successfully",
+    "passwordCreatedSuccessfully": "Password created successfully",
+    "passwordCreateFailed": "Failed to create password. Please try again.",
+    "failedToCreatePassword": "Failed to create password. Please try again.",
+    "privateKeysRetrieved": "Private keys retrieved successfully",
+    "verificationCodeSent": "Verification code sent successfully",
+    "passwordChangedSuccessfully": "Password changed successfully",
+    "codeResentSuccessfully": "Code resent successfully",
+    "failedToResendCode": "Failed to resend code. Please try again.",
+    "sending": "Sending...",
+    "walletAlreadyExists": "Wallet name already exists",
+    "verifyCode": "Verify Code",
+    "enterVerificationCodeSent": "Enter the verification code sent to your email",
+    "invalidPrivateKey": "Invalid private key format",
+    "invalidPrivateKeyLength": "Invalid private key length",
+    "invalidPrivateKeyFormat": "Invalid private key format",
+    "addressCopied": "Wallet address has been copied to clipboard",
+    "passwordRequired": "Please enter your password",
+    "invalidPassword": "Invalid password. Please try again.",
+    "enterNewPassword": "Enter new password",
+    "enterConfirmPassword": "Enter confirm password",
+    "noTokens": "No tokens found",
+    "forgotPassword": "Forgot password?",
+    "verificationCode": "Verification code",
+    "resendCode": "Resend code",
+    "verify": "Verify",
+    "invalidCode": "Invalid code",
+    "passwordsDoNotMatch": "Passwords do not match",
+    "confirmDeleteWallet": "Are you sure you want to delete this wallet?",
+    "confirmDeleteWalletAction": "Delete wallet",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "walletNameNote": "Note: Wallet name and nickname cannot be duplicated with existing wallet names and nicknames",
+    "confirmCreateWallets": "Confirm Create Wallets",
+    "selectedWallets": "{{count}} wallets selected",
+    "clearSelection": "Clear Selection",
+    "deleteSelected": "Delete Selected",
+    "confirmBulkDelete": "Confirm Bulk Delete",
+    "confirmBulkDeleteMessage": "Are you sure you want to delete {{count}} selected wallet(s)? This action cannot be undone.",
+    "selectWalletToDelete": "Please select at least one wallet to delete",
+    "confirmCreateWalletsMessage": "Confirm creating {quantity} new wallets with wallet name prefix '{prefix}'?",
+    "confirmImportWallets": "Confirm Import Wallets",
+    "confirmImportWalletsMessage": "Confirm importing {quantity} wallets with wallet name prefix '{prefix}'?",
+    "confirm": "Confirm",
+    "importing": "Importing..."
+  },
+  "searchPlaceholder": "Token Name/ Address",
+  "languages": {
+    "korea": "Korea",
+    "english": "English",
+    "vietnamese": "Vietnamese",
+    "japan": "Japan"
+  },
+  "categories": {
+    "Rug Pull": "Rug Pull",
+    "Scam": "Scam",
+    "Low Cap": "Low Cap",
+    "High Cap": "High Cap",
+    "Community": "Community",
+    "Whale": "Whale",
+    "Bot": "Bot",
+    "Manual": "Manual",
+    "Auto": "Auto",
+    "VIP": "VIP",
+    "Hack": "Hack",
+    "Exploit": "Exploit",
+    "Bug": "Bug",
+    "Error": "Error",
+    "Crash": "Crash",
+    "Drop": "Drop",
+    "Fall": "Fall",
+    "Rise": "Rise",
+    "Jump": "Jump",
+    "Climb": "Climb",
+    "Sink": "Sink",
+    "Float": "Float",
+    "Swing": "Swing",
+    "Bounce": "Bounce",
+    "Rebound": "Rebound",
+    "Recovery": "Recovery",
+    "Correction": "Correction",
+    "Consolidation": "Consolidation",
+    "Breakout": "Breakout",
+    "Breakdown": "Breakdown",
+    "Support": "Support",
+    "Resistance": "Resistance",
+    "Trend": "Trend",
+    "Pattern": "Pattern",
+    "Signal": "Signal",
+    "Alert": "Alert",
+    "Warning": "Warning",
+    "Danger": "Danger",
+    "Risk": "Risk",
+    "Reward": "Reward",
+    "Profit": "Profit",
+    "Loss": "Loss",
+    "Gain": "Gain",
+    "Win": "Win",
+    "Lose": "Lose",
+    "Dog": "Dog",
+    "Cat": "Cat",
+    "IDO": "IDO",
+    "Presale": "Presale",
+    "Airdrop": "Airdrop",
+    "Pump": "Pump",
+    "Dump": "Dump",
+    "New": "New",
+    "Hot": "Hot",
+    "Trending": "Trending",
+    "Moon": "Moon",
+    "Rocket": "Rocket",
+    "Diamond": "Diamond",
+    "Gem": "Gem",
+    "Secure": "Secure",
+    "Elon": "Elon",
+    "Musk": "Musk",
+    "Pepe": "Pepe",
+    "Doge": "Doge",
+    "Shiba": "Shiba",
+    "Frog": "Frog",
+    "Duck": "Duck",
+    "Penguin": "Penguin",
+    "Bear": "Bear",
+    "Bull": "Bull",
+    "Lion": "Lion",
+    "Tiger": "Tiger",
+    "Dragon": "Dragon",
+    "Phoenix": "Phoenix",
+    "Unicorn": "Unicorn",
+    "Ninja": "Ninja",
+    "Samurai": "Samurai",
+    "Knight": "Knight",
+    "Wizard": "Wizard",
+    "Dwarf": "Dwarf",
+    "Elf": "Elf",
+    "Orc": "Orc",
+    "Goblin": "Goblin",
+    "Troll": "Troll",
+    "Ghost": "Ghost",
+    "Zombie": "Zombie",
+    "Vampire": "Vampire",
+    "Werewolf": "Werewolf",
+    "Mummy": "Mummy",
+    "Skeleton": "Skeleton",
+    "Alien": "Alien",
+    "Robot": "Robot",
+    "Cyborg": "Cyborg",
+    "Android": "Android",
+    "AI": "AI",
+    "NFT": "NFT",
+    "Metaverse": "Metaverse",
+    "GameFi": "GameFi",
+    "DeFi": "DeFi",
+    "Web3": "Web3",
+    "DAO": "DAO",
+    "Exchange": "Exchange",
+    "Yield": "Yield",
+    "Mining": "Mining",
+    "Trading": "Trading",
+    "Casino": "Casino",
+    "Lottery": "Lottery",
+    "Prediction": "Prediction",
+    "Insurance": "Insurance",
+    "Lending": "Lending",
+    "Borrowing": "Borrowing",
+    "APY": "APY",
+    "APR": "APR",
+    "TVL": "TVL",
+    "MCAP": "MCAP",
+    "Volume": "Volume",
+    "Liquidity": "Liquidity",
+    "Burn": "Burn",
+    "Mint": "Mint",
+    "Lock": "Lock",
+    "Vest": "Vest",
+    "Launch": "Launch",
+    "List": "List",
+    "Delist": "Delist"
+  },
+  "trading": {
+    "token": "Token",
+    "address": "Address",
+    "price": "Price",
+    "marketCap": "Market Cap",
+    "liquidity": "Liquidity",
+    "holder": "Holder",
+    "volume1h": "Volume 1h",
+    "volume1hChange": "Volume 1h Change",
+    "volume24h": "Volume 24h",
+    "volume24hChange": "Volume 24h Change",
+    "noTokens": "No tokens found",
+    "trade": "Trade",
+    "buy": "Buy",
+    "sell": "Sell",
+    "master": "Master & Chat",
+    "panel": {
+      "buy": "Buy",
+      "sell": "Sell",
+      "percentage": "Percentage",
+      "balance": "Balance",
+      "selectGroups": "Select groups...",
+      "amount": "Amount",
+      "masterTrade": "Master Trade",
+      "searchMasterTrade": "Search master trade",
+      "copyAddress": "Copy address",
+      "addressCopied": "Copied",
+      "noConnections": "No connections",
+      "selectConnection": "Select connection",
+      "noGroupsAvailable": "No groups available",
+      "insufficient_balance": "Insufficient balance",
+      "success": "Success",
+      "error": "Error",
+      "processing": "Processing...",
+      "invalid_amount": "Invalid amount"
+    },
+    "interface": {
+      "loading": "Loading token information...",
+      "noTokens": "No recently viewed tokens",
+      "recentTokens": "Recent Tokens",
+      "openInNewTab": "Open in new tab",
+      "tokenInfo": {
+        "price": "Price",
+        "change": "Change",
+        "marketCap": "Market Cap",
+        "volume24h": "24h Volume",
+        "holders": "Holders",
+        "liquidity": "Liquidity"
+      },
+      "error": {
+        "loadingFailed": "Failed to load token information",
+        "invalidToken": "Invalid token address"
+      },
+      "searchPlaceholder": "Token Name / Address",
+      "minSearchLength": "Enter at least 2 characters to search"
+    },
+    "listToken": {
+      "allMarkets": "All token markets",
+      "newTrending": "New & trending",
+      "meme": "Meme",
+      "hot": "Hot",
+      "favorite": "Favorite",
+      "category": "Category",
+      "trending": "Trending",
+      "new": "New",
+      "noData": "No data"
+    },
+    "tokenInfo": {
+      "marketCap": "Market Cap",
+      "volume24h": "24h Volume",
+      "liquidity": "Liquidity",
+      "holders": "Holders",
+      "price": "Price",
+      "vol": "Vol",
+      "buy": "Buy",
+      "sells": "Sells",
+      "netBuy": "Net Buy",
+      "timeFrames": {
+        "5m": "5m",
+        "1h": "1h",
+        "4h": "4h",
+        "24h": "24h"
+      }
+    },
+    "control": {
+      "searchBar": {
+        "placeholder": "Token Name/ Address"
+      }
+    }
+  },
+  "auth": {
+    "connect": "Connect Telegram",
+    "disconnect": "Disconnect",
+    "connecting": "Connecting...",
+    "connected": "Connected",
+    "loginSuccess": "Login successful",
+    "loginFailed": "Login failed",
+    "pleaseConnect": "Please connect your Telegram account",
+    "userProfile": "User Profile"
+  },
+  "tableDashboard": {
+    "tabs": {
+      "trending": "Trending",
+      "new": "New",
+      "hot": "Hot",
+      "favorite": "Favorite",
+      "category": "Category"
+    },
+    "mobile": {
+      "price": "Price",
+      "24hChange": "24h Change",
+      "marketCap": "Market Cap",
+      "holders": "Holders",
+      "address": "Address"
+    },
+    "pagination": {
+      "page": "Page",
+      "of": "of",
+      "first": "«",
+      "previous": "‹",
+      "next": "›",
+      "last": "»"
+    },
+    "toast": {
+      "addressCopied": "Address copied to clipboard",
+      "add": "Add",
+      "remove": "Remove",
+      "wishlist": "Wishlist",
+      "success": "Success",
+      "failed": "Failed",
+      "addToWishlistSuccess": "Successfully added to wishlist",
+      "addToWishlistFailed": "Failed to add to wishlist",
+      "addWishlistSuccess": "Successfully added to wishlist",
+      "addWishlistFailed": "Failed to add to wishlist"
+    }
+  },
+  "header": {
+    "search": {
+      "placeholder": "Search...",
+      "loading": "Loading..."
+    },
+    "wallet": {
+      "selectWallet": "Select Wallet",
+      "logout": "Logout",
+      "loading": "Loading...",
+      "connecting": "Connecting...",
+      "tos": "Terms of Service",
+      "privacypolicy": "Privacy Policy",
+      "ref": "Referral",
+      "connect": "Connect",
+      "welcome": "Welcome to our platform",
+      "connect_with_us": "Connect with us through multiple flexible login methods",
+      "security": "Security",
+      "disconnectPhantom": "Disconnect Phantom"
+    },
+    "notifications": {
+      "switchWalletSuccess": "Wallet switched successfully!",
+      "switchWalletFailed": "Failed to switch wallet!",
+      "loginSuccess": "Login successful!",
+      "completeProfile": "Please complete your profile information!",
+      "loginRequired": "Please login to continue!"
+    }
+  },
+  "listWallet": {
+    "search": {
+      "placeholder": "Wallet Name/ Address"
+    },
+    "selectedWallet": {
+      "title": "Selected Wallet"
+    },
+    "changeWallet": {
+      "title": "CHANGE WALLET"
+    },
+    "walletType": {
+      "master": "Master",
+      "sub": "Sub"
+    },
+    "copyAddress": {
+      "copied": "Copied",
+      "copy": "Copy"
+    }
+  },
+  "transactionHistory": {
+    "allTransactions": "ALL TRANSACTIONS",
+    "myTransactions": "MY TRANSACTIONS",
+    "holders": "Holders",
+    "assets": "Assets",
+    "time": "Time",
+    "type": "Type",
+    "price": "Price",
+    "amount": "Amount",
+    "total": "Total",
+    "source": "Source",
+    "transactionHash": "Transaction Hash",
+    "status": "Status",
+    "address": "Address",
+    "completed": "COMPLETED",
+    "pending": "PENDING",
+    "failed": "FAILED",
+    "buy": "BUY",
+    "sell": "SELL",
+    "copy": "Copy",
+    "copied": "Copied",
+    "noTransactions": "No transactions found",
+    "loading": "Loading transactions...",
+    "percentage": "Percentage",
+    "quoteValue": "Quote Value",
+    "ownerPercentage": "Owner %",
+    "redirecting": "Redirecting...",
+    "usdValue": "USD Value",
+    "error": {
+      "loadFailed": "Failed to load transaction history",
+      "invalidAddress": "Invalid address"
+    },
+    "filters": {
+      "all": "All",
+      "buy": "Buy",
+      "sell": "Sell",
+      "today": "Today",
+      "week": "This Week",
+      "month": "This Month"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "search": "Search",
+    "noResults": "No results found",
+    "required": "Required",
+    "optional": "Optional",
+    "copy": {
+      "copyAddress": "Copy address",
+      "copied": "Copied!"
+    },
+    "actions": "Actions",
+    "close": "Close"
+  },
+  "universal_account": {
+    "google_auth_code": "Google Authenticator Code",
+    "deposit": "Deposit",
+    "withdraw": "Withdraw",
+    "history": "HISTORY",
+    "time": "Time",
+    "type": "Type",
+    "status": "Status",
+    "amount": "Amount",
+    "transaction_id": "Transaction ID",
+    "from": "From",
+    "to": "To",
+    "from_address": "From Address",
+    "to_address": "To Address",
+    "no_transactions": "No {type} transactions found",
+    "copied": "Copied!",
+    "copied_description": "Transaction hash copied to clipboard",
+    "enter_amount": "Enter send amount",
+    "transaction_progress": "Transaction in progress...",
+    "available": "Available: {amount} SOL",
+    "recipient_address": "Recipient Address",
+    "recipient_placeholder": "Recipient address...",
+    "sending": "Sending...",
+    "send": "SEND",
+    "deposit_wallet": {
+      "title": "YOUR SOLANA ADDRESS",
+      "warning": {
+        "title": "Only withdrawals of SOL from the Solana network are supported.",
+        "description": "Please withdraw SOL on the Solana network and make sure to use your correct Solana wallet address."
+      },
+      "copy_success": "Wallet address copied to clipboard!"
+    },
+    "errors": {
+      "max_withdrawal": "Maximum withdrawal amount is 1 SOL",
+      "min_withdrawal": "Minimum withdrawal amount is 0.001 SOL",
+      "insufficient_balance": "Amount cannot exceed your balance of {balance} SOL",
+      "transaction_failed": "Transaction failed. Please try again.",
+      "transaction_success": "Transaction sent successfully!",
+      "network_error": "Network error. Please check your connection.",
+      "unauthorized": "Unauthorized. Please login again.",
+      "recipient_required": "Recipient address is required",
+      "user_wallet_not_found": "Wallet not found"
+    },
+    "minimum_withdrawal_amount": "Minimum withdrawal amount is {amount} SOL",
+    "maximum_withdrawal_amount": "Maximum withdrawal amount is {amount} SOL",
+    "amount_cannot_exceed_balance": "Amount cannot exceed your balance of {balance} SOL"
+  },
+  "chat": {
+    "communityChatroom": "Community Chatroom"
+  },
+  "searchModal": {
+    "title": "SEARCH",
+    "placeholder": "Search tokens...",
+    "columns": {
+      "token": "Token",
+      "marketCap": "Market Cap",
+      "volume1h": "1h Vol",
+      "volume24h": "24h Vol",
+      "price": "Price",
+      "holders": "Holders"
+    },
+    "badges": {
+      "verified": "Verified",
+      "new": "New"
+    },
+    "noResults": "No tokens found matching your search criteria"
+  },
+  "connectMasterModal": {
+    "title": "CONNECT TO MASTER",
+    "maximumCopyAmount": "Maximum Copy Amount (SOL)",
+    "copyAddress": {
+      "copy": "Copy address",
+      "copied": "Copied!"
+    },
+    "buttons": {
+      "cancel": "Cancel",
+      "connect": "Connect",
+      "connecting": "Connecting..."
+    }
+  },
+  "tokenInfo": {
+    "timeFrames": {
+      "5m": "5m",
+      "1h": "1h",
+      "4h": "4h",
+      "24h": "24h"
+    }
+  },
+  "ref": {
+    "title": "Referral Tracking",
+    "yourReferralLink": "Your Referral Link",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "earlyAccessReferral": "Early Access Referral",
+    "earlyAccessDescription": "Your referral will receive early access and you will receive a commission from their trading fees.",
+    "totalReferrals": "Total Referrals",
+    "totalEarnings": "Total Earnings",
+    "activeReferrals": "Active Referrals",
+    "withdraw": "Withdraw",
+    "referralStructure": "Referral Structure",
+    "show": "Show",
+    "hide": "Hide",
+    "yourReferrals": "Your Referrals",
+    "referredUsers": "Referred Users",
+    "layersReferral": "Level Referral",
+    "referralCount": "Referral Count",
+    "claimableVolume": "Claimable Volume",
+    "lifetimeVolume": "Lifetime Volume",
+    "user": "User",
+    "joinDate": "Join Date",
+    "level": "Level",
+    "earnings": "Earnings",
+    "noReferredUsers": "No referred users at this level.",
+    "availableBalance": "Available Balance",
+    "minimumWithdrawalRequired": "Minimum Withdrawal Required",
+    "minimumWithdrawalDescription": "To withdraw, you need a minimum of $10.00. Current balance: ${amount}",
+    "requiredMore": "Required: ${amount} more",
+    "readyToWithdraw": "Ready to Withdraw",
+    "readyToWithdrawDescription": "Your balance meets the minimum withdrawal requirement ($10.00)",
+    "cancel": "Cancel",
+    "withdrawAction": "Withdraw",
+    "withdrawalSuccess": "Withdrawal request submitted successfully!",
+    "you": "You",
+    "receivePercent": "Receive {percent}% of Friend {friend}'s fees",
+    "id": "ID",
+    "unknown": "Unknown",
+    "all": "All",
+    "withdrawalHistory": "Withdrawal History",
+    "withdrawalId": "Withdrawal ID",
+    "amountUSD": "Amount (USD)",
+    "amountSOL": "Amount (SOL)",
+    "status": "Status",
+    "createdAt": "Created At",
+    "processedAt": "Processed At",
+    "rewardIds": "Reward IDs",
+    "noWithdrawalHistory": "No withdrawal history found",
+    "statusPending": "Pending",
+    "statusCompleted": "Completed",
+    "statusRejected": "Rejected",
+    "statusProcessing": "Processing"
+  },
+  "tglogin": {
+    "title": "Complete Profile",
+    "name": "Name",
+    "nickname": "Nickname",
+    "country": "Country",
+    "namePlaceholder": "Enter your name",
+    "nicknamePlaceholder": "Enter your nickname",
+    "submit": "Submit",
+    "submitFailed": "Submit failed",
+    "nicknameAlreadyExists": "Nickname already exists",
+    "nameRequired": "Name is required",
+    "countryRequired": "Country is required",
+    "nicknameRequired": "Nickname is required",
+    "submitSuccess": "Submit successful"
+  },
+  "security": {
+    "enter_password": "Enter your password",
+    "password_placeholder": "Enter your password",
+    "gg_auth_linked": "Google Authenticator linked",
+    "gg_auth_linked_desc": "Google Authenticator has been linked to your account",
+    "remove_gg_auth": "Remove Google Authenticator",
+    "bind_google_authenticator": "Bind Google Authenticator",
+    "remove_gg_auth_title": "Remove Google Authenticator",
+    "token_placeholder": "Enter Google Authenticator token",
+    "step1": {
+      "title": "Step 1: Install Google Authenticator",
+      "description": "iOS users log in to the App Store and search for 'Authenticator' to download. Android users log in to the app store or use a mobile browser to search for 'Google Authenticator' to download",
+      "app_store": "App Store",
+      "google_play": "Google Play",
+      "next_step": "Installed, Next Step"
+    },
+    "step2": {
+      "title": "Step 2: Import and enter the verification code",
+      "description": "1. Open Google Authenticator, tap the icon in the bottom right corner, then tap to scan the QR code",
+      "rescan_note": "(Please rescan after refreshing the page)",
+      "user": "User",
+      "key": "Key",
+      "enter_code": "2. Please enter verification code",
+      "submit": "SUBMIT"
+    },
+    "removing": "Removing...",
+    "invalid_password": "Invalid password",
+    "processing": "Processing...",
+    "enter_code": "Enter verification code",
+    "invalid_code": "Invalid verification code",
+    "change_password": "Change Password",
+    "install_google_auth": "Google Authenticator",
+    "verification_code": "Verification Code",
+    "verification_code_telegram": "Telegram Verification Code",
+    "send_code": "Send Code",
+    "new_password": "New Password",
+    "new_password_placeholder": "Enter new password",
+    "confirm_password": "Confirm Password",
+    "confirm_password_placeholder": "Confirm new password",
+    "sending": "Sending...",
+    "code_sent_success": "Verification code sent successfully",
+    "code_sent_failed": "Failed to send verification code",
+    "code_sent_error": "Error sending verification code",
+    "code_sent_expired": "Verification code expired",
+    "code_sent_used": "Verification code used",
+    "code_sent_invalid": "Invalid verification code",
+    "enter_verification_code": "Please enter verification code",
+    "enter_new_password": "Please enter new password",
+    "passwords_not_match": "Passwords do not match",
+    "password_min_length": "Password must be at least 8 characters",
+    "changing_password": "Changing password...",
+    "password_changed_success": "Password changed successfully",
+    "change_password_error": "Error changing password",
+    "link_account": "Link Account",
+    "link_telegram_google": "Link Telegram and Google Account",
+    "link_account_description": "Link Telegram and Google Account to enhance account security",
+    "telegram_code": "Telegram Code",
+    "link_now": "Link Now",
+    "enter_telegram_code": "Please enter Telegram code",
+    "verification_code_google": "Google Verification Code",
+    "sign_in_with_google": "Sign in with Google",
+    "account_linking_error": "Error linking account",
+    "linking": "Linking...",
+    "account_linked_success": "Account linked successfully",
+    "account_linked": "Account linked",
+    "account_linked_description": "Account linked successfully!",
+    "password_set": "Password set",
+    "password_not_set": "Password not set",
+    "gg_auth_enabled": "Google Authenticator enabled",
+    "gg_auth_disabled": "Google Authenticator disabled"
+  },
+  "login": {
+    "error": "Error",
+    "notActive": "Account is not active",
+    "returnHome": "Return to home"
+  },
+  "time": {
+    "secondsAgo": "{seconds}s ago",
+    "minutesAgo": "{minutes}m ago",
+    "hoursAgo": "{hours}h ago",
+    "daysAgo": "{days}d ago"
+  },
+  "blog": {
+    "technicalChartAnalysis": {
+      "title": "MEMEPUMP: Understanding Trends with Advanced Charts from TradingView",
+      "description": "Explore MEMEPUMP's potential through advanced technical charts on TradingView. Make investment decisions based on trends, indicators, and market sentiment.",
+      "intro": "In the volatile world of crypto, MEMEPUMP has emerged as a new phenomenon attracting the attention of the investment community. But to avoid being swept away by crowd effects, you need a powerful enough tool to analyze and make accurate decisions – and that's TradingView.",
+      "whyTradingView": {
+        "title": "Why are TradingView charts the ideal choice for MEMEPUMP?",
+        "content1": "TradingView provides powerful, intuitive technical charts with high customization capabilities, from RSI, MACD, Bollinger Bands indicators to support-resistance drawing tools. This is particularly important when tracking a highly volatile token like MEMEPUMP.",
+        "content2": "These charts also allow users to save analysis templates, set price alerts, and share insights with the community. For professional traders or new investors, this is an indispensable 'weapon' in MEMEPUMP trading strategy."
+      },
+      "differences": {
+        "title": "What makes MEMEPUMP different from other meme tokens?",
+        "content1": "Not just a 'trend-following' meme coin, MEMEPUMP is highly regarded by the community for its strong growth rate, good liquidity, and rapid viral spread on social media. These are the factors that make technical analysis extremely useful for identifying reasonable entry and exit points.",
+        "content2": "Compared to traditional meme tokens that are difficult to analyze technically, MEMEPUMP creates clear price patterns – helping you easily use tools like Fibonacci Retracement, trading volume, or multi-timeframe analysis to develop optimal strategies."
+      },
+      "marketPsychology": {
+        "title": "The intersection between MEMEPUMP and market psychology",
+        "content1": "Like many other altcoins, MEMEPUMP often reacts very strongly to market events or tweets from famous KOLs. Therefore, combining chart analysis with crowd psychology assessment is a crucial factor in the investment process.",
+        "content2": "Unexpected price movements can be detected early through candlestick patterns, volume spikes, or indicator divergences – which TradingView displays very clearly. This is exactly the advantage of investors who know how to leverage technical analysis to control emotions and avoid 'buying the top'."
+      },
+      "bitcoinComparison": {
+        "title": "Comparing MEMEPUMP and Bitcoin: Is there correlation?",
+        "content": "In many periods, MEMEPUMP tends to move in phase or opposite to Bitcoin – the market-leading coin. You can track Bitcoin charts here: Bitcoin chart. This correlation, if observed carefully, will help you catch adjustment cycles or 'ride the wave' with money flow."
+      },
+      "conclusion": {
+        "title": "Summary",
+        "content1": "MEMEPUMP is not just a short-term trend. If you know how to use the right tools like TradingView and have a clear strategy, the opportunity to seek profits will be significantly increased. Take advantage of the power of technical analysis to make smart decisions.",
+        "content2": "Finally, don't forget to closely monitor indicators, market sentiment, and money flow movements to adjust strategies accordingly. In the crypto market, knowledge and reaction speed are your biggest advantages."
+      }
+    }
+  }
+}
