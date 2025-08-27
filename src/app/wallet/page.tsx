@@ -76,7 +76,7 @@ const tableContainerStyles = "overflow-x-auto -mx-4 sm:mx-0"
 const tableStyles = "w-full"
 const tableHeaderStyles = "px-2 py-2 sm:py-3 text-left text-xs sm:text-sm font-medium text-neutral-800 dark:text-gray-300 sticky top-0 bg-white dark:bg-gray-900 z-10"
 const tableCellStyles = "px-2 py-2 sm:py-2 text-xs text-neutral-900 dark:text-gray-300"
-const tableBodyContainerStyles = "max-h-[567px] overflow-y-auto"
+const tableBodyContainerStyles = "max-h-[74vh] overflow-y-auto"
 
 // Add new styles for mobile assets
 const assetCardStyles = "dark:bg-theme-black-200/50 bg-white rounded-xl p-4 border border-solid border-y-[#15DFFD] border-x-[#720881]"
@@ -1492,7 +1492,7 @@ export default function WalletPage() {
                                             value={selectedNetwork}
                                             onChange={(value) => setSelectedNetwork(value)}
                                             options={langConfig.listLangs}
-                                            placeholder={t('wallet.country')}
+                                            placeholder={t('wallet.selectCountry')}
                                             t={t}
                                         />
                                     </div>
@@ -1575,7 +1575,7 @@ export default function WalletPage() {
                                             value={selectedNetwork}
                                             onChange={(value) => setSelectedNetwork(value)}
                                             options={langConfig.listLangs}
-                                            placeholder={t('wallet.country')}
+                                            placeholder={t('wallet.selectCountry')}
                                             t={t}
                                             className="h-9"
                                         />
@@ -1738,7 +1738,7 @@ export default function WalletPage() {
                                                 value={selectedNetwork}
                                                 onChange={(value) => setSelectedNetwork(value)}
                                                 options={langConfig.listLangs}
-                                                placeholder={t('wallet.country')}
+                                                placeholder={t('wallet.selectCountry')}
                                                 className="h-9"
                                                 t={t}
                                             />
@@ -1755,7 +1755,7 @@ export default function WalletPage() {
                                                 }}
                                             >
                                                 <SelectTrigger className="border-none w-full px-3 py-1.5 dark:bg-theme-black-200 bg-white placeholder:!text-xs rounded-xl text-black dark:text-theme-neutral-100 focus:outline-none focus:border-purple-500 [&>span]:text-xs dark:[&>span]:text-gray-400 h-9">
-                                                    <SelectValue placeholder={t('wallet.connectMaster')} className="text-yellow-500" />
+                                                    <SelectValue placeholder={t('wallet.selectConnectMaster')} className="text-yellow-500" />
                                                 </SelectTrigger>
                                                 <SelectContent
                                                     className="bg-white dark:bg-theme-black-200 border border-gray-200 dark:border-gray-700 shadow-lg"
@@ -2029,7 +2029,7 @@ export default function WalletPage() {
                                                 value={selectedNetwork}
                                                 onChange={(value) => setSelectedNetwork(value)}
                                                 options={langConfig.listLangs}
-                                                placeholder={t('wallet.country')}
+                                                placeholder={t('wallet.selectCountry')}
                                                 t={t}
                                             />
                                         </div>

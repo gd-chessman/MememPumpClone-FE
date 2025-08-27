@@ -704,7 +704,7 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
                                 <TableHead className={`${textTitle} w-[8%] px-4`}>{t('common.actions')}</TableHead>
                             </TableRow>
                         </Table>
-                        <div className="max-h-[650px] overflow-y-auto w-full">
+                        <div className="max-h-[74vh] overflow-y-auto w-full">
                             <Table className="w-full">
                                 <TableBody className="w-full">
                                     {wallets?.map((wallet) => (
