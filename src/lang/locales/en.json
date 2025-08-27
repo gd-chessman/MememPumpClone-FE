@@ -467,6 +467,7 @@
     "deleteFailed": "Failed to delete wallet",
     "walletLevel": "Wallet Level",
     "active": "Active",
+    "loadingMore": "Loading more wallets...",
     "switch": "Switch",
     "deleteConfirm": {
       "title": "Confirm Delete Wallet",

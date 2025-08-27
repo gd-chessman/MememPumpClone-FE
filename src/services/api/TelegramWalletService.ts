@@ -51,9 +51,9 @@ export const getWalletBalanceByAddress = async (address: any)=>{
 }
 
 
-export const getMyWallets = async ()=>{
+export const getMyWallets = async (page: number = 1, limit: number = 20) => {
     try {
-        const temp = await axiosClient.get("/telegram-wallets/get-my-wallets")
+        const temp = await axiosClient.get(`/telegram-wallets/get-my-wallets?page=${page}&limit=${limit}`)
         return temp.data.data;
     } catch (error) {
         console.log(error)

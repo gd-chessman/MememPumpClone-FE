@@ -26,7 +26,7 @@ export default function WithdrawWallet({ walletInfor }: { walletInfor: any }) {
 
   const { data: listWallets = [] } = useQuery({
     queryKey: ['my-wallets'],
-    queryFn: getMyWallets,
+    queryFn: () => getMyWallets(1, 20),
   });
   const { t } = useLang();
   const [amount, setAmount] = useState<string>("0")

@@ -155,11 +155,11 @@ const UniversalAccountSkeleton = () => (
         </div>
         <div className="flex justify-between lg:justify-start lg:items-end gap-4 w-full">
             <div className="flex flex-col justify-start items-start gap-3 min-w-0">
-                <div className="w-full flex flex-col justify-center items-start gap-1.5">
-                    <div className="h-6 bg-gray-300 dark:bg-gray-600 rounded animate-pulse w-20" />
+                <div className="w-full flex flex-col justify-center items-start">
+                    <div className="h-6 bg-gray-300 dark:bg-gray-600 rounded animate-pulse w-24 mb-2" />
                     <div className="inline-flex justify-start items-center gap-1.5 flex-wrap">
+                        <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded animate-pulse w-20" />
                         <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded animate-pulse w-16" />
-                        <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded animate-pulse w-12" />
                         <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded animate-pulse w-8" />
                     </div>
                 </div>
@@ -462,7 +462,7 @@ export default function WalletPage() {
 
     const { data: myWallets = [], refetch: refetchInforWallets, isLoading: isLoadingMyWallets } = useQuery({
         queryKey: ["my-wallets"],
-        queryFn: getMyWallets,
+        queryFn: () => getMyWallets(1, 20),
         enabled: isAuthenticated,
     });
 
@@ -476,6 +476,7 @@ export default function WalletPage() {
         queryKey: ["master-trading/masters"],
         queryFn: getMasters,
     });
+
     // Filter tokens with price >= 0.000001
     const filteredTokens = React.useMemo(() => {
         if (!tokenList || !tokenList.tokens || !Array.isArray(tokenList.tokens)) {
@@ -488,10 +489,50 @@ export default function WalletPage() {
         queryKey: ["wallet-infor"],
         queryFn: getInforWallet,
     });
+
     const { data: listWallets = [], error, isLoading: isLoadingListWallets } = useQuery({
         queryKey: ['my-wallets'],
-        queryFn: getMyWallets,
+        queryFn: () => getMyWallets(1, 20),
     });
+
+    // Infinite scroll states
+    const [currentPage, setCurrentPage] = useState(1);
+    const [hasMore, setHasMore] = useState(true);
+    const [isLoadingMore, setIsLoadingMore] = useState(false);
+    const [allWallets, setAllWallets] = useState<any[]>([]);
+
+    // Load more wallets function
+    const loadMoreWallets = useCallback(async () => {
+        if (isLoadingMore || !hasMore) return;
+        
+        try {
+            setIsLoadingMore(true);
+            const nextPage = currentPage + 1;
+            const newWallets = await getMyWallets(nextPage, 20);
+            
+            if (newWallets && newWallets.length > 0) {
+                setAllWallets(prev => [...prev, ...newWallets]);
+                setCurrentPage(nextPage);
+            } else {
+                setHasMore(false);
+            }
+        } catch (error) {
+            console.error('Error loading more wallets:', error);
+            setHasMore(false);
+        } finally {
+            setIsLoadingMore(false);
+        }
+    }, [currentPage, isLoadingMore, hasMore]);
+
+    // Initialize wallets on mount
+    useEffect(() => {
+        if (myWallets && myWallets.length > 0) {
+            setAllWallets(myWallets);
+            // Set hasMore to true if we got a full page (20 items), indicating there might be more data
+            setHasMore(myWallets.length === 20);
+        }
+    }, [myWallets]);
+
     const fetchWallets = useCallback(async () => {
         try {
             const walletList = await TelegramWalletService.getMyWallets();
@@ -1248,10 +1289,13 @@ export default function WalletPage() {
                                     </div>
                                 ) : (
                                     <WalletTable
-                                        wallets={myWallets}
+                                        wallets={allWallets}
                                         onCopyAddress={handleCopyAddress}
                                         onUpdateWallet={refetchInforWallets}
                                         refetchWallets={refetchInforWallets}
+                                        onLoadMore={loadMoreWallets}
+                                        hasMore={hasMore}
+                                        isLoadingMore={isLoadingMore}
                                     />
                                 )}
                             </div>

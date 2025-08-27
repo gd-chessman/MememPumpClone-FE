@@ -15,7 +15,7 @@ import { Badge } from "@/ui/badge";
 import { truncateString } from "@/utils/format";
 import { Wallet } from "../list-wallet";
 import { Input } from "@/ui/input";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "react-i18next";
 import { TelegramWalletService } from '@/services/api';
@@ -48,6 +48,9 @@ interface WalletTableProps {
     onCopyAddress?: (address: string, e: React.MouseEvent) => void;
     onUpdateWallet?: () => void;
     refetchWallets?: () => void;
+    onLoadMore?: () => void;
+    hasMore?: boolean;
+    isLoadingMore?: boolean;
 }
 
 const textTitle = 'text-neutral-800 dark:text-neutral-200 font-normal text-xs py-2'
@@ -68,7 +71,7 @@ const mobileStyles = {
     icon: "h-3 w-3"
 }
 
-export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWallets }: WalletTableProps) {
+export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWallets, onLoadMore, hasMore = false, isLoadingMore = false }: WalletTableProps) {
     const { toast } = useToast();
     const { t } = useLang();
     const { isAuthenticated, logout, updateToken } = useAuth();
@@ -85,6 +88,45 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
     const [isBulkDelete, setIsBulkDelete] = useState(false);
     const [walletBalances, setWalletBalances] = useState<Record<string, { sol_balance: number; sol_balance_usd: number }>>({});
     const [loadingBalances, setLoadingBalances] = useState<Record<string, boolean>>({});
+
+    // Infinite scroll ref
+    const observerRef = useRef<IntersectionObserver | null>(null);
+    const loadingRef = useRef<HTMLTableRowElement>(null);
+    const onLoadMoreRef = useRef(onLoadMore);
+
+    // Update the ref when onLoadMore changes
+    useEffect(() => {
+        onLoadMoreRef.current = onLoadMore;
+    }, [onLoadMore]);
+
+    // Setup intersection observer for infinite scroll
+    useEffect(() => {
+        // Clean up previous observer
+        if (observerRef.current) {
+            observerRef.current.disconnect();
+        }
+        
+        if (loadingRef.current && onLoadMore && hasMore && !isLoadingMore) {
+            observerRef.current = new IntersectionObserver(
+                (entries) => {
+                    if (entries[0].isIntersecting) {
+                        onLoadMoreRef.current?.();
+                    }
+                },
+                { 
+                    threshold: 0.1,
+                    rootMargin: '100px' // Start loading when element is 100px away from viewport
+                }
+            );
+            observerRef.current.observe(loadingRef.current);
+        }
+
+        return () => {
+            if (observerRef.current) {
+                observerRef.current.disconnect();
+            }
+        };
+    }, [hasMore, isLoadingMore]); // Removed onLoadMore from dependencies to prevent unnecessary re-creation
 
     // Load balances for all wallets when wallets change
     useEffect(() => {
@@ -662,9 +704,9 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
                                 <TableHead className={`${textTitle} w-[8%] px-4`}>{t('common.actions')}</TableHead>
                             </TableRow>
                         </Table>
-                        <div>
-                            <Table>
-                                <TableBody>
+                        <div className="max-h-[650px] overflow-y-auto w-full">
+                            <Table className="w-full">
+                                <TableBody className="w-full">
                                     {wallets?.map((wallet) => (
                                         <TableRow
                                             key={wallet.wallet_id}
@@ -767,6 +809,19 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
                                             </TableCell>
                                         </TableRow>
                                     ))}
+                                    {/* Loading indicator for infinite scroll */}
+                                    {(isLoadingMore || hasMore) && (
+                                        <TableRow ref={loadingRef} className="h-16">
+                                            <TableCell colSpan={9} className="text-center py-6">
+                                                <div className="flex items-center justify-center gap-2">
+                                                    <Loader2 className="h-4 w-4 animate-spin" />
+                                                    <span className="text-sm text-gray-500">
+                                                        {isLoadingMore ? t('wallet.loadingMore') : 'Scroll to load more'}
+                                                    </span>
+                                                </div>
+                                            </TableCell>
+                                        </TableRow>
+                                    )}
                                 </TableBody>
                             </Table>
                         </div>
