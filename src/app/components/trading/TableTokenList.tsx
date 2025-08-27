@@ -331,8 +331,8 @@ export function TableTokenList({
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-2">
-                        <span className={`!text-[#ffb300] ${textContent} truncate max-w-[200px]`}>
-                          {truncateString(token.address, 12)}
+                        <span className={`!text-[#ffb300] ${textContent} truncate max-w-[200px] italic`}>
+                          {truncateString(token.address, 10)}
                         </span>
                         <Button
                           variant="ghost"
