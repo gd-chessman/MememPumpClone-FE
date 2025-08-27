@@ -11,7 +11,7 @@ import { useLang } from "@/lang/useLang"
 import { getTokenInforByAddress } from "@/services/api/SolonaTokenService"
 import { useAuth } from "@/hooks/useAuth"
 import { useRouter } from "next/navigation"
-import { ArrowLeftRight } from "lucide-react"
+import { ArrowLeftRight, Copy } from "lucide-react"
 
 type Transaction = {
   time: string
@@ -682,8 +682,9 @@ function TransactionHistoryContent() {
                 <thead className="sticky top-[-1px] z-10 bg-white dark:bg-theme-primary-500/70">
                   <tr className="border-b border-gray-200 dark:border-neutral-800">
                     <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-auto">{t("wallet.token")}</th>
-                    <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-[15%]">{t("wallet.balance")}</th>
-                    <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-[15%]">{t("wallet.price")}</th>
+                    <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-[17%]">{t("wallet.address")}</th>
+                    <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-[17%]">{t("wallet.balance")}</th>
+                    <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-[17%]">{t("wallet.price")}</th>
                     <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-[12%]">{t("wallet.value")}</th>
                   </tr>
                 </thead>
@@ -708,9 +709,15 @@ function TransactionHistoryContent() {
                           </div>
                         </div>
                       </td>
+                      <td className="px-4 py-2 italic text-xs text-yellow-500 font-medium truncate flex items-center h-12">
+                        {truncateString(token.token_address, 10)} <Copy onClick={() => {
+                          navigator.clipboard.writeText(token.token_address)
+                        }} className="ml-1 text-gray-400 hover:text-gray-600 dark:text-neutral-500 dark:hover:text-neutral-300 h-3 w-3" />
+                      </td>
                       <td className="px-4 py-2 text-green-600 text-xs font-medium truncate">
                         {token.token_balance.toFixed(4)}
                       </td>
+
                       <td className="px-4 py-2 text-purple-600 text-xs font-medium truncate">
                         ${token.token_price_usd.toFixed(6)}
                       </td>

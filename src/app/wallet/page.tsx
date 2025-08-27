@@ -1326,56 +1326,49 @@ export default function WalletPage() {
                                                 </div>
                                             ) : (
                                                 <div className={tableContainerStyles}>
-                                                    <div className="relative">
-                                                        <table className={`${tableStyles}`}>
-                                                            <thead className="">
-                                                                <tr>
-                                                                    <th className={`${tableHeaderStyles} dark:!bg-[#374151] h-12 w-[9.5%]`}>{t('wallet.token')} ▼</th>
-                                                                    <th className={`${tableHeaderStyles} dark:!bg-[#374151] h-12 w-[3%]`}>{t('wallet.balance')}</th>
-                                                                    <th className={`${tableHeaderStyles} dark:!bg-[#374151] h-12 w-[3%]`}>{t('wallet.price')}</th>
-                                                                    <th className={`${tableHeaderStyles} dark:!bg-[#374151] h-12 w-[3%]`}>{t('wallet.value')}</th>
+                                                    <table className={`${tableStyles} w-full`}>
+                                                        <thead>
+                                                            <tr>
+                                                                <th className={`${tableHeaderStyles} dark:!bg-[#374151] h-12 w-[35%] text-left`}>{t('wallet.token')} ▼</th>
+                                                                <th className={`${tableHeaderStyles} dark:!bg-[#374151] h-12 w-[20%] text-right`}>{t('wallet.balance')}</th>
+                                                                <th className={`${tableHeaderStyles} dark:!bg-[#374151] h-12 w-[17.5%] text-right`}>{t('wallet.price')}</th>
+                                                                <th className={`${tableHeaderStyles} dark:!bg-[#374151] h-12 w-[17.5%] text-right`}>{t('wallet.value')}</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {filteredTokens.map((token: Token, index: number) => (
+                                                                <tr key={index} className="border-t border-gray-700 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onClick={() => router.push(`/trading?address=${token.token_address}`)}>
+                                                                    <td className={`${tableCellStyles} w-[35%] text-left`}>
+                                                                        <div className="flex items-center gap-2">
+                                                                            {token.token_logo_url && (
+                                                                                <img
+                                                                                    src={token.token_logo_url}
+                                                                                    alt={token.token_name}
+                                                                                    className="w-5 h-5 sm:w-6 sm:h-6 rounded-full"
+                                                                                    onError={(e) => {
+                                                                                        e.currentTarget.src = '/placeholder.png';
+                                                                                    }}
+                                                                                />
+                                                                            )}
+                                                                            <div>
+                                                                                <div className="font-medium text-neutral-900 dark:text-theme-neutral-100 text-xs">{token.token_name}</div>
+                                                                                <div className="text-[10px] sm:text-xs text-neutral-600 dark:text-gray-400">{token.token_symbol}</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td className={`${tableCellStyles} w-[20%] text-right`}>
+                                                                        {token.token_balance.toFixed(6)}
+                                                                    </td>
+                                                                    <td className={`${tableCellStyles} w-[17.5%] text-right`}>
+                                                                        ${token.token_price_usd.toFixed(4)}
+                                                                    </td>
+                                                                    <td className={`${tableCellStyles} w-[17.5%] text-right`}>
+                                                                        ${token.token_balance_usd.toFixed(4)}
+                                                                    </td>
                                                                 </tr>
-                                                            </thead>
-                                                        </table>
-                                                        <div className={tableBodyContainerStyles}>
-                                                            <table className={tableStyles}>
-                                                                <tbody>
-                                                                    {filteredTokens.map((token: Token, index: number) => (
-                                                                        <tr key={index} className="border-t border-gray-700 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onClick={() => router.push(`/trading?address=${token.token_address}`)}>
-                                                                            <td className={tableCellStyles}>
-                                                                                <div className="flex items-center gap-2">
-                                                                                    {token.token_logo_url && (
-                                                                                        <img
-                                                                                            src={token.token_logo_url}
-                                                                                            alt={token.token_name}
-                                                                                            className="w-5 h-5 sm:w-6 sm:h-6 rounded-full"
-                                                                                            onError={(e) => {
-                                                                                                e.currentTarget.src = '/placeholder.png';
-                                                                                            }}
-                                                                                        />
-                                                                                    )}
-                                                                                    <div>
-                                                                                        <div className="font-medium text-neutral-900 dark:text-theme-neutral-100 text-xs">{token.token_name}</div>
-                                                                                        <div className="text-[10px] sm:text-xs text-neutral-600 dark:text-gray-400">{token.token_symbol}</div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td className={tableCellStyles}>
-                                                                                {token.token_balance.toFixed(6)}
-                                                                            </td>
-                                                                            <td className={tableCellStyles}>
-                                                                                ${token.token_price_usd.toFixed(4)}
-                                                                            </td>
-                                                                            <td className={tableCellStyles}>
-                                                                                ${token.token_balance_usd.toFixed(4)}
-                                                                            </td>
-
-                                                                        </tr>
-                                                                    ))}
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
+                                                            ))}
+                                                        </tbody>
+                                                    </table>
                                                 </div>
                                             )}
                                         </div>

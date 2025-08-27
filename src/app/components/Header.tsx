@@ -287,7 +287,7 @@ const Header = () => {
                                         <DropdownMenuTrigger asChild>
                                             <button className="bg-gradient-to-t dark:bg-gradient-to-t dark:from-theme-primary-500 dark:to-theme-secondary-400 text-sm linear-gradient-blue text-theme-neutral-100 dark:text-neutral-100 font-medium px-3 md:px-4 py-[6px] rounded-full transition-colors whitespace-nowrap flex items-center">
                                                 <Wallet2 className="h-3 w-3 mr-1" />
-                                                <span className='text-xs md:text-sm'>{truncateString(walletInfor.solana_address, 12) || truncateString(phantomPublicKey, 12)}</span>
+                                                <span className='text-xs md:text-sm'>{truncateString(walletInfor.solana_address, 10) || truncateString(phantomPublicKey, 10)}</span>
                                             </button>
                                         </DropdownMenuTrigger>
                                         <DropdownMenuContent align="end" className="w-48 bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800">
