@@ -1591,7 +1591,7 @@ export default function WalletPage() {
                                             }}
                                         >
                                             <SelectTrigger className="border-none w-full px-3 pb-1.5 pt-1 dark:bg-theme-black-200 bg-white placeholder:!text-xs rounded-xl text-black dark:text-theme-neutral-100 focus:outline-none focus:border-purple-500 [&>span]:text-xs dark:[&>span]:text-gray-400 h-9">
-                                                <SelectValue placeholder={t('wallet.connectMaster')} className="text-yellow-500" />
+                                                <SelectValue placeholder={t('wallet.selectConnectMaster')} className="text-yellow-500" />
                                             </SelectTrigger>
                                             <SelectContent
                                                 className="bg-white dark:bg-theme-black-200 border border-gray-200 dark:border-gray-700 shadow-lg"
