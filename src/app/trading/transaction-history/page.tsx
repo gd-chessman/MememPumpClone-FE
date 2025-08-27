@@ -690,7 +690,7 @@ function TransactionHistoryContent() {
                 <tbody>
                   {filteredTokens.map((token: any, index: number) => (
                     <tr key={index} className={`hover:bg-gray-100 dark:hover:bg-neutral-800/30 border-b border-gray-100 dark:border-neutral-800/50 cursor-pointer ${index % 2 === 0 ? 'bg-gray-50 dark:bg-[#1A1A1A]' : 'bg-white dark:bg-[#0F0F0F]'}`} >
-                      <td className="px-4 py-2 text-gray-600 dark:text-neutral-300 text-xs font-medium flex-1">
+                      <td className="px-4 py-2 text-gray-600 dark:text-neutral-300 text-xs font-medium flex-1 group" onClick={() => router.push(`/trading?address=${token.token_address}`)}>
                         <div className="flex items-center gap-2" >
                           {token.token_logo_url && (
                             <img
@@ -703,8 +703,8 @@ function TransactionHistoryContent() {
                             />
                           )}
                           <div>
-                            <div className="font-medium text-neutral-900 dark:text-theme-neutral-100 text-xs">{token.token_name}</div>
-                            <div className="text-[10px] sm:text-xs text-neutral-600 dark:text-gray-400">{token.token_symbol}</div>
+                            <div className="font-medium text-neutral-900 dark:text-theme-neutral-100 text-xs group-hover:text-blue-500 dark:group-hover:text-blue-400 group-hover:font-semibold">{token.token_name}</div>
+                            <div className="text-[10px] sm:text-xs text-neutral-600 dark:text-gray-400 group-hover:text-blue-500 dark:group-hover:text-blue-400">{token.token_symbol}</div>
                           </div>
                         </div>
                       </td>

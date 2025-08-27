@@ -1303,7 +1303,7 @@ export default function WalletPage() {
 
                         <div className="w-full flex flex-col xl:gap-4 gap-2 md:max-w-[37%]">
                             {/* Assets Section */}
-                            <div className="flex justify-center items-center gap-2 sm:gap-2.5 mb-8">
+                            <div className="flex justify-center items-center gap-2 sm:gap-2.5 mb-9">
                                 <img src="/ethereum.png" alt="Ethereum" className="w-3 h-3 sm:w-4 sm:h-4 object-cover" />
                                 <div className={sectionTitleStyles}>{t('wallet.assets')}</div>
                                 <img src="/ethereum.png" alt="Ethereum" className="w-3 h-3 sm:w-4 sm:h-4 object-cover" />
@@ -1327,13 +1327,13 @@ export default function WalletPage() {
                                             ) : (
                                                 <div className={tableContainerStyles}>
                                                     <div className="relative">
-                                                        <table className={tableStyles}>
-                                                            <thead className="dark:bg-gray-900">
+                                                        <table className={`${tableStyles}`}>
+                                                            <thead className="">
                                                                 <tr>
-                                                                    <th className={`${tableHeaderStyles} w-[7%]`}>{t('wallet.token')} ▼</th>
-                                                                    <th className={`${tableHeaderStyles} w-[5%]`}>{t('wallet.balance')}</th>
-                                                                    <th className={`${tableHeaderStyles} w-[3%]`}>{t('wallet.price')}</th>
-                                                                    <th className={`${tableHeaderStyles} w-[3%]`}>{t('wallet.value')}</th>
+                                                                    <th className={`${tableHeaderStyles} dark:!bg-[#374151] h-12 w-[9.5%]`}>{t('wallet.token')} ▼</th>
+                                                                    <th className={`${tableHeaderStyles} dark:!bg-[#374151] h-12 w-[3%]`}>{t('wallet.balance')}</th>
+                                                                    <th className={`${tableHeaderStyles} dark:!bg-[#374151] h-12 w-[3%]`}>{t('wallet.price')}</th>
+                                                                    <th className={`${tableHeaderStyles} dark:!bg-[#374151] h-12 w-[3%]`}>{t('wallet.value')}</th>
                                                                 </tr>
                                                             </thead>
                                                         </table>
