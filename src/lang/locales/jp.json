@@ -523,7 +523,9 @@
     "confirmImportWallets": "ウォレットインポートの確認",
     "confirmImportWalletsMessage": "プレフィックス '{prefix}' を含む {quantity} 個のウォレットをインポートすることを確認しますか？",
     "importing": "インポート中...",
-    "confirm": "確認"
+    "confirm": "確認",
+    "selectCountry": "国を選択",
+    "selectConnectMaster": "マスターを選択"
   },
   "searchPlaceholder": "トークン名/アドレス",
   "languages": {

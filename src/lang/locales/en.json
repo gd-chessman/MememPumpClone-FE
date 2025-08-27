@@ -398,6 +398,8 @@
     "importWalletsNote": "Enter multiple private keys separated by dots (.) or new lines. Each key will be imported as a separate wallet.",
     "addWallets": "Add Wallets",
     "walletPerixName": "Wallet Name Prefix",
+    "selectCountry": "Select Country",
+    "selectConnectMaster": "Select Connect Master",
     "quantityWallet": "Quantity",
     "enterQuantityWallet": "Enter the number of wallets you want to add",
     "walletPerixNameNote": "Enter wallet name prefix (e.g. A) → system automatically creates list: A1, A2, A3,...",

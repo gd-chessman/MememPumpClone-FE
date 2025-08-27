@@ -540,7 +540,8 @@
     "confirmImportWalletsMessage": "접두사 '{prefix}'를 포함하는 {quantity}개의 지갑을 가져오는 것을 확인하시겠습니까?",
     "importing": "가져오는 중...",
     "confirm": "확인",
-    "creating": "생성 중..."
+    "selectCountry": "국가 선택",
+    "selectConnectMaster": "마스터 연결 선택"
   },
   "searchPlaceholder": "토큰 이름/주소",
   "languages": {
