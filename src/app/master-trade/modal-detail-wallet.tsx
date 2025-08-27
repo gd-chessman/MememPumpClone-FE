@@ -302,7 +302,7 @@ export default function DetailMasterModal({ isOpen, onClose, info }: DetailMaste
         <div className="flex gap-4 flex-col flex-1 overflow-y-auto mt-4">
           {/* Address */}
           <div className="flex items-center gap-2">
-            <span className="dark:text-neutral-100 text-theme-neutral-1000">{truncateString(info?.address || "", 12)}</span>
+            <span className="text-yellow-500 italic">{truncateString(info?.address || "", 10)}</span>
             <button
               onClick={handleCopyAddress}
               className="dark:text-theme-neutral-100 text-theme-neutral-1000 hover:text-neutral-100 transition-colors"
