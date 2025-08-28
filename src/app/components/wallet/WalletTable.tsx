@@ -686,7 +686,7 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
                     <div className="hidden sm:block border-1 z-10 border-solid mb-8 rounded-xl overflow-hidden border-y-theme-primary-100 border-x-theme-purple-200">
                         <Table className="w-full !bg-gray-700">
                             <TableRow className="bg-muted/50 h-12">
-                                <TableHead className={`${textTitle} w-[2%] px-2`}>
+                                <TableHead className={`${textTitle} w-[3%] px-2`}>
                                     {wallets?.length > 1 && (
                                         <Checkbox
                                             checked={isAllSelected()}
@@ -694,14 +694,14 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
                                         />
                                     )}
                                 </TableHead>
-                                <TableHead className={`${textTitle} w-[12%] px-4`}>{t('wallet.walletName')}</TableHead>
-                                <TableHead className={`${textTitle} w-[12%] px-4`}>{t('wallet.nickname')}</TableHead>
-                                <TableHead className={`${textTitle} w-[11%] px-4`}>{t('wallet.solanaAddress')}</TableHead>
+                                <TableHead className={`${textTitle} w-[13%] px-4`}>{t('wallet.walletName')}</TableHead>
+                                <TableHead className={`${textTitle} w-[13%] px-4`}>{t('wallet.nickname')}</TableHead>
+                                <TableHead className={`${textTitle} w-[10%] px-4`}>{t('wallet.solanaAddress')}</TableHead>
                                 <TableHead className={`${textTitle} w-[14%] px-4`}>{t('wallet.balance')}</TableHead>
-                                <TableHead className={`${textTitle} w-[10%] px-4`}>{t('wallet.country')}</TableHead>
+                                <TableHead className={`${textTitle} w-[9%] px-4`}>{t('wallet.country')}</TableHead>
                                 <TableHead className={`${textTitle} w-[8%] px-4`}>{t('wallet.type')}</TableHead>
                                 <TableHead className={`${textTitle} w-[8%] px-4`}>{t('wallet.walletLevel')}</TableHead>
-                                <TableHead className={`${textTitle} w-[8%] px-4`}>{t('common.actions')}</TableHead>
+                                <TableHead className={`${textTitle} w-[9.5%] px-4`}>{t('common.actions')}</TableHead>
                             </TableRow>
                         </Table>
                         <div className="max-h-[74vh] overflow-y-auto w-full">
