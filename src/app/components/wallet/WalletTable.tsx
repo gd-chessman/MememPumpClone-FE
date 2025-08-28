@@ -425,7 +425,7 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
                         {loadingBalances[wallet.wallet_id] ? (
                             <div className="flex items-center gap-2">
                                 <Loader2 className="h-3 w-3 animate-spin" />
-                                <span className="text-xs">Loading...</span>
+                                <span className="text-xs">{t('common.loading')}</span>
                             </div>
                         ) : (
                             <span className={`${mobileStyles.value} truncate flex-1`}>
@@ -816,7 +816,7 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
                                                 <div className="flex items-center justify-center gap-2">
                                                     <Loader2 className="h-4 w-4 animate-spin" />
                                                     <span className="text-sm text-gray-500">
-                                                        {isLoadingMore ? t('wallet.loadingMore') : 'Scroll to load more'}
+                                                        {t('wallet.loadingMore')}
                                                     </span>
                                                 </div>
                                             </TableCell>

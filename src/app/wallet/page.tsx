@@ -1096,7 +1096,7 @@ export default function WalletPage() {
                                         <div className="flex flex-col justify-start items-center gap-2 w-full">
                                             <div className="w-full h-8 lg:h-[36px] pl-3 sm:pl-4 pr-4 sm:pr-6 relative rounded-xl outline outline-1 outline-offset-[-1px] outline-purple-300 flex justify-between items-center">
                                                 <div className={walletAddressStyles}>
-                                                    {truncateString(walletInfor?.solana_address, 12)}
+                                                    {truncateString(walletInfor?.solana_address, 10)}
                                                 </div>
                                                 <div className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0">
                                                     <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-Colors-Neutral-100" />
