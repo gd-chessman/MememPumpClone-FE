@@ -20,7 +20,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "react-i18next";
 import { TelegramWalletService } from '@/services/api';
 import notify from "../notify";
-import { getInforWallet, useWallet, deleteMultipleWallets } from "@/services/api/TelegramWalletService";
+import { getInforWallet, useWallet, deleteMultipleWallets, getMyWallets } from "@/services/api/TelegramWalletService";
 import { useAuth } from "@/hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import {
@@ -93,6 +93,11 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
     const observerRef = useRef<IntersectionObserver | null>(null);
     const loadingRef = useRef<HTMLTableRowElement>(null);
     const onLoadMoreRef = useRef(onLoadMore);
+    const { data: listWalletMobiles = [], refetch: refetchListWalletMobiles, isLoading: isLoadingListWalletMobiles } = useQuery({
+        queryKey: ["my-wallets-mobile"],
+        queryFn: () => getMyWallets(1, 300),
+        enabled: isAuthenticated,
+    });
 
     // Update the ref when onLoadMore changes
     useEffect(() => {
@@ -829,7 +834,7 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
                     {/* Mobile Card View */}
                     <div className="sm:hidden space-y-3 p-2">
                         {/* Mobile Bulk Delete Actions */}
-                        {wallets?.map((wallet) => renderMobileWalletCard(wallet))}
+                        {listWalletMobiles?.map((wallet: any) => renderMobileWalletCard(wallet))}
                     </div>
 
                 </CardContent>
