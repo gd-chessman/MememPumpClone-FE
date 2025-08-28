@@ -72,7 +72,7 @@ const walletCardStyles = "px-4 sm:px-6 py-3 border border-solid border-theme-sec
 const walletTitleStyles = "text-Colors-Neutral-100 text-sm sm:text-base font-semibold uppercase leading-tight"
 const walletAddressStyles = "text-Colors-Neutral-200 text-xs sm:text-sm font-normal leading-tight truncate"
 const sectionTitleStyles = "text-Colors-Neutral-100 text-base sm:text-lg font-bold leading-relaxed"
-const tableContainerStyles = "overflow-x-auto -mx-4 sm:mx-0"
+const tableContainerStyles = "max-h-[79.5vh] overflow-y-auto overflow-x-auto -mx-4 sm:mx-0"
 const tableStyles = "w-full"
 const tableHeaderStyles = "px-2 py-2 sm:py-3 text-left text-xs sm:text-sm font-medium text-neutral-800 dark:text-gray-300 sticky top-0 bg-white dark:bg-gray-900 z-10"
 const tableCellStyles = "px-2 py-2 sm:py-2 text-xs text-neutral-900 dark:text-gray-300"
@@ -482,7 +482,7 @@ export default function WalletPage() {
         if (!tokenList || !tokenList.tokens || !Array.isArray(tokenList.tokens)) {
             return [];
         }
-        return tokenList.tokens.filter((token: Token) => token && typeof token.token_balance_usd === 'number' && token.token_balance_usd > 0.01);
+        return tokenList.tokens.filter((token: Token) => token && typeof token.token_balance_usd === 'number');
     }, [tokenList]);
 
     const { data: walletInfor = null, refetch, isLoading: isLoadingWalletInfor } = useQuery({
@@ -1329,10 +1329,10 @@ export default function WalletPage() {
                                                     <table className={`${tableStyles} w-full`}>
                                                         <thead>
                                                             <tr>
-                                                                <th className={`${tableHeaderStyles} dark:!bg-[#374151] h-12 w-[35%] text-left`}>{t('wallet.token')} ▼</th>
-                                                                <th className={`${tableHeaderStyles} dark:!bg-[#374151] h-12 w-[20%] text-right`}>{t('wallet.balance')}</th>
-                                                                <th className={`${tableHeaderStyles} dark:!bg-[#374151] h-12 w-[17.5%] text-right`}>{t('wallet.price')}</th>
-                                                                <th className={`${tableHeaderStyles} dark:!bg-[#374151] h-12 w-[17.5%] text-right`}>{t('wallet.value')}</th>
+                                                                <th className={`${tableHeaderStyles} dark:!bg-[#374151] h-12 w-[35%] text-left`}>{t('wallet.token')}</th>
+                                                                <th className={`${tableHeaderStyles} dark:!bg-[#374151] h-12 w-[20%] text-left`}>{t('wallet.balance')}</th>
+                                                                <th className={`${tableHeaderStyles} dark:!bg-[#374151] h-12 w-[17.5%] text-left`}>{t('wallet.price')}</th>
+                                                                <th className={`${tableHeaderStyles} dark:!bg-[#374151] h-12 w-[17.5%] text-left`}>{t('wallet.value')}</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -1356,14 +1356,14 @@ export default function WalletPage() {
                                                                             </div>
                                                                         </div>
                                                                     </td>
-                                                                    <td className={`${tableCellStyles} w-[20%] text-right`}>
+                                                                    <td className={`${tableCellStyles} w-[20%] text-left`}>
                                                                         {token.token_balance.toFixed(6)}
                                                                     </td>
-                                                                    <td className={`${tableCellStyles} w-[17.5%] text-right`}>
+                                                                    <td className={`${tableCellStyles} w-[17.5%] text-left`}>
                                                                         ${token.token_price_usd.toFixed(4)}
                                                                     </td>
-                                                                    <td className={`${tableCellStyles} w-[17.5%] text-right`}>
-                                                                        ${token.token_balance_usd.toFixed(4)}
+                                                                    <td className={`${tableCellStyles} w-[17.5%] text-left`}>
+                                                                        ${token.token_balance_usd.toFixed(6)}
                                                                     </td>
                                                                 </tr>
                                                             ))}
