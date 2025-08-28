@@ -384,7 +384,7 @@ const Header = () => {
                                         <DropdownMenuTrigger asChild>
                                             <button className="bg-gradient-to-t dark:bg-gradient-to-t dark:from-theme-primary-500 dark:to-theme-secondary-400 text-sm linear-gradient-blue text-theme-neutral-100 dark:text-neutral-100 font-medium px-3 md:px-4 py-[6px] rounded-full transition-colors whitespace-nowrap flex items-center gap-1 outline-none">
                                                 <Wallet2 className="2xl:h-4 2xl:w-4 h-3 w-3 mr-1" />
-                                                <span className="2xl:text-sm text-xs hidden md:inline">{truncateString(walletInfor.solana_address, 12)}</span>
+                                                <span className="2xl:text-sm text-xs hidden md:inline">{truncateString(walletInfor.solana_address, 10)}</span>
                                                 <ChevronDown size={14} className="ml-1" />
                                             </button>
                                         </DropdownMenuTrigger>
