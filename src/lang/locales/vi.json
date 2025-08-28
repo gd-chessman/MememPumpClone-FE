@@ -447,6 +447,7 @@
     "universalAccount": "Tài Khoản Phổ Thông",
     "receive": "Nạp",
     "send": "Rút",
+    "loadingMore": "Đang tải thêm ví...",
     "getPrivateKey": "Lấy Khóa Riêng Tư",
     "solanaWallet": "VÍ SOLANA",
     "addWallet": "Thêm Ví",

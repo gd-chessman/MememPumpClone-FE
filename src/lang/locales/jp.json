@@ -414,6 +414,7 @@
     "addWallet": "ウォレットを追加",
     "importWallet": "ウォレットをインポート",
     "assets": "資産",
+    "loadingMore": "ウォレットをさらに読み込んでいます...",
     "token": "トークン",
     "balance": "残高",
     "price": "価格",

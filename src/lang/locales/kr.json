@@ -436,6 +436,7 @@
     "balance": "수량",
     "price": "매수평단가",
     "value": "평가액",
+    "loadingMore": "지갑을 더 불러오는 중...",
     "address": "주소",
     "walletName": "지갑 이름",
     "nickname": "별명",
