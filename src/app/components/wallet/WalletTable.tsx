@@ -685,7 +685,7 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
                             </div>
                         </div>
                     ) : (
-                        <div className="h-[52px]" />
+                        <div className="md:h-[52px] h-[50px]" />
                     )}
                     {/* Desktop Table View */}
                     <div className="hidden sm:block border-1 z-10 border-solid mb-8 rounded-xl overflow-hidden border-y-theme-primary-100 border-x-theme-purple-200">
