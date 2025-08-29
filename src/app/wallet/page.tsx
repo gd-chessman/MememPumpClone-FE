@@ -63,7 +63,7 @@ interface MasterTrader {
     connect_status: string | null;
 }
 
-const wrapGradientStyle = "bg-gradient-to-t from-theme-purple-100 to-theme-gradient-linear-end p-[1.2px] relative xl:w-full w-[95%] rounded-xl"
+const wrapGradientStyle = "bg-gradient-to-t from-theme-purple-100 to-theme-gradient-linear-end p-[1.2px] relative xl:w-full md:w-[95%] w-full rounded-xl"
 
 // Add responsive styles
 const containerStyles = "lg:container-glow w-full px-4 sm:px-[40px] flex flex-col gap-4 sm:gap-6 lg:gap-12 pt-4 sm:pt-[30px] relative mx-auto z-10 pb-6 lg:pb-0"
@@ -1497,7 +1497,7 @@ export default function WalletPage() {
                                 <div className="flex justify-end gap-3 mt-6">
                                     <button
                                         onClick={handleCloseAddWallet}
-                                        className="px-4 py-1.5 text-xs 2xl:text-sm font-medium dark:text-gray-200 text-black hover:text-neutral-100"
+                                        className="px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-xs 2xl:text-sm font-medium dark:text-gray-200 text-black hover:text-neutral-100"
                                     >
                                         {t('common.cancel')}
                                     </button>
@@ -1611,14 +1611,14 @@ export default function WalletPage() {
                                 <div className="flex justify-end gap-3 mt-6">
                                     <button
                                         onClick={handleCloseAddWallets}
-                                        className="px-4 py-1.5 text-xs 2xl:text-sm font-medium dark:text-gray-200 text-black hover:text-neutral-100"
+                                        className="px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-xs 2xl:text-sm font-medium dark:text-gray-200 text-black hover:text-neutral-100"
                                     >
                                         {t('common.cancel')}
                                     </button>
                                     <button
                                         onClick={executeAddWallet}
                                         disabled={isLoading || !walletName || !walletNickname}
-                                        className="px-4 py-1.5 text-xs 2xl:text-sm bg-gradient-to-r from-purple-600 to-blue-600 text-neutral-100 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                            className="px-4 py-2 text-xs 2xl:text-sm bg-gradient-to-r from-purple-600 to-blue-600 text-neutral-100 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
                                         {isLoading ? t('wallet.adding') : t('wallet.addWallet')}
                                     </button>
@@ -1771,14 +1771,14 @@ export default function WalletPage() {
                                     </div>
                                 </div>
 
-                                <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-5">
-                                    <button onClick={handleCloseImportWallets} className={modalCancelButtonStyles}>
+                                <div className="flex justify-end items-end gap-3 sm:gap-5">
+                                    <button onClick={handleCloseImportWallets} className="px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-xs 2xl:text-sm font-medium dark:text-gray-200 text-black hover:text-neutral-100">
                                         <div className={modalButtonTextStyles}>{t('common.cancel')}</div>
                                     </button>
                                     <button
                                         onClick={executeImportWallets}
                                         disabled={isLoading || !walletName || !walletNickname || !selectedNetwork || privateKeyArray?.length === 0}
-                                        className={modalButtonStyles}
+                                        className="px-4 py-2 text-xs 2xl:text-sm bg-gradient-to-r from-purple-600 to-blue-600 text-neutral-100 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
                                         <div className={modalButtonTextStyles}>{t('wallet.importWallet')}</div>
                                     </button>
@@ -1793,7 +1793,7 @@ export default function WalletPage() {
                 <div className={modalContainerStyles}>
                     <div className={modalContentStyles}>
                         <div ref={privateKeysRef} className={modalInnerStyles}>
-                            <div className=" 2xl:w-96 w-[40vw] flex flex-col gap-4 sm:gap-6">
+                            <div className=" 2xl:w-96 w-auto flex flex-col gap-4 sm:gap-6">
                                 <div className="flex flex-col gap-4">
                                     <div className="flex justify-between items-center">
                                         <div className={modalTitleStyles}>{t('wallet.privateKeys')}</div>
@@ -1915,7 +1915,7 @@ export default function WalletPage() {
                                     </div>
                                 </div>
 
-                                <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-5">
+                                <div className="flex justify-center items-center gap-3 sm:gap-5">
                                     <button onClick={handleClosePrivateKeys} className={modalCancelButtonStyles}>
                                         <div className={modalButtonTextStyles}>{t('common.close')}</div>
                                     </button>
@@ -1930,7 +1930,7 @@ export default function WalletPage() {
                 <div className={modalContainerStyles}>
                     <div className={modalContentStyles}>
                         <div ref={importWalletRef} className={modalInnerStyles}>
-                            <div className=" 2xl:w-96 w-[40vw] flex flex-col gap-4 sm:gap-6">
+                            <div className=" 2xl:w-96 w-auto flex flex-col gap-4 sm:gap-6">
                                 <div className="flex flex-col gap-4">
                                     <div className="flex justify-between items-center">
                                         <div className={modalTitleStyles}>{t('wallet.importWallet')}</div>
@@ -2029,14 +2029,14 @@ export default function WalletPage() {
                                     </div>
                                 </div>
 
-                                <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-5">
-                                    <button onClick={handleCloseImportWallet} className={modalCancelButtonStyles}>
+                                <div className="flex justify-end items-end gap-3 sm:gap-5">
+                                    <button onClick={handleCloseImportWallet} className="px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-xs 2xl:text-sm font-medium dark:text-gray-200 text-black hover:text-neutral-100">
                                         <div className={modalButtonTextStyles}>{t('common.cancel')}</div>
                                     </button>
                                     <button
                                         onClick={handleImportWallet}
                                         disabled={isLoading || !walletName || !walletNickname}
-                                        className={modalButtonStyles}
+                                        className="px-4 py-2 text-xs 2xl:text-sm bg-gradient-to-r from-purple-600 to-blue-600 text-neutral-100 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
                                         <div className={modalButtonTextStyles}>{t('wallet.importWallet')}</div>
                                     </button>
@@ -2046,417 +2046,7 @@ export default function WalletPage() {
                     </div>
                 </div>
             )}
-
-            {showCreatePassword && (
-                <div className={modalContainerStyles}>
-                    <div className={modalContentStyles}>
-                        <div className={modalInnerStyles}>
-                            <div className=" 2xl:w-96 w-[40vw] flex flex-col gap-4 sm:gap-6">
-                                <div className="flex flex-col gap-4">
-                                    <div className="flex justify-between items-center">
-                                        <div className={modalTitleStyles}>{t('wallet.createPassword')}</div>
-                                        <button onClick={handleCloseCreatePassword} className="w-5 h-5 relative overflow-hidden">
-                                            <div className="w-3 h-3 left-[4.17px] top-[4.16px] absolute bg-Colors-Neutral-200" />
-                                        </button>
-                                    </div>
-
-                                    {/* New Password */}
-                                    <div className="flex flex-col gap-1">
-                                        <div className={modalLabelStyles}>{t('wallet.newPassword')} <span className="text-red-500">*</span></div>
-                                        <div className={wrapGradientStyle}>
-                                            <div className="relative w-full">
-                                                <input
-                                                    type={showNewPassword ? "text" : "password"}
-                                                    value={newPassword}
-                                                    onChange={handlePasswordChange}
-                                                    placeholder={t('wallet.enterNewPassword')}
-                                                    className={`${modalInputStyles} pr-10 ${passwordError ? 'border-red-500' : ''}`}
-                                                />
-                                                <button
-                                                    type="button"
-                                                    onClick={() => setShowNewPassword(!showNewPassword)}
-                                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-200"
-                                                >
-                                                    {showNewPassword ? (
-                                                        <EyeOff className="w-4 h-4" />
-                                                    ) : (
-                                                        <Eye className="w-4 h-4" />
-                                                    )}
-                                                </button>
-                                            </div>
-                                        </div>
-                                        {passwordError && (
-                                            <div className={modalErrorStyles}>{passwordError}</div>
-                                        )}
-                                    </div>
-
-                                    {/* Confirm Password */}
-                                    <div className="flex flex-col gap-1">
-                                        <div className={modalLabelStyles}>{t('wallet.confirmPassword')} <span className="text-red-500">*</span></div>
-                                        <div className={wrapGradientStyle}>
-                                            <div className="relative w-full">
-                                                <input
-                                                    type={showConfirmPassword ? "text" : "password"}
-                                                    value={confirmPassword}
-                                                    onChange={handleConfirmPasswordChange}
-                                                    placeholder={t('wallet.enterConfirmPassword')}
-                                                    className={`${modalInputStyles} pr-10 ${confirmPasswordError ? 'border-red-500' : ''}`}
-                                                />
-                                                <button
-                                                    type="button"
-                                                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-200"
-                                                >
-                                                    {showConfirmPassword ? (
-                                                        <EyeOff className="w-4 h-4" />
-                                                    ) : (
-                                                        <Eye className="w-4 h-4" />
-                                                    )}
-                                                </button>
-                                            </div>
-                                        </div>
-                                        {confirmPasswordError && (
-                                            <div className={modalErrorStyles}>{confirmPasswordError}</div>
-                                        )}
-                                    </div>
-
-                                    <div className={modalHelperTextStyles}>
-                                        {t('wallet.passwordRequirements')}
-                                    </div>
-                                </div>
-
-                                <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-5">
-                                    <button onClick={handleCloseCreatePassword} className={modalCancelButtonStyles}>
-                                        <div className={modalButtonTextStyles}>{t('common.cancel')}</div>
-                                    </button>
-                                    <button
-                                        onClick={handleCreatePassword}
-                                        disabled={isLoading || !newPassword || !confirmPassword}
-                                        className={modalButtonStyles}
-                                    >
-                                        <div className={modalButtonTextStyles}>
-                                            {isLoading ? t('wallet.creating') : t('wallet.createPassword')}
-                                        </div>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            {showPasswordInput && (
-                <div className={modalContainerStyles}>
-                    <div className={modalContentStyles}>
-                        <div className={modalInnerStyles}>
-                            <div className=" 2xl:w-96 w-[40vw] flex flex-col gap-4 sm:gap-6">
-                                <div className="flex flex-col gap-4">
-                                    <div className="flex justify-between items-center">
-                                        <div className={modalTitleStyles}>{t('wallet.enterPassword')}</div>
-                                        <button onClick={handleClosePasswordInput} className="w-5 h-5 relative overflow-hidden">
-                                            <div className="w-3 h-3 left-[4.17px] top-[4.16px] absolute bg-Colors-Neutral-200" />
-                                        </button>
-                                    </div>
-
-                                    {/* Password Input */}
-                                    <div className="flex flex-col gap-1">
-                                        <div className={modalLabelStyles}>{t('wallet.password')} <span className="text-red-500">*</span></div>
-                                        <div className={wrapGradientStyle}>
-                                            <div className="relative w-full">
-                                                <input
-                                                    type={showInputPassword ? "text" : "password"}
-                                                    value={inputPassword}
-                                                    onChange={(e) => {
-                                                        setInputPassword(e.target.value);
-                                                        setInputPasswordError("");
-                                                    }}
-                                                    placeholder={t("wallet.passwordRequired")}
-                                                    className={`${modalInputStyles} pr-10 ${inputPasswordError ? 'border-red-500' : ''}`}
-                                                />
-                                                <button
-                                                    type="button"
-                                                    onClick={() => setShowInputPassword(!showInputPassword)}
-                                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-200"
-                                                >
-                                                    {showInputPassword ? (
-                                                        <EyeOff className="w-4 h-4" />
-                                                    ) : (
-                                                        <Eye className="w-4 h-4" />
-                                                    )}
-                                                </button>
-                                            </div>
-                                        </div>
-                                        {inputPasswordError && (
-                                            <div className={modalErrorStyles}>{inputPasswordError}</div>
-                                        )}
-                                    </div>
-
-                                    <div>
-                                        <div className={modalHelperTextStyles}>
-                                            {t('wallet.enterPasswordToView')}
-                                        </div>
-                                        <button
-                                            onClick={handleForgotPassword}
-                                            className="text-xs text-theme-primary-400 w-fit hover:underline text-left mt-1"
-                                        >
-                                            {t('wallet.forgotPassword')}
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-5">
-                                    <button onClick={handleClosePasswordInput} className={modalCancelButtonStyles}>
-                                        <div className={modalButtonTextStyles}>{t('common.cancel')}</div>
-                                    </button>
-                                    <button
-                                        onClick={handleSubmitPassword}
-                                        disabled={isLoading || !inputPassword}
-                                        className={modalButtonStyles}
-                                    >
-                                        <div className={modalButtonTextStyles}>
-                                            {isLoading ? t('wallet.verifying') : t('wallet.submit')}
-                                        </div>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            {/* Add Forgot Password Modal */}
-            {showForgotPassword && (
-                <div className={modalContainerStyles}>
-                    <div className={modalContentStyles}>
-                        <div className={modalInnerStyles}>
-                            <div className=" 2xl:w-96 w-[40vw] flex flex-col gap-4 sm:gap-6">
-                                <div className="flex flex-col gap-4">
-                                    <div className="flex justify-between items-center">
-                                        <div className={modalTitleStyles}>{t('wallet.forgotPassword')}</div>
-                                        <button onClick={handleCloseForgotPassword} className="w-5 h-5 relative overflow-hidden">
-                                            <div className="w-3 h-3 left-[4.17px] top-[4.16px] absolute bg-Colors-Neutral-200" />
-                                        </button>
-                                    </div>
-
-                                    {/* Verification Code Inputs */}
-                                    <div>
-                                        <div className="flex flex-col gap-1">
-                                            <div className={modalLabelStyles}>{t('wallet.verificationCode')} <span className="text-red-500">*</span></div>
-                                            <div className="flex justify-between gap-2">
-                                                {[0, 1, 2, 3].map((index) => (
-                                                    <div key={index} className={wrapGradientStyle}>
-                                                        <input
-                                                            type="text"
-                                                            maxLength={1}
-                                                            value={verificationCode[index] || ''}
-                                                            onChange={(e) => {
-                                                                const value = e.target.value;
-                                                                setCodeError("");
-                                                                // Allow both letters and numbers
-                                                                if (/^[a-zA-Z0-9]*$/.test(value)) {
-                                                                    const newCode = verificationCode.split('');
-                                                                    newCode[index] = value;
-                                                                    setVerificationCode(newCode.join(''));
-
-                                                                    // Auto focus next input
-                                                                    if (value && index < 3) {
-                                                                        const nextInput = document.querySelector(`input[data-index="${index + 1}"]`) as HTMLInputElement;
-                                                                        if (nextInput) nextInput.focus();
-                                                                    }
-                                                                }
-                                                            }}
-                                                            onKeyDown={(e) => {
-                                                                if (e.key === 'Backspace' && !verificationCode[index] && index > 0) {
-                                                                    const prevInput = document.querySelector(`input[data-index="${index - 1}"]`) as HTMLInputElement;
-                                                                    if (prevInput) prevInput.focus();
-                                                                }
-                                                            }}
-                                                            onPaste={(e) => {
-                                                                e.preventDefault();
-                                                                const pastedData = e.clipboardData.getData('text');
-                                                                // Remove any non-alphanumeric characters and take first 4 characters
-                                                                const cleanData = pastedData.replace(/[^a-zA-Z0-9]/g, '').slice(0, 4).toUpperCase();
-
-                                                                if (cleanData.length > 0) {
-                                                                    // Fill the verification code with pasted data
-                                                                    const newCode = cleanData.padEnd(4, '').split('');
-                                                                    setVerificationCode(newCode.join(''));
-
-                                                                    // Focus on the next empty input or the last input
-                                                                    const nextEmptyIndex = Math.min(cleanData.length, 3);
-                                                                    const nextInput = document.querySelector(`input[data-index="${nextEmptyIndex}"]`) as HTMLInputElement;
-                                                                    if (nextInput) nextInput.focus();
-                                                                }
-                                                            }}
-                                                            data-index={index}
-                                                            className={`${modalInputStyles} text-center text-lg font-semibold uppercase`}
-                                                            placeholder="-"
-                                                        />
-                                                    </div>
-                                                ))}
-                                            </div>
-                                            {codeError && (
-                                                <div className={modalErrorStyles}>{codeError}</div>
-                                            )}
-                                        </div>
-                                        <div className="flex justify-end items-center mt-1">
-                                            <button
-                                                onClick={handleResendCode}
-                                                disabled={isSendingCode}
-                                                className="text-xs text-theme-primary-400 hover:text-theme-primary-400 disabled:opacity-50 disabled:cursor-not-allowed"
-                                            >
-                                                {isSendingCode ? t('wallet.sending') : t('wallet.resendCode')}
-                                            </button>
-                                        </div>
-                                    </div>
-                                    {/* New Password */}
-                                    <div className="flex flex-col gap-1">
-                                        <div className={modalLabelStyles}>{t('wallet.newPassword')} <span className="text-red-500">*</span></div>
-                                        <div className={wrapGradientStyle}>
-                                            <div className="relative w-full">
-                                                <input
-                                                    type={showNewPassword ? "text" : "password"}
-                                                    value={newPassword}
-                                                    onChange={handlePasswordChange}
-                                                    placeholder={t('wallet.enterNewPassword')}
-                                                    className={`${modalInputStyles} pr-10 ${passwordError ? 'border-red-500' : ''}`}
-                                                />
-                                                <button
-                                                    type="button"
-                                                    onClick={() => setShowNewPassword(!showNewPassword)}
-                                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-200"
-                                                >
-                                                    {showNewPassword ? (
-                                                        <EyeOff className="w-4 h-4" />
-                                                    ) : (
-                                                        <Eye className="w-4 h-4" />
-                                                    )}
-                                                </button>
-                                            </div>
-                                        </div>
-                                        {passwordError && (
-                                            <div className={modalErrorStyles}>{passwordError}</div>
-                                        )}
-                                    </div>
-
-                                    {/* Confirm Password */}
-                                    <div className="flex flex-col gap-1">
-                                        <div className={modalLabelStyles}>{t('wallet.confirmPassword')} <span className="text-red-500">*</span></div>
-                                        <div className={wrapGradientStyle}>
-                                            <div className="relative w-full">
-                                                <input
-                                                    type={showConfirmPassword ? "text" : "password"}
-                                                    value={confirmPassword}
-                                                    onChange={handleConfirmPasswordChange}
-                                                    placeholder={t('wallet.enterConfirmPassword')}
-                                                    className={`${modalInputStyles} pr-10 ${confirmPasswordError ? 'border-red-500' : ''}`}
-                                                />
-                                                <button
-                                                    type="button"
-                                                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-200"
-                                                >
-                                                    {showConfirmPassword ? (
-                                                        <EyeOff className="w-4 h-4" />
-                                                    ) : (
-                                                        <Eye className="w-4 h-4" />
-                                                    )}
-                                                </button>
-                                            </div>
-                                        </div>
-                                        {confirmPasswordError && (
-                                            <div className={modalErrorStyles}>{confirmPasswordError}</div>
-                                        )}
-                                    </div>
-
-                                    <div className={modalHelperTextStyles}>
-                                        {t('wallet.passwordRequirements')}
-                                    </div>
-                                </div>
-
-                                <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-5">
-                                    <button onClick={handleCloseForgotPassword} className={modalCancelButtonStyles}>
-                                        <div className={modalButtonTextStyles}>{t('common.cancel')}</div>
-                                    </button>
-                                    <button
-                                        onClick={handleChangePassword}
-                                        disabled={isVerifyingCode ||
-                                            verificationCode.length !== 4 ||
-                                            !newPassword ||
-                                            !confirmPassword ||
-                                            !!passwordError ||
-                                            !!confirmPasswordError}
-                                        className={modalButtonStyles}
-                                    >
-                                        <div className={modalButtonTextStyles}>
-                                            {isVerifyingCode ? t('wallet.verifying') : t('wallet.verify')}
-                                        </div>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            {/* Add Verify Code Modal */}
-            {showVerifyCode && (
-                <div className={modalContainerStyles}>
-                    <div className={modalContentStyles}>
-                        <div className={modalInnerStyles}>
-                            <div className=" 2xl:w-96 w-[40vw] flex flex-col gap-4 sm:gap-6">
-                                <div className="flex flex-col gap-4">
-                                    <div className="flex justify-between items-center">
-                                        <div className={modalTitleStyles}>{t('wallet.verifyCode')}</div>
-                                        <button onClick={handleCloseVerifyCode} className="w-5 h-5 relative overflow-hidden">
-                                            <div className="w-3 h-3 left-[4.17px] top-[4.16px] absolute bg-Colors-Neutral-200" />
-                                        </button>
-                                    </div>
-
-                                    {/* Verification Code Input */}
-                                    <div className="flex flex-col gap-1">
-                                        <div className={modalLabelStyles}>{t('wallet.verificationCode')}</div>
-                                        <div className={wrapGradientStyle}>
-                                            <input
-                                                type="text"
-                                                value={verificationCode}
-                                                onChange={(e) => {
-                                                    setVerificationCode(e.target.value);
-                                                    setCodeError("");
-                                                }}
-                                                placeholder={t("wallet.enterVerificationCode")}
-                                                className={`${modalInputStyles} ${codeError ? 'border-red-500' : ''}`}
-                                            />
-                                        </div>
-                                        {codeError && (
-                                            <div className={modalErrorStyles}>{codeError}</div>
-                                        )}
-                                    </div>
-
-                                    <div className={modalHelperTextStyles}>
-                                        {t('wallet.enterVerificationCodeSent')}
-                                    </div>
-                                </div>
-
-                                <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-5">
-                                    <button onClick={handleCloseVerifyCode} className={modalCancelButtonStyles}>
-                                        <div className={modalButtonTextStyles}>{t('common.cancel')}</div>
-                                    </button>
-                                    <button
-                                        // onClick={handleVerifyCode}
-                                        disabled={isVerifyingCode || !verificationCode}
-                                        className={modalButtonStyles}
-                                    >
-                                        <div className={modalButtonTextStyles}>
-                                            {isVerifyingCode ? t('wallet.verifying') : t('wallet.verify')}
-                                        </div>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
+           
             <ModalSignin isOpen={!isAuthenticated} onClose={() => { }} />
             {showModalResult && (
                 <div className="fixed inset-0 bg-theme-black-1/3 backdrop-blur-sm flex items-center justify-center z-[9999] p-4">
