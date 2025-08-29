@@ -588,7 +588,7 @@ const Header = () => {
                                     {isAuthenticated && walletInfor && (
                                         <div className="flex flex-col space-y-2">
                                             <button className='bg-gradient-to-t dark:bg-gradient-to-t dark:from-theme-primary-500 dark:to-theme-secondary-400 text-sm linear-gradient-blue text-theme-neutral-100 dark:text-neutral-100 font-medium px-3 md:px-4 py-[6px] rounded-full transition-colors whitespace-nowrap'>
-                                                {walletInfor.solana_balance} SOL &ensp; {'$' + formatNumberWithSuffix3(walletInfor.solana_balance_usd)}
+                                                {walletInfor.solana_balance?.toFixed(4)} SOL &ensp; {'$' + formatNumberWithSuffix3(walletInfor.solana_balance_usd)}
                                             </button>
                                         </div>
                                     )}
