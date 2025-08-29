@@ -685,7 +685,18 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
                             </div>
                         </div>
                     ) : (
-                        <div className="md:h-[52px] h-[50px]" />
+                        <div className="md:h-[52px] h-[50px]">
+                            <div className="md:hidden flex items-center gap-2 px-2 h-full">
+                                <Checkbox
+                                    checked={isAllSelected()}
+                                    onCheckedChange={handleSelectAll}
+                                    className="h-4 w-4"
+                                />
+                                <span className="text-xs font-medium text-black dark:text-white">
+                                    {t('wallet.selectAll')} {t('wallet.toDeleteMultipleWallets')}
+                                </span>
+                            </div>
+                        </div>
                     )}
                     {/* Desktop Table View */}
                     <div className="hidden sm:block border-1 z-10 border-solid mb-8 rounded-xl overflow-hidden border-y-theme-primary-100 border-x-theme-purple-200">

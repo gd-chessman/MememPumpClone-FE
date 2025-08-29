@@ -387,6 +387,8 @@
     }
   },
   "wallet": {
+    "selectAll": "모두 선택",
+    "toDeleteMultipleWallets": "여러 지갑을 삭제하기 위해",
     "solana": "Solana",
     "eth": "ETH",
     "bnb": "BNB",

@@ -370,6 +370,8 @@
   },
   "selectNetwork": "ネットワークを選択",
   "wallet": {
+    "selectAll": "すべて選択",
+    "toDeleteMultipleWallets": "複数のウォレットを削除するために",
     "solana": "Solana",
     "eth": "ETH",
     "bnb": "BNB",

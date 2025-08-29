@@ -815,6 +815,8 @@
       "loading": "Loading..."
     },
     "wallet": {
+      "selectAll": "Select All",
+      "toDeleteMultipleWallets": "to delete multiple wallets",
       "selectWallet": "Select Wallet",
       "logout": "Logout",
       "loading": "Loading...",
