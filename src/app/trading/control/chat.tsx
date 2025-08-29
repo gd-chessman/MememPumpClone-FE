@@ -172,7 +172,7 @@ const ChatTradingContent = () => {
             <div className="relative flex-1">
               <input
                 type="text"
-                placeholder={t('trading.control.searchBar.placeholder')}
+                placeholder={t('masterTrade.manage.chat.type_a_message')}
                 value={newMessage}
                 onChange={(e) => setNewMessage(e.target.value)}
                 onKeyDown={(e) => {
