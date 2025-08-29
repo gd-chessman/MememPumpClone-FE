@@ -67,7 +67,7 @@ const wrapGradientStyle = "bg-gradient-to-t from-theme-purple-100 to-theme-gradi
 
 // Add responsive styles
 const containerStyles = "lg:container-glow w-full px-4 sm:px-[40px] flex flex-col gap-4 sm:gap-6 lg:gap-12 pt-4 sm:pt-[30px] relative mx-auto z-10 pb-6 lg:pb-0"
-const walletGridStyles = "grid grid-cols-1 sm:grid-cols-4 gap-4 sm:gap-6 w-full "
+const walletGridStyles = "flex flex-col sm:grid sm:grid-cols-4 gap-4 sm:gap-6 w-full "
 const walletCardStyles = "px-4 sm:px-6 py-3 border border-solid border-theme-secondary-500 justify-evenly rounded-xl flex flex-col lg:gap-1 gap-2 items-center sm:gap-4 min-w-0 dark:bg-gradient-overlay bg-white z-10"
 const walletTitleStyles = "text-Colors-Neutral-100 text-sm sm:text-base font-semibold uppercase leading-tight"
 const walletAddressStyles = "text-Colors-Neutral-200 text-xs sm:text-sm font-normal leading-tight truncate"
@@ -1083,7 +1083,7 @@ export default function WalletPage() {
                                 </>
                             ) : (
                                 <>
-                                    <div className={walletCardStyles}>
+                                    <div className={`${walletCardStyles} order-1`}>
                                         <div className="inline-flex justify-start items-center gap-2 w-full ">
                                             <div className="w-6 h-6 sm:w-8 sm:h-8 relative overflow-hidden flex-shrink-0">
                                                 <img src="/solana.png" alt="Solana" className="w-full h-full object-cover" />
@@ -1115,7 +1115,7 @@ export default function WalletPage() {
 
                                         </div>
                                     </div>
-                                    <div className="flex flex-col justify-between gap-2 w-full col-span-2">
+                                    <div className="flex flex-col justify-between gap-2 w-full col-span-2 order-3 md:order-2">
                                         {walletInfor && <div className="flex justify-center items-center mx-auto mt-1">
                                             <button
                                                 onClick={() => setShowPrivateKeys(true)}
@@ -1174,7 +1174,7 @@ export default function WalletPage() {
                                             </button>
                                         </div>
                                     </div>
-                                    <div className={`${walletCardStyles} dark:bg-gradient-purple-transparent border-theme-primary-300 bg-white z-10`}>
+                                    <div className={`${walletCardStyles} dark:bg-gradient-purple-transparent border-theme-primary-300 bg-white z-10 order-2 md:order-3`}>
                                         <div className="inline-flex justify-start items-center gap-2.5 w-full">
                                             <img src="/ethereum.png" alt="Ethereum" className="w-5 h-5 object-cover" />
                                             <div className="justify-start text-Colors-Neutral-100 text-base font-semibold uppercase leading-normal truncate">
