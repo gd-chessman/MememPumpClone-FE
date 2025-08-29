@@ -50,7 +50,7 @@ export const PercentageButtons: React.FC<PercentageButtonsProps> = ({
                     ) : (
                         <button
                             onClick={() => onSetPercentage(percent)}
-                            className={`2xl:px-[6px] md:px-1 px-0 md:w-fit w-full max-w-[75px] py-1 2xl:h-[30px] lg:h-[25px] h-8 font-semibold 2xl:text-xs text-[8px] rounded-md flex items-center md:justify-around justify-between gap-1 border border-solid transition-colors ${percentage === percent
+                            className={`2xl:px-[6px] md:px-1 px-0 md:w-fit w-full py-1 2xl:h-[30px] lg:h-[25px] h-8 font-semibold 2xl:text-xs text-[8px] rounded-md flex items-center md:justify-around justify-between gap-1 border border-solid transition-colors ${percentage === percent
                                     ? "border-blue-500 text-blue-600 dark:border-linear-start bg-blue-50 dark:bg-theme-primary-400/10"
                                     : "border-gray-200 dark:border-neutral-700 text-gray-700 dark:text-neutral-300 hover:bg-gray-50 dark:hover:bg-neutral-800"
                                 }`}

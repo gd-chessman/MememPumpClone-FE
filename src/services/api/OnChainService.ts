@@ -127,3 +127,16 @@ export const getTokenBalancePhantom = async (walletAddress: string, tokenAddress
       };
   }
 }
+
+export const getTokenBalance = async (walletAddress: string, tokenAddress: string) => {
+  try {
+    const temp = await axiosClient.get(`/on-chain/token-balance?walletAddress=${walletAddress}&tokenAddress=${tokenAddress}`)
+    return temp.data;
+  } catch (error) {
+    console.log(error)
+    return {
+      success: false,
+      data: null
+    };
+  }
+}

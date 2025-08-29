@@ -17,20 +17,20 @@ import { GroupSelect } from "./components/GroupSelect"
 import { getInforWallet } from "@/services/api/TelegramWalletService"
 import { useTradingState } from './hooks/useTradingState'
 import { useConnectListStore } from "@/hooks/useConnectListStore"
-import { getTokenBalancePhantom } from "@/services/api/OnChainService"
+import { getTokenBalance, getTokenBalancePhantom } from "@/services/api/OnChainService"
 import { Transaction, VersionedTransaction } from '@solana/web3.js'
 
 // Phantom wallet type declaration
 declare global {
-  interface Window {
-    solana?: {
-      isPhantom?: boolean;
-      connect: (params?: { onlyIfTrusted?: boolean }) => Promise<{ publicKey: { toString: () => string } }>;
-      disconnect: () => Promise<void>;
-      publicKey?: { toString: () => string };
-      signTransaction: (transaction: Transaction) => Promise<Transaction>;
-    };
-  }
+    interface Window {
+        solana?: {
+            isPhantom?: boolean;
+            connect: (params?: { onlyIfTrusted?: boolean }) => Promise<{ publicKey: { toString: () => string } }>;
+            disconnect: () => Promise<void>;
+            publicKey?: { toString: () => string };
+            signTransaction: (transaction: Transaction) => Promise<Transaction>;
+        };
+    }
 }
 
 export default function TradingPanel({
@@ -65,7 +65,7 @@ export default function TradingPanel({
 
     // Check if user is logged in with Phantom wallet
     const [isPhantomUser, setIsPhantomUser] = useState(false)
-    
+
     useEffect(() => {
         if (typeof window !== 'undefined') {
             setIsPhantomUser(!!localStorage.getItem("phantomPublicKey"))
@@ -78,7 +78,7 @@ export default function TradingPanel({
         enabled: !isPhantomUser, // Only fetch if not Phantom user
     })
 
-    const {data: balanceSolanaPhantom, refetch: refetchBalanceSolanaPhantom} = useQuery({
+    const { data: balanceSolanaPhantom, refetch: refetchBalanceSolanaPhantom } = useQuery({
         queryKey: ["balanceSolanaPhantom", address],
         queryFn: () => {
             const phantomPublicKey = typeof window !== 'undefined' ? localStorage.getItem("phantomPublicKey") : null
@@ -86,9 +86,6 @@ export default function TradingPanel({
         },
         enabled: isPhantomUser, // Only fetch if Phantom user
     })
-
-    console.log("balanceSolanaPhantom", balanceSolanaPhantom)
-
 
     const { data: walletInfor } = useQuery({
         queryKey: ["wallet-infor"],
@@ -112,7 +109,13 @@ export default function TradingPanel({
         },
         enabled: isPhantomUser && !!address, // Only fetch if Phantom user and address exists
     })
-    console.log(tokenBalance)
+
+    const { data: tokenBalanceOnChain, refetch: refetchTokenBalanceOnChain } = useQuery({
+        queryKey: ["tokenBalanceOnChain", address, walletInfor?.solana_address],
+        queryFn: () => getTokenBalance(walletInfor?.solana_address || "", address || ""),
+        enabled: !!address && !!walletInfor?.solana_address, // Only fetch if address exists and walletInfor has solana_address
+    })
+    console.log("tokenBalanceOnChain", tokenBalanceOnChain)
 
     const { data: tokenAmount, refetch: refetchTokenAmount } = useQuery({
         queryKey: ["tokenAmount", address],
@@ -121,6 +124,7 @@ export default function TradingPanel({
 
     const [mode, setMode] = useState<TradingMode>(defaultMode)
     const [amount, setAmount] = useState("0.00")
+    const [displayAmount, setDisplayAmount] = useState("0.00")
     const [percentage, setPercentage] = useState(0)
     const [amountUSD, setAmountUSD] = useState("0.00")
     const [isDirectAmountInput, setIsDirectAmountInput] = useState(false)
@@ -155,7 +159,7 @@ export default function TradingPanel({
             // For Phantom users, use balanceSolanaPhantom for SOL balance and tokenBalance for token balance
             const solBalance = balanceSolanaPhantom?.data?.balance || 0
             const tokenBalanceValue = tokenBalance?.data?.balance || 0
-            
+
             return {
                 sol_balance: solBalance,
                 token_balance: tokenBalanceValue
@@ -172,12 +176,12 @@ export default function TradingPanel({
     // Add isButtonDisabled state
     const isButtonDisabled = useMemo(() => {
         const numericAmount = Number(amount)
-        
+
         // For Phantom users, check if Phantom is connected
         if (isPhantomUser) {
             return amountError !== "" || numericAmount <= 0 || !isPhantomConnected
         }
-        
+
         // For non-Phantom users, check regular connection
         return amountError !== "" || numericAmount <= 0 || !isConnected
     }, [amount, amountError, isConnected, isPhantomUser, isPhantomConnected])
@@ -194,26 +198,28 @@ export default function TradingPanel({
         return () => window.removeEventListener('resize', handleResize)
     }, [])
 
+
+
     // Check Phantom connection status
     useEffect(() => {
         if (isPhantomUser) {
             const checkPhantomConnection = () => {
                 const isConnected = !!(window.solana?.isPhantom && window.solana?.publicKey)
                 setIsPhantomConnected(isConnected)
-                
+
                 // Clear amount error if Phantom gets disconnected
                 if (!isConnected) {
                     setAmountError("")
                 }
             }
-            
+
             checkPhantomConnection()
-            
+
             // Listen for Phantom connection changes
             const handlePhantomConnectionChange = () => {
                 checkPhantomConnection()
             }
-            
+
             window.addEventListener('focus', handlePhantomConnectionChange)
             return () => window.removeEventListener('focus', handlePhantomConnectionChange)
         }
@@ -221,6 +227,33 @@ export default function TradingPanel({
 
     // Use default height during SSR
     const height = isMounted ? windowHeight : 800
+
+    // Format number with thousand separators
+    const formatNumberWithSeparators = useCallback((value: string): string => {
+        // Remove all non-numeric characters except decimal point
+        const cleanValue = value.replace(/[^\d.]/g, '')
+        
+        // Handle decimal numbers
+        const parts = cleanValue.split('.')
+        const integerPart = parts[0]
+        const decimalPart = parts[1] || ''
+        
+        // Add thousand separators to integer part
+        const formattedInteger = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+        
+        // Combine with decimal part
+        return decimalPart ? `${formattedInteger}.${decimalPart}` : formattedInteger
+    }, [])
+
+    // Parse formatted number back to numeric value
+    const parseFormattedNumber = useCallback((value: string): string => {
+        return value.replace(/,/g, '')
+    }, [])
+
+    // Initialize displayAmount with formatted value
+    useEffect(() => {
+        setDisplayAmount(formatNumberWithSeparators(amount))
+    }, [amount, formatNumberWithSeparators])
 
     const validateAmount = useCallback((value: number): boolean => {
         const balance = mode === "buy" ? calculatedBalances.sol_balance : calculatedBalances.token_balance
@@ -237,23 +270,49 @@ export default function TradingPanel({
     }, [mode, calculatedBalances, t])
 
     const handleAmountChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        const newAmount = e.target.value
-        setAmount(newAmount)
+        const inputValue = e.target.value
+        
+        // If input is empty, set both to empty
+        if (inputValue === '') {
+            setAmount('')
+            setDisplayAmount('')
+            setIsDirectAmountInput(true)
+            setPercentage(0)
+            setAmountUSD('0.00')
+            setAmountError('')
+            return
+        }
+        
+        // Parse the formatted input to get numeric value
+        const numericValue = parseFormattedNumber(inputValue)
+        
+        // Validate if it's a valid number
+        if (isNaN(Number(numericValue))) {
+            return
+        }
+        
+        // Format for display
+        const formattedValue = formatNumberWithSeparators(numericValue)
+        
+        setAmount(numericValue)
+        setDisplayAmount(formattedValue)
         setIsDirectAmountInput(true)
         setPercentage(0)
 
-        const numericAmount = Number.parseFloat(newAmount) || 0
+        const numericAmount = Number.parseFloat(numericValue) || 0
         validateAmount(numericAmount)
         setAmountUSD((numericAmount * exchangeRate).toFixed(2))
-    }, [exchangeRate, validateAmount])
+    }, [exchangeRate, validateAmount, formatNumberWithSeparators, parseFormattedNumber])
 
     const handleSetAmount = useCallback((value: number) => {
-        setAmount(value.toString())
+        const valueStr = value.toString()
+        setAmount(valueStr)
+        setDisplayAmount(formatNumberWithSeparators(valueStr))
         setIsDirectAmountInput(true)
         setPercentage(0)
         validateAmount(value)
         setAmountUSD((value * exchangeRate).toFixed(2))
-    }, [exchangeRate, validateAmount])
+    }, [exchangeRate, validateAmount, formatNumberWithSeparators])
 
     const handlePercentageChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const newPercentage = Number.parseInt(e.target.value)
@@ -262,25 +321,26 @@ export default function TradingPanel({
         const balance = mode === "buy" ? calculatedBalances.sol_balance : calculatedBalances.token_balance
         const newAmount = ((balance * newPercentage) / 100).toFixed(6)
         setAmount(newAmount)
-        
+        setDisplayAmount(formatNumberWithSeparators(newAmount))
+
         // Validate the new amount and clear error if valid
         const numericAmount = Number(newAmount)
         if (numericAmount > 0 && numericAmount <= balance) {
             setAmountError("")
         }
-        
+
         // Calculate amountUSD using the newAmount we just calculated
         if (mode === "buy") {
             setAmountUSD((numericAmount * exchangeRate).toFixed(2))
         }
-    }, [mode, calculatedBalances, exchangeRate])
+    }, [mode, calculatedBalances, exchangeRate, formatNumberWithSeparators])
 
     const handleSetPercentage = useCallback((percent: number) => {
         setPercentage(percent)
         setIsDirectAmountInput(false)
 
         // Check if user is connected (either regular or Phantom)
-        const isUserConnected = isPhantomUser 
+        const isUserConnected = isPhantomUser
             ? isPhantomConnected
             : isConnected
 
@@ -288,19 +348,20 @@ export default function TradingPanel({
             const balance = mode === "buy" ? calculatedBalances.sol_balance : calculatedBalances.token_balance
             const newAmount = ((balance * percent) / 100).toFixed(6)
             setAmount(newAmount)
-            
+            setDisplayAmount(formatNumberWithSeparators(newAmount))
+
             // Validate the new amount and clear error if valid
             const numericAmount = Number(newAmount)
             if (numericAmount > 0 && numericAmount <= balance) {
                 setAmountError("")
             }
-            
+
             // Calculate amountUSD using the newAmount we just calculated
             if (mode === "buy") {
                 setAmountUSD((numericAmount * exchangeRate).toFixed(2))
             }
         }
-    }, [isConnected, mode, calculatedBalances, exchangeRate, isPhantomUser, isPhantomConnected])
+    }, [isConnected, mode, calculatedBalances, exchangeRate, isPhantomUser, isPhantomConnected, formatNumberWithSeparators])
 
     const handleEditClick = useCallback((index: number) => {
         setEditingIndex(index)
@@ -382,7 +443,7 @@ export default function TradingPanel({
             }
 
             const walletAddress = window.solana.publicKey.toString()
-            
+
             // Step 1: Create transaction
             const createTransactionData = {
                 order_trade_type: mode,
@@ -398,7 +459,7 @@ export default function TradingPanel({
             }
 
             console.log('Creating Phantom transaction:', createTransactionData)
-            
+
             const createRes = await getMasterTrading(createTransactionData)
 
             if (createRes.status !== 201 || !createRes.data) {
@@ -418,10 +479,10 @@ export default function TradingPanel({
             const orderId = createData.data.order_id.toString()
 
             console.log('Signing transaction with Phantom...')
-            
+
             // Deserialize transaction
             let bytes: Uint8Array
-            
+
             if (serializedTransaction.includes(',')) {
                 // Comma-separated format
                 const numbers = serializedTransaction.split(',').map((num: string) => parseInt(num.trim()))
@@ -449,20 +510,20 @@ export default function TradingPanel({
 
             // Sign with Phantom
             let signedTransaction: Transaction | VersionedTransaction
-            
+
             if (transaction instanceof Transaction) {
                 signedTransaction = await window.solana.signTransaction(transaction)
             } else {
                 // For VersionedTransaction, cast to avoid type issues
                 signedTransaction = await window.solana.signTransaction(transaction as unknown as Transaction)
             }
-            
+
             console.log('Transaction signed successfully')
 
             // Serialize signed transaction
             const serializedBytes = signedTransaction.serialize()
             const signedTransactionBase64 = Buffer.from(serializedBytes).toString('base64')
-            
+
             // Extract signature from the first few bytes of the serialized transaction
             // Solana transaction signatures are typically at the beginning
             let signatureBase64 = ''
@@ -475,7 +536,7 @@ export default function TradingPanel({
             } catch (error) {
                 console.warn('Failed to extract signature from serialized transaction:', error)
             }
-            
+
             console.log('Extracted signature:', signatureBase64)
             console.log('Signature length:', signatureBase64.length)
             console.log('Serialized transaction length:', serializedBytes.length)
@@ -494,7 +555,7 @@ export default function TradingPanel({
             })
 
             console.log('Submitting signed transaction...')
-            
+
             const submitRes = await submitSignedPhantomTransaction(submitData)
 
             if (submitRes.status !== 201 || !submitRes.data) {
@@ -557,13 +618,14 @@ export default function TradingPanel({
 
         if (success) {
             setAmount("0.00")
+            setDisplayAmount("0.00")
             setPercentage(0)
             setAmountUSD("0.00")
             setIsDirectAmountInput(false)
-            
+
             // Add a small delay to ensure blockchain is updated
             await new Promise(resolve => setTimeout(resolve, 1000))
-            
+
             // Refresh data based on login type
             if (isPhantomUser) {
                 console.log('Refreshing Phantom balances after successful transaction...')
@@ -575,7 +637,7 @@ export default function TradingPanel({
                 await refetchTradeAmount()
                 console.log('Regular trade amount refreshed successfully')
             }
-            
+
             notify({
                 message: t('trading.panel.success'),
                 type: 'success'
@@ -584,6 +646,7 @@ export default function TradingPanel({
             forceRefreshBalances()
         } else {
             setAmount("0.00")
+            setDisplayAmount("0.00")
             setPercentage(0)
             setAmountUSD("0.00")
             setIsDirectAmountInput(false)
@@ -599,6 +662,7 @@ export default function TradingPanel({
     // Reset amount and percentage when mode changes
     useEffect(() => {
         setAmount("0.00")
+        setDisplayAmount("0.00")
         setPercentage(0)
         setIsDirectAmountInput(false)
         setAmountError("") // Clear error when mode changes
@@ -610,22 +674,23 @@ export default function TradingPanel({
             const balance = mode === "buy" ? calculatedBalances.sol_balance : calculatedBalances.token_balance
             const newAmount = ((balance * percentage) / 100).toFixed(6)
             setAmount(newAmount)
-            
+            setDisplayAmount(formatNumberWithSeparators(newAmount))
+
             // Clear error if the new amount is valid
             const numericAmount = Number(newAmount)
             if (numericAmount > 0 && numericAmount <= balance) {
                 setAmountError("")
             }
         }
-    }, [calculatedBalances, mode, percentage, isDirectAmountInput])
+    }, [calculatedBalances, mode, percentage, isDirectAmountInput, formatNumberWithSeparators])
 
     const handleSelectConnection = useCallback((groups: string[]) => {
         setSelectedGroups(groups)
         const connectionsFilter = myConnects.filter((connect: any) => groups.some((group: any) => connect.joined_groups.some((joinedGroup: any) => joinedGroup.group_id.toString() === group))).map((connect: any) => connect.member_id.toString())
         setSelectedConnections(connectionsFilter)
     }, [setSelectedGroups, setSelectedConnections, myConnects, selectedConnections])
-   
-   
+
+
     return (
         <div className="h-full flex flex-col">
             {/* Mode Tabs */}
@@ -649,10 +714,11 @@ export default function TradingPanel({
                 <div className="relative mt-2">
                     <div className={`bg-gray-50 dark:bg-neutral-900 rounded-full border ${amountError ? 'border-red-500' : 'border-blue-200 dark:border-blue-500'} px-3  flex justify-between items-center ${height > 700 ? 'py-1.5' : '2xl:h-[30px] h-[25px]'}`}>
                         <input
-                            type="number"
-                            value={amount}
+                            type="text"
+                            value={displayAmount}
                             onChange={handleAmountChange}
                             className="bg-transparent w-full text-gray-900 dark:text-neutral-200 font-medium 2xl:text-base text-xs focus:outline-none"
+                            placeholder="0.00"
                         />
                         {!isDirectAmountInput && (
                             <span className={`${STYLE_TEXT_BASE} text-blue-600 dark:text-theme-primary-300`}>
@@ -676,7 +742,7 @@ export default function TradingPanel({
                         <div className={STYLE_TEXT_BASE}>
                             {t('trading.panel.balance')}: {mode === "buy"
                                 ? calculatedBalances.sol_balance.toFixed(3) + "  " + currency.symbol
-                                : calculatedBalances.token_balance.toFixed(6) + " " + tokenInfor?.symbol}
+                                : calculatedBalances.token_balance.toFixed(6) + " " + tokenInfor?.symbol + " ~ $" + (tokenBalanceOnChain?.data?.price.usd * calculatedBalances.token_balance).toFixed(3)}
                         </div>
                     </div>
 
