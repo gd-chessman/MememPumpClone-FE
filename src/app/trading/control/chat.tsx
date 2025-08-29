@@ -143,8 +143,8 @@ const ChatTradingContent = () => {
   };
 
   return (
-    <div className="flex flex-col h-full px-4 pt-3 rounded-md dark:bg-[#0e0e0e]">
-      <div className={`${height > 700 ? 'flex-1' : 'h-[300px]'} overflow-y-auto px-1 rounded-xl bg-theme-neutral-100 dark:bg-inherit`}>
+    <div className="flex flex-col h-full px-2 pt-3 rounded-md dark:bg-[#0e0e0e]">
+      <div className={`${height > 700 ? 'flex-1' : 'h-[300px]'} overflow-y-auto px-3 rounded-xl bg-theme-neutral-100 dark:bg-inherit`}>
         {messages.map((message) => (
           <ChatMessage key={message.id} message={message} />
         ))}
@@ -168,7 +168,7 @@ const ChatTradingContent = () => {
             </div>
           )}
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 px-2">
             <div className="relative flex-1">
               <input
                 type="text"
