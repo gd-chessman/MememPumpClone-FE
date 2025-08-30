@@ -1646,7 +1646,7 @@ export default function WalletPage() {
             {showImportWallets && (
                 <div className={`${modalContainerStyles} bg-theme-black-1/3 backdrop-blur-sm`}>
                     <div className={modalContentStyles}>
-                        <div ref={importWalletRef} className={`${modalInnerStyles} overflow-y-auto max-h-[80vh]`}>
+                        <div ref={importWalletRef} className={`${modalInnerStyles} overflow-y-auto overflow-x-hidden max-h-[80vh]`}>
                             <div className="xl:w-[40vw] flex flex-col gap-4 sm:gap-6">
                                 <div className="flex flex-col gap-4">
                                     <div className="flex justify-between items-center">
