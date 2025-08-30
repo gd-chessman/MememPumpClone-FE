@@ -1646,7 +1646,7 @@ export default function WalletPage() {
             {showImportWallets && (
                 <div className={`${modalContainerStyles} bg-theme-black-1/3 backdrop-blur-sm`}>
                     <div className={modalContentStyles}>
-                        <div ref={importWalletRef} className={modalInnerStyles}>
+                        <div ref={importWalletRef} className={`${modalInnerStyles} overflow-y-auto max-h-[80vh]`}>
                             <div className="xl:w-[40vw] flex flex-col gap-4 sm:gap-6">
                                 <div className="flex flex-col gap-4">
                                     <div className="flex justify-between items-center">
@@ -1698,7 +1698,7 @@ export default function WalletPage() {
                                                         }
                                                     }}
                                                     placeholder={t('wallet.enterSolanaPrivateKey')}
-                                                    className={`${modalInputStyles} !pt-2 border-l-[#03bdff] border-r-[#555aff] !text-xs border-b-[#03bdff] border-t-[#555aff] border-2 rounded-md ${privateKeyError ? 'border-red-500' : ''}`}
+                                                    className={`${modalInputStyles} !pt-2 border-l-[#03bdff] border-r-[#555aff] !text-xs border-b-[#03bdff] overflow-y-hidden border-t-[#555aff] border-2 rounded-md  ${privateKeyError ? 'border-red-500' : ''}`}
                                                     rows={5}
                                                 />
                                             </div>
@@ -1807,7 +1807,7 @@ export default function WalletPage() {
             {showPrivateKeys && (
                 <div className={modalContainerStyles}>
                     <div className={modalContentStyles}>
-                        <div ref={privateKeysRef} className={modalInnerStyles}>
+                        <div ref={privateKeysRef} className={`${modalInnerStyles} `}>
                             <div className=" 2xl:w-96 w-auto flex flex-col gap-4 sm:gap-6">
                                 <div className="flex flex-col gap-4">
                                     <div className="flex justify-between items-center">
