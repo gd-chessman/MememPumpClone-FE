@@ -504,12 +504,12 @@ export default function WalletPage() {
     // Load more wallets function
     const loadMoreWallets = useCallback(async () => {
         if (isLoadingMore || !hasMore) return;
-        
+
         try {
             setIsLoadingMore(true);
             const nextPage = currentPage + 1;
             const newWallets = await getMyWallets(nextPage, 20);
-            
+
             if (newWallets && newWallets.length > 0) {
                 setAllWallets(prev => [...prev, ...newWallets]);
                 setCurrentPage(nextPage);
@@ -571,6 +571,20 @@ export default function WalletPage() {
             });
         }
     }, [privateKeys]);
+
+    const descriptionTextareaRef = useRef<HTMLTextAreaElement>(null);
+
+    // Auto-adjust textarea height when description changes
+    useEffect(() => {
+        if (descriptionTextareaRef.current) {
+            adjustTextareaHeight(descriptionTextareaRef.current);
+        }
+    }, [privateKeyArray.join('\n')]);
+
+    const adjustTextareaHeight = (element: HTMLTextAreaElement) => {
+        element.style.height = 'auto';
+        element.style.height = `${element.scrollHeight}px`;
+    };
 
     const handleGetPrivateKeys = () => {
         setShowPasswordInput(true);
@@ -1618,7 +1632,7 @@ export default function WalletPage() {
                                     <button
                                         onClick={executeAddWallet}
                                         disabled={isLoading || !walletName || !walletNickname}
-                                            className="px-4 py-2 text-xs 2xl:text-sm bg-gradient-to-r from-purple-600 to-blue-600 text-neutral-100 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="px-4 py-2 text-xs 2xl:text-sm bg-gradient-to-r from-purple-600 to-blue-600 text-neutral-100 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
                                         {isLoading ? t('wallet.adding') : t('wallet.addWallet')}
                                     </button>
@@ -1645,6 +1659,7 @@ export default function WalletPage() {
                                         <div>
                                             <div className="relative w-full">
                                                 <textarea
+                                                    ref={descriptionTextareaRef}
                                                     value={privateKeyArray.join('\n')}
                                                     onChange={(e) => {
                                                         const value = e.target.value;
@@ -2046,7 +2061,7 @@ export default function WalletPage() {
                     </div>
                 </div>
             )}
-           
+
             <ModalSignin isOpen={!isAuthenticated} onClose={() => { }} />
             {showModalResult && (
                 <div className="fixed inset-0 bg-theme-black-1/3 backdrop-blur-sm flex items-center justify-center z-[9999] p-4">
