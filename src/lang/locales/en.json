@@ -916,7 +916,8 @@
       "copied": "Copied!"
     },
     "actions": "Actions",
-    "close": "Close"
+    "close": "Close",
+    "redirecting": "Redirecting..."
   },
   "universal_account": {
     "google_auth_code": "Google Authenticator Code",
