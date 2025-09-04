@@ -702,7 +702,7 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
                     <div className="hidden sm:block border-1 z-10 border-solid mb-8 rounded-xl overflow-hidden border-y-theme-primary-100 border-x-theme-purple-200">
                         <Table className="w-full !bg-gray-700">
                             <TableRow className="bg-muted/50 h-12">
-                                <TableHead className={`${textTitle} w-[3.5%] px-2`}>
+                                <TableHead className={`${textTitle} w-[4%] px-2`}>
                                     {wallets?.length > 1 && (
                                         <Checkbox
                                             checked={isAllSelected()}
@@ -710,14 +710,14 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
                                         />
                                     )}
                                 </TableHead>
-                                <TableHead className={`${textTitle} w-[13%] px-4`}>{t('wallet.walletName')}</TableHead>
-                                <TableHead className={`${textTitle} w-[13%] px-4`}>{t('wallet.nickname')}</TableHead>
-                                <TableHead className={`${textTitle} w-[12%] px-4`}>{t('wallet.solanaAddress')}</TableHead>
-                                <TableHead className={`${textTitle} w-[14%] px-4`}>{t('wallet.balance')}</TableHead>
-                                <TableHead className={`${textTitle} w-[9%] px-4`}>{t('wallet.country')}</TableHead>
-                                <TableHead className={`${textTitle} w-[8%] px-4`}>{t('wallet.type')}</TableHead>
-                                <TableHead className={`${textTitle} w-[8%] px-4`}>{t('wallet.walletLevel')}</TableHead>
-                                <TableHead className={`${textTitle} w-[9.5%] px-4`}>{t('common.actions')}</TableHead>
+                                <TableHead className={`${textTitle} w-[11.4%]`}>{t('wallet.walletName')}</TableHead>
+                                <TableHead className={`${textTitle} w-[10%]`}>{t('wallet.nickname')}</TableHead>
+                                <TableHead className={`${textTitle} w-[12%]`}>{t('wallet.solanaAddress')}</TableHead>
+                                <TableHead className={`${textTitle} w-[10%]`}>{t('wallet.balance')}</TableHead>
+                                <TableHead className={`${textTitle} w-[12%] pl-2`}>{t('wallet.country')}</TableHead>
+                                <TableHead className={`${textTitle} w-[8%]`}>{t('wallet.type')}</TableHead>
+                                <TableHead className={`${textTitle} w-[8%]`}>{t('wallet.walletLevel')}</TableHead>
+                                <TableHead className={`${textTitle} w-[6%]`}>{t('common.actions')}</TableHead>
                             </TableRow>
                         </Table>
                         <div className="max-h-[74vh] overflow-y-auto w-full">
@@ -735,16 +735,16 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
                                                     />
                                                 )}
                                             </TableCell>
-                                            <TableCell className={`w-[16.5%] px-4 ${textContent}`}>
+                                            <TableCell className={`w-[11.4%] ${textContent}`}>
                                                 {renderEditableCell(wallet, 'name')}
                                             </TableCell>
-                                            <TableCell className={`w-[12%] px-4 ${textContent}`}>
+                                            <TableCell className={`w-[10%] ${textContent}`}>
                                                 {renderEditableCell(wallet, 'nickname')}
                                             </TableCell>
 
-                                            <TableCell className={`w-[12%] px-4 ${textContent}`}>
+                                            <TableCell className={`w-[12%] ${textContent}`}>
                                                 <div className="flex items-center gap-1">
-                                                    <span className="truncate max-w-[180px] text-[10px] text-yellow-500 italic">
+                                                    <span className="truncate max-w-[180px] text-yellow-500 italic">
                                                         {truncateString(wallet.solana_address, 10)}
                                                     </span>
                                                     <Button
@@ -761,7 +761,7 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
                                                     </Button>
                                                 </div>
                                             </TableCell>
-                                            <TableCell className={`w-[10%] px-4 ${textContent}`}>
+                                            <TableCell className={`w-[10%] ${textContent}`}>
                                                 {loadingBalances[wallet.wallet_id] ? (
                                                     <div className="flex items-center gap-2">
                                                         <Loader2 className="h-3 w-3 animate-spin" />
@@ -777,10 +777,10 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
                                                     </>
                                                 )}
                                             </TableCell>
-                                            <TableCell className={`w-[8%] px-4 ${textContent}`}>
+                                            <TableCell className={`w-[10%] ${textContent}`}>
                                                 {renderEditableCell(wallet, 'country')}
                                             </TableCell>
-                                            <TableCell className={`w-[8%] px-4 ${textContent}`}>
+                                            <TableCell className={`w-[8%] ${textContent}`}>
                                                 <Badge
                                                     className={`${wallet.wallet_type === "main"
                                                         ? "bg-green-50 dark:bg-green-900 border-green-600 text-green-300"
@@ -792,7 +792,7 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
                                                     {t(`listWalletss.walletType.${wallet.wallet_type}`)}
                                                 </Badge>
                                             </TableCell>
-                                            <TableCell className={`w-[8%] px-4 ${textContent}`}>
+                                            <TableCell className={`w-[8%] ${textContent}`}>
                                                 <Badge
                                                     className={`${wallet.wallet_auth === "master"
                                                         ? "dark:bg-yellow-800 border-yellow-600 text-yellow-300"
@@ -802,7 +802,7 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
                                                     {t(`listWalletss.walletType.${wallet.wallet_auth}`)}
                                                 </Badge>
                                             </TableCell>
-                                            <TableCell className={`w-[8%] px-4 ${textContent}`}>
+                                            <TableCell className={`w-[5%] ${textContent}`}>
                                                 <div className="flex items-center gap-1 cursor-pointer p-1 rounded-md">
                                                     <div
                                                         className={`w-2.5 h-2.5 rounded-full ${walletInfor?.solana_address === wallet.solana_address

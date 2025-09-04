@@ -1320,7 +1320,7 @@ export default function WalletPage() {
                             </div>
                         </div>
 
-                        <div className="w-full flex flex-col xl:gap-4 gap-2 md:max-w-[37%]">
+                        <div className="w-full flex flex-col xl:gap-4 gap-2 md:max-w-[32%]">
                             {/* Assets Section */}
                             <div className="flex justify-center items-center gap-2 sm:gap-2.5 mb-9">
                                 <img src="/ethereum.png" alt="Ethereum" className="w-3 h-3 sm:w-4 sm:h-4 object-cover" />
@@ -1376,13 +1376,13 @@ export default function WalletPage() {
                                                                         </div>
                                                                     </td>
                                                                     <td className={`${tableCellStyles} w-[20%] text-left`}>
-                                                                        {token.token_balance.toFixed(6)}
+                                                                        {token.token_balance.toFixed(4)}
                                                                     </td>
                                                                     <td className={`${tableCellStyles} w-[17.5%] text-left`}>
                                                                         ${token.token_price_usd.toFixed(4)}
                                                                     </td>
                                                                     <td className={`${tableCellStyles} w-[17.5%] text-left`}>
-                                                                        ${token.token_balance_usd.toFixed(6)}
+                                                                        ${token.token_balance_usd.toFixed(4)}
                                                                     </td>
                                                                 </tr>
                                                             ))}
