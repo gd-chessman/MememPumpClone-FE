@@ -702,7 +702,7 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
                     <div className="hidden sm:block border-1 z-10 border-solid mb-8 rounded-xl overflow-hidden border-y-theme-primary-100 border-x-theme-purple-200">
                         <Table className="w-full !bg-gray-700">
                             <TableRow className="bg-muted/50 h-12">
-                                <TableHead className={`${textTitle} w-[3%] px-2`}>
+                                <TableHead className={`${textTitle} w-[3.5%] px-2`}>
                                     {wallets?.length > 1 && (
                                         <Checkbox
                                             checked={isAllSelected()}
@@ -712,7 +712,7 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
                                 </TableHead>
                                 <TableHead className={`${textTitle} w-[13%] px-4`}>{t('wallet.walletName')}</TableHead>
                                 <TableHead className={`${textTitle} w-[13%] px-4`}>{t('wallet.nickname')}</TableHead>
-                                <TableHead className={`${textTitle} w-[10%] px-4`}>{t('wallet.solanaAddress')}</TableHead>
+                                <TableHead className={`${textTitle} w-[12%] px-4`}>{t('wallet.solanaAddress')}</TableHead>
                                 <TableHead className={`${textTitle} w-[14%] px-4`}>{t('wallet.balance')}</TableHead>
                                 <TableHead className={`${textTitle} w-[9%] px-4`}>{t('wallet.country')}</TableHead>
                                 <TableHead className={`${textTitle} w-[8%] px-4`}>{t('wallet.type')}</TableHead>
@@ -735,16 +735,16 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
                                                     />
                                                 )}
                                             </TableCell>
-                                            <TableCell className={`w-[13%] px-4 ${textContent}`}>
+                                            <TableCell className={`w-[16.5%] px-4 ${textContent}`}>
                                                 {renderEditableCell(wallet, 'name')}
                                             </TableCell>
-                                            <TableCell className={`w-[13%] px-4 ${textContent}`}>
+                                            <TableCell className={`w-[12%] px-4 ${textContent}`}>
                                                 {renderEditableCell(wallet, 'nickname')}
                                             </TableCell>
 
-                                            <TableCell className={`w-[10%] px-4 ${textContent}`}>
+                                            <TableCell className={`w-[12%] px-4 ${textContent}`}>
                                                 <div className="flex items-center gap-1">
-                                                    <span className="truncate max-w-[180px] text-yellow-500 italic">
+                                                    <span className="truncate max-w-[180px] text-[10px] text-yellow-500 italic">
                                                         {truncateString(wallet.solana_address, 10)}
                                                     </span>
                                                     <Button
@@ -761,7 +761,7 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
                                                     </Button>
                                                 </div>
                                             </TableCell>
-                                            <TableCell className={`w-[14%] px-4 ${textContent}`}>
+                                            <TableCell className={`w-[10%] px-4 ${textContent}`}>
                                                 {loadingBalances[wallet.wallet_id] ? (
                                                     <div className="flex items-center gap-2">
                                                         <Loader2 className="h-3 w-3 animate-spin" />

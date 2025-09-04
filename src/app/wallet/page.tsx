@@ -360,7 +360,7 @@ export default function WalletPage() {
     const [walletName, setWalletName] = useState("");
     const [quantityWallet, setQuantityWallet] = useState<number | null>(null);
     const [walletNickname, setWalletNickname] = useState("");
-    const [selectedNetwork, setSelectedNetwork] = useState("EN");
+    const [selectedNetwork, setSelectedNetwork] = useState("");
     const [selectedMasterTrader, setSelectedMasterTrader] = useState<string>("");
     const router = useRouter();
     const [privateKey, setPrivateKey] = useState("");
@@ -600,6 +600,7 @@ export default function WalletPage() {
         setWalletNickname("");
         setSelectedMasterTrader("");
         setQuantityWallet(null);
+        setSelectedNetwork("");
     };
 
     const handleCloseAddWallets = () => {
@@ -608,6 +609,7 @@ export default function WalletPage() {
         setWalletNickname("");
         setSelectedMasterTrader("");
         setQuantityWallet(null);
+        setSelectedNetwork("");
     };
 
 
@@ -617,6 +619,7 @@ export default function WalletPage() {
         setWalletNickname("");
         setPrivateKey("");
         setPrivateKeyError("");
+        setSelectedNetwork("");
     };
     const handleCloseImportWallets = () => {
         setShowImportWallets(false);
@@ -626,6 +629,8 @@ export default function WalletPage() {
         setSelectedNetwork("EN");
         setPrivateKeyArray([]);
         setPrivateKeyError("");
+        setSelectedNetwork("");
+
     };
 
     const handleCloseCreatePassword = () => {
