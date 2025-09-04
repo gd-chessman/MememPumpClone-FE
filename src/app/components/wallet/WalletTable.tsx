@@ -95,7 +95,7 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
     const onLoadMoreRef = useRef(onLoadMore);
     const { data: listWalletMobiles = [], refetch: refetchListWalletMobiles, isLoading: isLoadingListWalletMobiles } = useQuery({
         queryKey: ["my-wallets-mobile"],
-        queryFn: () => getMyWallets(1, 300),
+        queryFn: () => getMyWallets(1, 1000),
         enabled: isAuthenticated,
     });
 
