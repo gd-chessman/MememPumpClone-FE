@@ -833,7 +833,10 @@
       "privacypolicy": "プライバシーポリシー",
       "ref": "紹介",
       "security": "セキュリティ",
-      "disconnectPhantom": "Phantomの切断"
+      "disconnectPhantom": "Phantomの切断",
+      "connect": "接続",
+      "welcome": "ウェルカムメッセージ",
+      "connect_with_us": "私たちのプラットフォームにようこそ"
     },
     "notifications": {
       "switchWalletSuccess": "ウォレットの切り替えに成功しました！",
