@@ -390,6 +390,8 @@
     "eth": "ETH",
     "bnb": "BNB",
     "wallet": "Wallet",
+    "selectAll": "Select All",
+    "toDeleteMultipleWallets": "to delete multiple wallets",
     "solBalance": "SOL Balance",
     "usdtBalance": "USDT Balance",
     "totalPortfolio": "Total Portfolio",
