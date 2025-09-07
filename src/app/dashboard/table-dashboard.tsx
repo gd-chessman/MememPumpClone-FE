@@ -63,7 +63,6 @@ export default function Trading() {
     }
     return '2';
   });
-  const [selectedCategory, setSelectedCategory] = useState("");
   const [sortBy, setSortBy] = useState("volume_24h_change_percent");
   const [sortType, setSortType] = useState("desc");
 
@@ -94,6 +93,11 @@ export default function Trading() {
   const [searchResults, setSearchResults] = useState<Token[]>([]);
 
   const [expandedRows, setExpandedRows] = useState<{ [key: string]: boolean }>({});
+  const [showLeftScrollIndicator, setShowLeftScrollIndicator] = useState(false);
+  const [showRightScrollIndicator, setShowRightScrollIndicator] = useState(true);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
 
   // Update localStorage when activeTab changes
   useEffect(() => {
@@ -101,6 +105,62 @@ export default function Trading() {
       localStorage.setItem('activeTabOverview', activeTab);
     }
   }, [activeTab]);
+
+  // Handle scroll indicators for category columns
+  useEffect(() => {
+    const topScrollContainer = document.querySelector('.overflow-x-auto:not(.scrollbar-none)');
+    const mainScrollContainer = document.querySelector('.scrollbar-none');
+    
+    if (!topScrollContainer || !mainScrollContainer) return;
+
+    const updateScrollIndicators = () => {
+      const { scrollLeft, scrollWidth, clientWidth } = mainScrollContainer;
+      setShowLeftScrollIndicator(scrollLeft > 0);
+      setShowRightScrollIndicator(scrollLeft < scrollWidth - clientWidth - 1);
+    };
+
+    const syncScroll = (source: Element, target: Element) => {
+      target.scrollLeft = source.scrollLeft;
+    };
+
+    const handleTopScroll = () => {
+      syncScroll(topScrollContainer, mainScrollContainer);
+      updateScrollIndicators();
+    };
+
+    const handleMainScroll = () => {
+      syncScroll(mainScrollContainer, topScrollContainer);
+      updateScrollIndicators();
+    };
+
+    // Initial check
+    updateScrollIndicators();
+
+    // Add scroll listeners
+    topScrollContainer.addEventListener('scroll', handleTopScroll);
+    mainScrollContainer.addEventListener('scroll', handleMainScroll);
+    
+    // Add resize listener to handle window resize
+    window.addEventListener('resize', updateScrollIndicators);
+
+    return () => {
+      topScrollContainer.removeEventListener('scroll', handleTopScroll);
+      mainScrollContainer.removeEventListener('scroll', handleMainScroll);
+      window.removeEventListener('resize', updateScrollIndicators);
+    };
+  }, [categories, activeTab]);
+
+  // Update scroll indicators when dragging
+  useEffect(() => {
+    if (isDragging) {
+      const mainScrollContainer = document.querySelector('.scrollbar-none');
+      if (mainScrollContainer) {
+        const { scrollLeft, scrollWidth, clientWidth } = mainScrollContainer;
+        setShowLeftScrollIndicator(scrollLeft > 0);
+        setShowRightScrollIndicator(scrollLeft < scrollWidth - clientWidth - 1);
+      }
+    }
+  }, [isDragging, scrollLeft]);
 
   // Update tokens when topCoins or newCoins data changes
   useEffect(() => {
@@ -218,6 +278,48 @@ export default function Trading() {
     }));
   };
 
+  // Drag to scroll handlers
+  const handleMouseDown = (e: React.MouseEvent) => {
+    // Don't start drag if clicking on interactive elements
+    const target = e.target as HTMLElement;
+    if (target.closest('button') || target.closest('a') || target.closest('[role="button"]')) {
+      return;
+    }
+
+    const container = e.currentTarget as HTMLElement;
+    setIsDragging(true);
+    setStartX(e.pageX - container.offsetLeft);
+    setScrollLeft(container.scrollLeft);
+    container.style.cursor = 'grabbing';
+    container.style.userSelect = 'none';
+    
+    // Prevent default to avoid text selection
+    e.preventDefault();
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent) => {
+    const container = e.currentTarget as HTMLElement;
+    setIsDragging(false);
+    container.style.cursor = 'grab';
+    container.style.userSelect = 'auto';
+  };
+
+  const handleMouseUp = (e: React.MouseEvent) => {
+    const container = e.currentTarget as HTMLElement;
+    setIsDragging(false);
+    container.style.cursor = 'grab';
+    container.style.userSelect = 'auto';
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const container = e.currentTarget as HTMLElement;
+    const x = e.pageX - container.offsetLeft;
+    const walk = (x - startX) * 2; // Multiply for faster scrolling
+    container.scrollLeft = scrollLeft - walk;
+  };
+
   return (
     <div className="z-20">
       <Card className="mb-6 border-none shadow-none bg-transparent">
@@ -251,28 +353,7 @@ export default function Trading() {
                 onClick={() => setActiveTab('4')}
               >
                 <img src="/category-icon.png" alt="star" className="w-5 h-5" />
-                {activeTab === '4' ? (
-                  <select
-                    className="bg-transparent border-none focus:outline-none cursor-pointer flex flex-col text-neutral-100 dark:gradient-hover"
-                    value={selectedCategory}
-                    onChange={(e) => setSelectedCategory(e.target.value)}
-                    onClick={(e) => e.stopPropagation()}
-                  >
-
-                    <option value="" className="dark:!text-theme-neutral-100 p-1 !text-theme-neutral-1000 dark:!bg-theme-neutral-1000 flex-1">
-                      <img src="/category-icon.png" alt="star" className="w-5 h-5" />
-                      {t('tableDashboard.tabs.category')}</option>
-                    {categories.map((category: any) => (
-                      <option key={category.id} value={category.slug} className="dark:!text-theme-neutral-100 p-1 !text-theme-neutral-1000 dark:!bg-theme-neutral-1000 flex-1">
-                        <TranslatedCategory name={category.name} />
-                      </option>
-                    ))}
-                  </select>
-                ) : (
-                  <div className="flex items-center gap-2">
-                    <span>{t('tableDashboard.tabs.category')}</span>
-                  </div>
-                )}
+                {t('tableDashboard.tabs.category')}
               </button>
             </div>
           </div>
@@ -294,7 +375,6 @@ export default function Trading() {
                     enableSort={!debouncedSearchQuery.trim()}
                   />
                 </div>
-
                 {/* Mobile Card View */}
                 <div className="md:hidden space-y-4">
                   {displayTokens.map((token) => {
@@ -512,7 +592,58 @@ export default function Trading() {
           </TabsContent>
           <TabsContent value="4">
             <CardContent className="w-full p-0">
-              <TokenListCategory category={selectedCategory} />
+              <div className="relative">
+                {/* Top scrollbar container */}
+                <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent mb-2">
+                  <div className="flex gap-4 min-w-max">
+                    {categories.map((category: any) => (
+                      <div key={`scroll-${category.id}`} className="flex-shrink-0 w-48 min-w-48 h-4"></div>
+                    ))}
+                  </div>
+                </div>
+                
+                {/* Main content container */}
+                <div 
+                  className="overflow-x-auto scrollbar-none cursor-grab select-none"
+                  onMouseDown={handleMouseDown}
+                  onMouseLeave={handleMouseLeave}
+                  onMouseUp={handleMouseUp}
+                  onMouseMove={handleMouseMove}
+                  style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
+                >
+                  <div className="flex gap-4 min-w-max pb-4">
+                    {categories.map((category: any, index: number) => (
+                      <div key={category.id} className="relative flex-shrink-0 w-48 min-w-48">
+                        {/* Column Header */}
+                        <div className="sticky top-0 z-10 bg-gradient-to-r from-theme-primary-500/10 to-theme-secondary-400/10 backdrop-blur-sm rounded-t-xl p-3 mb-4">
+                          <div className="text-center">
+                            <h3 className="text-sm font-bold text-zinc-900 dark:text-white capitalize tracking-wide">
+                              <TranslatedCategory name={category.name} />
+                            </h3>
+                            <div className="w-12 h-1 bg-gradient-to-r from-theme-primary-500 to-theme-secondary-400 mx-auto mt-2 rounded-full"></div>
+                          </div>
+                        </div>
+                        
+                        {/* Column Content */}
+                        <TokenListCategory category={category.slug} isColumnLayout={true} />
+                        
+                        {/* Column Separator */}
+                        {index < categories.length - 1 && (
+                          <div className="absolute -right-2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-zinc-300 dark:via-zinc-700 to-transparent"></div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                {/* Scroll indicators */}
+                {showLeftScrollIndicator && (
+                  <div className="absolute left-0 top-1/2 -translate-y-1/2 w-6 h-6 bg-gradient-to-r from-white dark:from-gray-900 to-transparent pointer-events-none z-20 hidden md:block"></div>
+                )}
+                {showRightScrollIndicator && (
+                  <div className="absolute right-0 top-1/2 -translate-y-1/2 w-6 h-6 bg-gradient-to-l from-white dark:from-gray-900 to-transparent pointer-events-none z-20 hidden md:block"></div>
+                )}
+              </div>
             </CardContent>
           </TabsContent>
 

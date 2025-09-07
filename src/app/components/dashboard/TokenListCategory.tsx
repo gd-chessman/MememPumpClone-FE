@@ -39,7 +39,7 @@ function SkeletonCard() {
 }
 
 // Component to render a list of token cards
-export default function TokenListCategory({ category = "" }: any) {
+export default function TokenListCategory({ category = "", isColumnLayout = false }: any) {
   const { t } = useLang()
   const { data: tokenAllCategory = [] } = useQuery({
     queryKey: ["token-all-category"],
@@ -64,7 +64,7 @@ export default function TokenListCategory({ category = "" }: any) {
       );
     }
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+      <div className={isColumnLayout ? "space-y-4" : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4"}>
         {[...Array(36)].map((_, index) => (
           <SkeletonCard key={index} />
         ))}
@@ -75,32 +75,34 @@ export default function TokenListCategory({ category = "" }: any) {
   const tokensToDisplay = category ? tokenByCategory : tokenAllCategory;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+    <div className={isColumnLayout ? "space-y-4" : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4"}>
       {tokensToDisplay?.map((token: any, index: any) => (
-        <SingleTokenCard
-          key={index}
-          token={{
-            id: token.id.toString(),
-            name: token.symbol,
-            ticker: token.symbol,
-            fullName: token.name,
-            logo: token.logoUrl || "/placeholder.png",
-            address: token.address,
-            marketCap: token.market_cap,
-            program: token.program,
-            createdAt: token.createdAt,
-            change24h: 0,
-            volume: 0,
-            holders: 0,
-            transactions: { count: 0, volume: 0 },
-            social: { twitter: false, telegram: false, website: false, tiktok: false },
-            percentages: {
+        <>
+          <SingleTokenCard
+            key={index}
+            token={{
+              id: token.id.toString(),
+              name: token.symbol,
+              ticker: token.symbol,
+              fullName: token.name,
+              logo: token.logoUrl || "/placeholder.png",
+              address: token.address,
+              marketCap: token.market_cap,
+              program: token.program,
+              createdAt: token.createdAt,
+              change24h: 0,
+              volume: 0,
               holders: 0,
-              liquidity: parseFloat(token.liquidity) / 1000000,
-              run: token.isVerified
-            }
-          }}
-        />
+              transactions: { count: 0, volume: 0 },
+              social: { twitter: false, telegram: false, website: false, tiktok: false },
+              percentages: {
+                holders: 0,
+                liquidity: parseFloat(token.liquidity) / 1000000,
+                run: token.isVerified
+              }
+            }}
+          />
+        </>
       ))}
     </div>
   )
@@ -185,29 +187,24 @@ function SingleTokenCard({ token }: any) {
   };
 
   return (
-    <div className="border border-zinc-200 dark:border-zinc-800 p-3 bg-white dark:bg-neutral-900 transition-colors duration-200 hover:border-green-500/30 hover:bg-zinc-100 dark:hover:bg-zinc-800/30 cursor-pointer">
-      <div className="flex items-stretch gap-3">
+    <div className="border border-zinc-200 dark:border-zinc-800 py-1 px-2 bg-white dark:bg-neutral-900 transition-colors duration-200 hover:border-green-500/30 hover:bg-zinc-100 dark:hover:bg-zinc-800/30 cursor-pointer">
+      <div className="flex w-full items-center " onClick={handleTrade}>
         {/* Left side - Image section */}
         <div className="h-full flex-shrink-0">
-          <div className="relative w-24 h-24">
-            <div className="absolute inset-0 rounded-full bg-zinc-100 dark:bg-zinc-800 border-4 border-[#2532a1] p-0.5">
-              {(!imageLoaded || imageError) && (
-                <div className="absolute inset-0 bg-zinc-200 dark:bg-zinc-700 animate-pulse rounded-full" />
-              )}
-              <div className="relative w-[84px] h-[84px] overflow-hidden rounded-full">
-                <img
-                  src={imageError ? `/placeholder.svg?height=48&width=48&query=${token.name}+logo` : (token.logo || `/placeholder.svg?height=48&width=48&query=${token.name}+logo`)}
-                  alt={token.name}
-                  className={`w-full h-full object-cover transition-opacity duration-200 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
-                  onLoad={() => setImageLoaded(true)}
-                  onError={() => setImageError(true)}
-                  loading="lazy"
-                />
-              </div>
+          <div className="relative w-10 h-10">
+            <div className="relative w-[36px] h-[36px] overflow-hidden rounded-full">
+              <img
+                src={imageError ? `/placeholder.png?height=48&width=48&query=${token.name}+logo` : (token.logo || `/placeholder.svg?height=48&width=48&query=${token.name}+logo`)}
+                alt={token.name}
+                className={`w-full h-full object-cover transition-opacity duration-200 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                onLoad={() => setImageLoaded(true)}
+                onError={() => setImageError(true)}
+                loading="lazy"
+              />
             </div>
             {
               token.program?.startsWith("pumpfun") && (
-                <div className="absolute bottom-1 right-1 w-6 h-6 dark:bg-zinc-800 bg-zinc-100 rounded-full border-2 dark:border-zinc-900 border-zinc-200 flex items-center justify-center">
+                <div className="absolute bottom-1 right-1 w-3 h-3 dark:bg-zinc-800 bg-zinc-100 rounded-full border-2 dark:border-zinc-900 border-zinc-200 flex items-center justify-center">
                   <PumpFun />
                 </div>
               )
@@ -216,16 +213,15 @@ function SingleTokenCard({ token }: any) {
         </div>
 
         {/* Right side - Content section */}
-        <div className="ml-auto flex-1 flex flex-col justify-between">
-          <div className="flex items-start justify-between flex-wrap gap-2 ">
-            <div className="flex-1 min-w-56">
+        <div className="ml-auto flex-1 flex flex-col justify-between items-center pt-2">
+          <div className="flex flex-col items-center justify-between flex-wrap gap-2">
+            <div className="flex-1">
               <div className="flex items-center gap-1">
-                <span className="font-semibold 2xl:text-lg text-base text-zinc-900 dark:text-white whitespace-nowrap max-w-[10rem] truncate uppercase">{token.fullName}</span>
-                <span className="text-zinc-600 dark:text-zinc-400 text-sm truncate max-w-[8rem] whitespace-nowrap">{token.name}</span>
+                <span className="font-semibold text-xs text-zinc-900 dark:text-white whitespace-nowrap max-w-[10rem] truncate uppercase">{token.fullName}</span>
+                <span className="text-zinc-600 dark:text-zinc-400 text-[10px] truncate max-w-[8rem] whitespace-nowrap ml-2">{token.name}</span>
               </div>
               <div className="flex items-center text-xs text-zinc-500 dark:text-zinc-400 gap-1.5 mt-0.5">
-                <span className="text-zinc-700">|</span>
-                <span className="text-xs">{truncateString(token.address, 12)}</span>
+                <span className="text-[10px] italic text-yellow-500">{truncateString(token.address, 10)}</span>
                 {copied ? (
                   <svg className="h-3 w-3 text-green-500" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -233,32 +229,16 @@ function SingleTokenCard({ token }: any) {
                 ) : (
                   <Copy className="h-3 w-3 text-zinc-400 cursor-pointer hover:text-white" onClick={handleCopy} />
                 )}
-                <span className="text-zinc-700">|</span>
-                {token.social?.twitter && (
-                  <Twitter className="h-3.5 w-3.5 text-zinc-400 cursor-pointer hover:text-white" />
-                )}
-                {token.social?.website && <Globe className="h-3.5 w-3.5 text-zinc-400 cursor-pointer hover:text-white" />}
-                {token.social?.tiktok && <TikTok className="h-3.5 w-3.5 text-zinc-400 cursor-pointer hover:text-white" />}
-              </div>
-            </div>
-            <div className="flex justify-between items-center w-full flex-row-reverse px-2">
-              <div className="flex flex-col items-end">
-                <button
-                  onClick={handleTrade}
-                  className="text-white lg:max-w-auto max-w-[120px] group relative bg-gradient-to-t from-theme-primary-500 to-theme-secondary-400 py-1.5 md:py-2 px-3 md:px-4 lg:px-5 rounded-full text-[11px] md:text-xs transition-all duration-500 hover:from-theme-blue-100 hover:to-theme-blue-200 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95 w-full md:w-auto flex items-center justify-center"
-                >
-                  <Zap className="h-4 w-4 mr-1.5 text-green-400" />
-                  {t("trading.trade")}
-                </button>
+                <div className="flex justify-end items-center gap-2 text-xs">
+                  <span className="text-theme-primary-400 text-xs">{formatNumber(Number(token.marketCap * 100))}</span>
 
-              </div>
-              <div className="flex justify-end items-center gap-2 text-xs mt-2 mr-3">
-                {/* <span className="text-zinc-600 dark:text-neutral-400 text-sm whitespace-nowrap">{getRelativeTime(token.createdAt)}</span> */}
-                {/* <span className="text-zinc-700">|</span> */}
-                <span className="text-zinc-600 dark:text-neutral-400 text-sm whitespace-nowrap">{t("trading.marketCap")}</span>
-                <span className="text-zinc-800 dark:text-zinc-300 text-sm">{formatNumber(Number(token.marketCap * 100))}</span>
+                </div>
               </div>
             </div>
+            <div className="flex gap-3">
+
+            </div>
+
           </div>
         </div>
 
