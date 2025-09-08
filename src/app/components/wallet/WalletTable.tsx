@@ -34,6 +34,7 @@ import {
 import { useLang } from "@/lang";
 import { WalletLanguageSelect } from "./WalletLanguageSelect";
 import { Checkbox } from "@/ui/checkbox";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface WalletData extends Wallet {
     wallet_nick_name: string;
@@ -75,6 +76,7 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
     const { toast } = useToast();
     const { t } = useLang();
     const { isAuthenticated, logout, updateToken } = useAuth();
+    const isMobile = useIsMobile();
     const [editingWalletId, setEditingWalletId] = useState<string | null>(null);
     const [editingField, setEditingField] = useState<'name' | 'nickname' | 'country' | null>(null);
     const [editingValue, setEditingValue] = useState('');
@@ -154,20 +156,20 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
 
     const handleSelectAll = (checked: boolean) => {
         if (checked) {
-            const deletableWallets = wallets.filter(wallet => wallet.wallet_type !== 'main');
-            setSelectedWallets(deletableWallets.map(wallet => wallet.wallet_id));
+            const deletableWallets = isMobile ? listWalletMobiles.filter((wallet: WalletData) => wallet.wallet_type !== 'main') : wallets.filter(wallet => wallet.wallet_type !== 'main');
+            setSelectedWallets(deletableWallets.map((wallet: WalletData) => wallet.wallet_id));
         } else {
             setSelectedWallets([]);
         }
     };
 
     const isAllSelected = () => {
-        const deletableWallets = wallets.filter(wallet => wallet.wallet_type !== 'main');
+        const deletableWallets = isMobile ? listWalletMobiles.filter((wallet: WalletData) => wallet.wallet_type !== 'main') : wallets.filter(wallet => wallet.wallet_type !== 'main');
         return deletableWallets.length > 0 && selectedWallets.length === deletableWallets.length;
     };
 
     const isIndeterminate = () => {
-        const deletableWallets = wallets.filter(wallet => wallet.wallet_type !== 'main');
+        const deletableWallets = isMobile ? listWalletMobiles.filter((wallet: WalletData) => wallet.wallet_type !== 'main') : wallets.filter(wallet => wallet.wallet_type !== 'main');
         return selectedWallets.length > 0 && selectedWallets.length < deletableWallets.length;
     };
 
@@ -288,6 +290,7 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
                     type: 'success'
                 });
                 onUpdateWallet?.();
+                refetchListWalletMobiles()
             }
         } catch (error: any) {
             if (error?.response?.data?.message === "Invalid data or duplicate name/nickname") {
@@ -339,139 +342,220 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
         }
     };
 
-    const renderMobileWalletCard = (wallet: WalletData) => (
-        <div key={wallet.wallet_id} className={mobileStyles.card}>
-            {/* Header with Name and Type */}
-            <div className={mobileStyles.header}>
-                {wallet.wallet_type !== 'main' ? (
-                    <Checkbox
-                        checked={selectedWallets.includes(wallet.wallet_id)}
-                        onCheckedChange={(checked) => handleSelectWallet(wallet.wallet_id, checked as boolean)}
-                        className="mt-0.5"
-                    />
-                ) : (
-                    <div className="w-4 h-4" />
-                )}
-                <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1">
-                        <div className={mobileStyles.nameContainer}>
-                            <div className="flex items-center gap-2">
-                                <span className={mobileStyles.value}>{wallet.wallet_name}</span>
-                                <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    className={mobileStyles.editButton}
-                                    onClick={() => handleStartEdit(wallet.wallet_id, 'name', wallet.wallet_name)}
-                                >
-                                    <Edit className={mobileStyles.icon} />
-                                </Button>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <span className={mobileStyles.value}>{wallet.wallet_nick_name}</span>
-                                <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    className={mobileStyles.editButton}
-                                    onClick={() => handleStartEdit(wallet.wallet_id, 'nickname', wallet.wallet_nick_name)}
-                                >
-                                    <Edit className={mobileStyles.icon} />
-                                </Button>
+    const renderMobileWalletCard = (wallet: WalletData) => {
+        const isEditingName = editingWalletId === wallet.wallet_id && editingField === 'name';
+        const isEditingNickname = editingWalletId === wallet.wallet_id && editingField === 'nickname';
+        const isLoadingName = loadingWalletId === wallet.wallet_id && loadingField === 'name';
+        const isLoadingNickname = loadingWalletId === wallet.wallet_id && loadingField === 'nickname';
+
+        return (
+            <div key={wallet.wallet_id} className={mobileStyles.card}>
+                {/* Header with Name and Type */}
+                <div className={mobileStyles.header}>
+                    {wallet.wallet_type !== 'main' ? (
+                        <Checkbox
+                            checked={selectedWallets.includes(wallet.wallet_id)}
+                            onCheckedChange={(checked) => handleSelectWallet(wallet.wallet_id, checked as boolean)}
+                            className="mt-0.5"
+                        />
+                    ) : (
+                        <div className="w-4 h-4" />
+                    )}
+                    <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1">
+                            <div className={mobileStyles.nameContainer}>
+                                {/* Wallet Name */}
+                                <div className="flex items-center gap-2">
+                                    {isEditingName ? (
+                                        <div className="flex items-center gap-1">
+                                            <Input
+                                                value={editingValue}
+                                                onChange={(e) => setEditingValue(e.target.value)}
+                                                className="h-6 w-24 text-xs"
+                                                autoFocus
+                                            />
+                                            <Button
+                                                variant="ghost"
+                                                size="icon"
+                                                className="h-5 w-5 p-0 hover:bg-green-700/50"
+                                                onClick={handleUpdateWallet}
+                                                disabled={isSubmitting}
+                                            >
+                                                <Check className="h-3 w-3 text-green-500" />
+                                            </Button>
+                                            <Button
+                                                variant="ghost"
+                                                size="icon"
+                                                className="h-5 w-5 p-0 hover:bg-red-700/50"
+                                                onClick={handleCancelEdit}
+                                                disabled={isSubmitting}
+                                            >
+                                                <X className="h-3 w-3 text-red-500" />
+                                            </Button>
+                                        </div>
+                                    ) : (
+                                        <>
+                                            <span className={mobileStyles.value}>{wallet.wallet_name}</span>
+                                            <Button
+                                                variant="ghost"
+                                                size="icon"
+                                                className={mobileStyles.editButton}
+                                                onClick={() => handleStartEdit(wallet.wallet_id, 'name', wallet.wallet_name)}
+                                                disabled={isLoadingName}
+                                            >
+                                                {isLoadingName ? (
+                                                    <Loader2 className={`${mobileStyles.icon} animate-spin`} />
+                                                ) : (
+                                                    <Edit className={mobileStyles.icon} />
+                                                )}
+                                            </Button>
+                                        </>
+                                    )}
+                                </div>
+                                {/* Wallet Nickname */}
+                                <div className="flex items-center gap-2">
+                                    {isEditingNickname ? (
+                                        <div className="flex items-center gap-1">
+                                            <Input
+                                                value={editingValue}
+                                                onChange={(e) => setEditingValue(e.target.value)}
+                                                className="h-6 w-24 text-xs"
+                                                autoFocus
+                                            />
+                                            <Button
+                                                variant="ghost"
+                                                size="icon"
+                                                className="h-5 w-5 p-0 hover:bg-green-700/50"
+                                                onClick={handleUpdateWallet}
+                                                disabled={isSubmitting}
+                                            >
+                                                <Check className="h-3 w-3 text-green-500" />
+                                            </Button>
+                                            <Button
+                                                variant="ghost"
+                                                size="icon"
+                                                className="h-5 w-5 p-0 hover:bg-red-700/50"
+                                                onClick={handleCancelEdit}
+                                                disabled={isSubmitting}
+                                            >
+                                                <X className="h-3 w-3 text-red-500" />
+                                            </Button>
+                                        </div>
+                                    ) : (
+                                        <>
+                                            <span className={mobileStyles.value}>{wallet.wallet_nick_name}</span>
+                                            <Button
+                                                variant="ghost"
+                                                size="icon"
+                                                className={mobileStyles.editButton}
+                                                onClick={() => handleStartEdit(wallet.wallet_id, 'nickname', wallet.wallet_nick_name)}
+                                                disabled={isLoadingNickname}
+                                            >
+                                                {isLoadingNickname ? (
+                                                    <Loader2 className={`${mobileStyles.icon} animate-spin`} />
+                                                ) : (
+                                                    <Edit className={mobileStyles.icon} />
+                                                )}
+                                            </Button>
+                                        </>
+                                    )}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <Badge
-                            className={`${wallet.wallet_type === "main"
-                                ? "dark:bg-green-900 bg-green-50 border-green-600 text-green-300"
-                                : wallet.wallet_type === "import"
-                                    ? "dark:bg-blue-900 bg-blue-50 border-blue-600 text-blue-300"
-                                    : "dark:bg-gray-700 bg-gray-50 border-gray-600 dark:text-gray-300 text-neutral-900"
-                                } ${mobileStyles.badge}`}
-                        >
-                            {t(`listWalletss.walletType.${wallet.wallet_type}`)}
-                        </Badge>
-                        <Badge
-                            className={`${wallet.wallet_auth === "master"
-                                ? "dark:bg-purple-900 bg-purple-50 border-purple-600 text-purple-300"
-                                : "dark:bg-gray-700 bg-gray-50 border-[#15DFFD] text-[#15DFFD]"
-                                } ${mobileStyles.badge}`}
-                        >
-                            {t(`listWalletss.walletType.${wallet.wallet_auth}`)}
-                        </Badge>
+                        <div className="flex items-center gap-2">
+                            <Badge
+                                className={`${wallet.wallet_type === "main"
+                                    ? "dark:bg-green-900 bg-green-50 border-green-600 text-green-300"
+                                    : wallet.wallet_type === "import"
+                                        ? "dark:bg-blue-900 bg-blue-50 border-blue-600 text-blue-300"
+                                        : "dark:bg-gray-700 bg-gray-50 border-gray-600 dark:text-gray-300 text-neutral-900"
+                                    } ${mobileStyles.badge}`}
+                            >
+                                {t(`listWalletss.walletType.${wallet.wallet_type}`)}
+                            </Badge>
+                            <Badge
+                                className={`${wallet.wallet_auth === "master"
+                                    ? "dark:bg-purple-900 bg-purple-50 border-purple-600 text-purple-300"
+                                    : "dark:bg-gray-700 bg-gray-50 border-[#15DFFD] text-[#15DFFD]"
+                                    } ${mobileStyles.badge}`}
+                            >
+                                {t(`listWalletss.walletType.${wallet.wallet_auth}`)}
+                            </Badge>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            {/* Addresses */}
-            <div className={mobileStyles.addressContainer}>
-                <div className="flex items-center justify-between">
-                    <div className={mobileStyles.label}>{t('wallet.solanaAddress')} :</div>
-                    <div className="flex items-center gap-1">
-                        <span className={`${mobileStyles.value} truncate flex-1 !text-yellow-500 italic`}>
-                            {truncateString(wallet.solana_address, 12)}
+                {/* Addresses */}
+                <div className={mobileStyles.addressContainer}>
+                    <div className="flex items-center justify-between">
+                        <div className={mobileStyles.label}>{t('wallet.solanaAddress')} :</div>
+                        <div className="flex items-center gap-1">
+                            <span className={`${mobileStyles.value} truncate flex-1 !text-yellow-500 italic`}>
+                                {truncateString(wallet.solana_address, 10)}
+                            </span>
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                className={mobileStyles.copyButton}
+                                onClick={(e) => handleCopyAddress(wallet.solana_address, e)}
+                            >
+                                {copiedAddress === wallet.solana_address ? (
+                                    <Check className={`${mobileStyles.icon} text-green-500`} />
+                                ) : (
+                                    <Copy className={mobileStyles.icon} />
+                                )}
+                            </Button>
+                        </div>
+                    </div>
+                    <div className="flex items-center justify-between">
+                        <div className={mobileStyles.label}>{t('wallet.balance')} :</div>
+                        <div className="flex items-center gap-2">
+                            {loadingBalances[wallet.wallet_id] ? (
+                                <div className="flex items-center gap-2">
+                                    <Loader2 className="h-3 w-3 animate-spin" />
+                                    <span className="text-xs">{t('common.loading')}</span>
+                                </div>
+                            ) : (
+                                <span className={`${mobileStyles.value} truncate flex-1`}>
+                                    SOL: <span className="text-purple-600">
+                                        {walletBalances[wallet.wallet_id]?.sol_balance?.toFixed(4) || '0.0000'}
+                                    </span> ≈ <span className="text-theme-primary-400">
+                                        ${walletBalances[wallet.wallet_id]?.sol_balance_usd?.toFixed(2) || '0.00'}
+                                    </span>
+                                </span>
+                            )}
+                        </div>
+                    </div>
+                </div>
+
+                {/* Actions */}
+                <div className={mobileStyles.actionBar}>
+                    <div className="flex items-center gap-2">
+                        <div
+                            className={`w-2 h-2 rounded-full ${walletInfor?.solana_address === wallet.solana_address
+                                ? 'bg-theme-green-200 cursor-default'
+                                : 'bg-neutral-200 hover:bg-theme-green-200 cursor-pointer'
+                                }`}
+                            onClick={() => walletInfor?.solana_address !== wallet.solana_address && handleChangeWallet(wallet)}
+                        />
+                        <span className={mobileStyles.value}>
+                            {walletInfor?.solana_address === wallet.solana_address ? t('wallet.active') : t('wallet.switch')}
                         </span>
+                    </div>
+                    {wallet.wallet_type !== 'main' && walletInfor?.solana_address !== wallet.solana_address && (
                         <Button
                             variant="ghost"
                             size="icon"
-                            className={mobileStyles.copyButton}
-                            onClick={(e) => handleCopyAddress(wallet.solana_address, e)}
+                            className={`${mobileStyles.copyButton} hover:bg-red-700/50 ml-auto`}
+                            onClick={(e) => handleDeleteClick(wallet, e)}
                         >
-                            {copiedAddress === wallet.solana_address ? (
-                                <Check className={`${mobileStyles.icon} text-green-500`} />
-                            ) : (
-                                <Copy className={mobileStyles.icon} />
-                            )}
+                            <Trash2 className={`${mobileStyles.icon} text-red-500`} />
                         </Button>
-                    </div>
-                </div>
-                <div className="flex items-center justify-between">
-                    <div className={mobileStyles.label}>{t('wallet.balance')} :</div>
-                    <div className="flex items-center gap-2">
-                        {loadingBalances[wallet.wallet_id] ? (
-                            <div className="flex items-center gap-2">
-                                <Loader2 className="h-3 w-3 animate-spin" />
-                                <span className="text-xs">{t('common.loading')}</span>
-                            </div>
-                        ) : (
-                            <span className={`${mobileStyles.value} truncate flex-1`}>
-                                SOL: <span className="text-purple-600">
-                                    {walletBalances[wallet.wallet_id]?.sol_balance?.toFixed(4) || '0.0000'}
-                                </span> ≈ <span className="text-theme-primary-400">
-                                    ${walletBalances[wallet.wallet_id]?.sol_balance_usd?.toFixed(2) || '0.00'}
-                                </span>
-                            </span>
-                        )}
-                    </div>
+                    )}
                 </div>
             </div>
-
-            {/* Actions */}
-            <div className={mobileStyles.actionBar}>
-                <div className="flex items-center gap-2">
-                    <div
-                        className={`w-2 h-2 rounded-full ${walletInfor?.solana_address === wallet.solana_address
-                            ? 'bg-theme-green-200 cursor-default'
-                            : 'bg-neutral-200 hover:bg-theme-green-200 cursor-pointer'
-                            }`}
-                        onClick={() => walletInfor?.solana_address !== wallet.solana_address && handleChangeWallet(wallet)}
-                    />
-                    <span className={mobileStyles.value}>
-                        {walletInfor?.solana_address === wallet.solana_address ? t('wallet.active') : t('wallet.switch')}
-                    </span>
-                </div>
-                {wallet.wallet_type !== 'main' && walletInfor?.solana_address !== wallet.solana_address && (
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        className={`${mobileStyles.copyButton} hover:bg-red-700/50 ml-auto`}
-                        onClick={(e) => handleDeleteClick(wallet, e)}
-                    >
-                        <Trash2 className={`${mobileStyles.icon} text-red-500`} />
-                    </Button>
-                )}
-            </div>
-        </div>
-    );
+        );
+    };
 
     const renderEditableCell = (wallet: WalletData, field: 'name' | 'nickname' | 'country') => {
         const isEditing = editingWalletId === wallet.wallet_id && editingField === field;
