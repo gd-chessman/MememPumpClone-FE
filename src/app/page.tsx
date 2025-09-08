@@ -26,7 +26,7 @@ function HomeContent() {
 
   return (
     <div>
-      {t('common.redirecting')}
+      &ensp;
     </div>
   );
 }
