@@ -1162,12 +1162,12 @@ export default function WalletPage() {
                                             </button>
                                             <button
                                                 onClick={() => setShowImportWallets(true)}
-                                                className="lg:max-w-auto group relative bg-transparent border py-1.5 px-4 md:pl-3 pr-4 rounded-full text-[10px] md:text-xs transition-all duration-500 hover:from-theme-blue-100 hover:bg-gradient-to-t hover:border-transparent hover:to-theme-blue-200 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95 w-full md:w-auto flex items-center justify-center gap-1 lg:bg-white dark:lg:bg-transparent  lg:border-transparent dark:lg:border-theme-neutral-100"
+                                                className="lg:max-w-auto group relative bg-transparent border py-1.5 px-4 md:pl-3 pr-4 rounded-full text-[10px] md:text-xs transition-all duration-500 hover:from-theme-blue-100 hover:bg-gradient-to-t hover:border-transparent hover:to-theme-blue-200 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95 w-full md:w-auto flex items-center justify-center gap-1 lg:bg-white shadow-inset dark:lg:bg-transparent  lg:border-transparent dark:lg:border-theme-neutral-100"
                                             >
-                                                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 relative overflow-hidden text-theme-neutral-100">
+                                                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 relative overflow-hidden dark:text-theme-neutral-100 text-black">
                                                     <ArrowDownToLine className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                                                 </div>
-                                                <div className="text-xs sm:text-sm font-medium leading-tight text-theme-neutral-100">
+                                                <div className="text-xs sm:text-sm font-medium leading-tight dark:text-theme-neutral-100 text-black">
                                                     {t('wallet.importWallets')}
                                                 </div>
                                             </button>
@@ -1184,10 +1184,10 @@ export default function WalletPage() {
                                             </button>
                                             <button
                                                 onClick={() => setShowImportWallet(true)}
-                                                className="lg:max-w-auto group relative bg-transparent border py-1.5  px-3 md:pl-3 pr-4 rounded-full text-[10px] md:text-xs transition-all duration-500 hover:from-theme-blue-100 hover:bg-gradient-to-t hover:border-transparent hover:to-theme-blue-200 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95 w-full md:w-auto flex items-center justify-center gap-1 lg:bg-white dark:lg:bg-transparent  lg:border-transparent dark:lg:border-theme-neutral-100"
+                                                className="lg:max-w-auto group relative bg-transparent border py-1.5  px-3 md:pl-3 pr-4 rounded-full text-[10px] md:text-xs transition-all duration-500 hover:from-theme-blue-100 hover:bg-gradient-to-t hover:border-transparent hover:to-theme-blue-200 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95 w-full md:w-auto flex items-center justify-center gap-1 lg:bg-white shadow-inset dark:lg:bg-transparent  lg:border-transparent dark:lg:border-theme-neutral-100"
                                             >
                                                 <ArrowDownToLine className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                                                <div className="text-xs sm:text-sm font-medium leading-tight text-indigo-500 dark:text-white">
+                                                <div className="text-xs sm:text-sm font-medium leading-tight dark:text-theme-neutral-100 text-black">
                                                     {t('wallet.importWallet')}
                                                 </div>
                                             </button>
@@ -1791,7 +1791,7 @@ export default function WalletPage() {
                                     </div>
                                 </div>
 
-                                <div className="flex justify-end items-end gap-3 sm:gap-5">
+                                <div className="flex justify-center items-end gap-3 sm:gap-5">
                                     <button onClick={handleCloseImportWallets} className="px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-xs 2xl:text-sm font-medium dark:text-gray-200 text-black hover:text-neutral-100">
                                         <div className={modalButtonTextStyles}>{t('common.cancel')}</div>
                                     </button>
@@ -2049,7 +2049,7 @@ export default function WalletPage() {
                                     </div>
                                 </div>
 
-                                <div className="flex justify-end items-end gap-3 sm:gap-5">
+                                <div className="flex justify-center items-end gap-3 sm:gap-5">
                                     <button onClick={handleCloseImportWallet} className="px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-xs 2xl:text-sm font-medium dark:text-gray-200 text-black hover:text-neutral-100">
                                         <div className={modalButtonTextStyles}>{t('common.cancel')}</div>
                                     </button>
