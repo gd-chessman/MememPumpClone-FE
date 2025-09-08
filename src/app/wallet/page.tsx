@@ -1513,7 +1513,7 @@ export default function WalletPage() {
                                 <div className="text-[10px] italic text-gray-900 dark:text-yellow-500 leading-5">
                                     {t('wallet.walletNameNote')}
                                 </div>
-                                <div className="flex justify-end gap-3 mt-6">
+                                <div className="flex justify-center gap-3 mt-6">
                                     <button
                                         onClick={handleCloseAddWallet}
                                         className="px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-xs 2xl:text-sm font-medium dark:text-gray-200 text-black hover:text-neutral-100"
@@ -1627,7 +1627,7 @@ export default function WalletPage() {
                                 <div className="text-[10px] italic text-gray-900 dark:text-yellow-500 leading-5">
                                     {t('wallet.walletNameNote')}
                                 </div>
-                                <div className="flex justify-end gap-3 mt-6">
+                                <div className="flex justify-center gap-3 mt-6">
                                     <button
                                         onClick={handleCloseAddWallets}
                                         className="px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-xs 2xl:text-sm font-medium dark:text-gray-200 text-black hover:text-neutral-100"
@@ -2086,7 +2086,7 @@ export default function WalletPage() {
                                     <span className="font-semibold text-red-500">{resultInfo?.failed_count ?? 0}</span>
                                 </div>
                             </div>
-                            <div className="flex justify-end gap-3 mt-6">
+                            <div className="flex justify-center gap-3 mt-6">
                                 <button
                                     onClick={() => setShowModalResult(false)}
                                     className="px-4 py-1.5 text-xs 2xl:text-sm bg-gradient-to-r from-purple-600 to-blue-600 text-neutral-100 rounded-lg font-medium"

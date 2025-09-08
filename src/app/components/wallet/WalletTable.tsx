@@ -978,7 +978,7 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
                                     {t('wallet.confirmBulkDeleteMessage', { count: selectedWallets.length })}
                                 </DialogDescription>
                             </DialogHeader>
-                            <DialogFooter className="flex flex-row justify-end gap-2 p-2">
+                            <DialogFooter className="flex flex-row justify-center gap-2 p-2">
                                 <div className="bg-gradient-to-t from-theme-purple-100 to-theme-gradient-linear-end p-[1px] relative rounded-full w-fit">
                                     <button
                                         className="bg-theme-black-200 h-[30px] text-neutral-100 px-5 rounded-full"
