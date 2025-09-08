@@ -54,7 +54,7 @@ interface WalletTableProps {
     isLoadingMore?: boolean;
 }
 
-const textTitle = 'text-neutral-800 dark:text-neutral-200 font-normal text-xs py-2'
+const textTitle = 'text-neutral-800 dark:text-neutral-200 font-normal text-xs py-2 bg-theme-neutral-100 dark:bg-theme-black-200'
 const textContent = 'text-neutral-900 dark:text-neutral-100 text-xs font-normal py-2 px-2'
 
 // Add new styles for mobile wallet cards only
@@ -981,14 +981,14 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
                             <DialogFooter className="flex flex-row justify-center gap-2 p-2">
                                 <div className="bg-gradient-to-t from-theme-purple-100 to-theme-gradient-linear-end p-[1px] relative rounded-full w-fit">
                                     <button
-                                        className="bg-theme-black-200 h-[30px] text-neutral-100 px-5 rounded-full"
+                                        className="bg-theme-black-200 h-[30px] text-neutral-100 px-5 rounded-full text-sm"
                                         onClick={() => setIsBulkDelete(false)}
                                     >
                                         {t('wallet.cancel')}
                                     </button>
                                 </div>
                                 <button
-                                    className="linear-gradient-light dark:linear-gradient-connect hover:border h-[32px] border px-5 border-transparent rounded-full text-sm w-fit"
+                                    className="linear-gradient-light dark:linear-gradient-connect hover:border h-[32px] border px-5 border-transparent rounded-full text-sm w-fit text-black dark:text-white"
                                     onClick={handleBulkDelete}
                                 >
                                     {t('wallet.delete')}
