@@ -88,6 +88,7 @@ function TransactionHistoryContent() {
     queryKey: ["token-buy-list"],
     queryFn: getListBuyToken,
     enabled: isAuthenticated,
+    refetchInterval: 5000, // Poll every 5 seconds
   });
   // Filter tokens: SOL/USDT tokens are always shown, others need balance >= 0.005
   const filteredTokens = (tokenList && 'tokens' in tokenList ? tokenList.tokens : []).filter((token: any) =>

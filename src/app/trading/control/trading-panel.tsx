@@ -161,13 +161,13 @@ export default function TradingPanel({
             const tokenBalanceValue = tokenBalance?.data?.balance || 0
 
             return {
-                sol_balance: solBalance,
+                sol_balance: Math.floor(solBalance * 1000) / 1000, // Round down to 3 decimal places
                 token_balance: tokenBalanceValue
             }
         } else {
             // For non-Phantom users, use tradeAmount
             return {
-                sol_balance: tradeAmount?.sol_balance || 0,
+                sol_balance: Math.floor((tradeAmount?.sol_balance || 0) * 1000) / 1000, // Round down to 3 decimal places
                 token_balance: tradeAmount?.token_balance || 0
             }
         }
@@ -742,7 +742,7 @@ export default function TradingPanel({
                         <div className={STYLE_TEXT_BASE}>
                             {t('trading.panel.balance')}: {mode === "buy"
                                 ? calculatedBalances.sol_balance.toFixed(3) + "  " + currency.symbol
-                                : calculatedBalances.token_balance.toFixed(6) + " " + tokenInfor?.symbol + " ~ $" + (tokenBalanceOnChain?.data?.price.usd * calculatedBalances.token_balance).toFixed(3)}
+                                : calculatedBalances.token_balance.toFixed(6) + " " + tokenInfor?.symbol + " ~ $" + Math.floor((tokenBalanceOnChain?.data?.price.usd * calculatedBalances.token_balance) * 1000) / 1000}
                         </div>
                     </div>
 
