@@ -144,7 +144,7 @@ const ChatTradingContent = () => {
 
   return (
     <div className="flex flex-col h-full px-2 pt-3 rounded-md dark:bg-[#0e0e0e]">
-      <div className={`${height > 700 ? 'flex-1' : 'h-[300px]'} overflow-y-auto px-3 rounded-xl bg-theme-neutral-100 dark:bg-inherit`}>
+      <div className={`${height > 700 ? 'flex-1' : 'h-[300px]'} overflow-y-auto px-3 pt-2 rounded-xl bg-theme-neutral-100 dark:bg-inherit`}>
         {messages.map((message) => (
           <ChatMessage key={message.id} message={message} />
         ))}
@@ -152,7 +152,7 @@ const ChatTradingContent = () => {
       </div>
 
       {/* Message Input */}
-      <div className="p-1 border-t border-gray-100 dark:border-neutral-800 bg-white dark:bg-[#0e0e0e] shadow-sm">
+      <div className="py-1 border-none border-gray-100 dark:border-neutral-800 bg-transparent dark:bg-[#0e0e0e] shadow-sm">
         <div className="relative">
           {/* Emoji Picker */}
           {showEmojiPicker && (
