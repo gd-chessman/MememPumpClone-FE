@@ -74,7 +74,7 @@ const walletAddressStyles = "text-Colors-Neutral-200 text-xs sm:text-sm font-nor
 const sectionTitleStyles = "text-Colors-Neutral-100 text-base sm:text-lg font-bold leading-relaxed"
 const tableContainerStyles = "max-h-[79.5vh] overflow-y-auto overflow-x-auto -mx-4 sm:mx-0"
 const tableStyles = "w-full"
-const tableHeaderStyles = "px-2 py-2 sm:py-3 text-left text-xs sm:text-sm font-medium text-neutral-800 dark:text-gray-300 sticky top-0 bg-white dark:bg-gray-900 z-10"
+const tableHeaderStyles = "px-2 py-2 sm:py-3 text-left text-xs sm:text-sm font-medium text-neutral-800 dark:text-gray-300 sticky top-0 dark:bg-[#374151] bg-theme-neutral-100 z-10"
 const tableCellStyles = "px-2 py-2 sm:py-2 text-xs text-neutral-900 dark:text-gray-300"
 const tableBodyContainerStyles = "max-h-[74vh] overflow-y-auto"
 
@@ -1225,8 +1225,8 @@ export default function WalletPage() {
 
 
                                                     <button onClick={() => router.replace('/universal-account?type=deposit')} className="flex flex-col justify-start items-center gap-0.5 md:gap-1">
-                                                        <div className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 gradient-overlay border border-neutral-200 rounded-full flex justify-center items-center group  transition-all duration-500 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95">
-                                                            <ArrowDownToLine className="w-2.5 h-2.5 md:w-3 md:h-3 lg:w-4 lg:h-4" />
+                                                        <div className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 bg-gradient-to-t from-theme-primary-500 to-theme-secondary-400 border border-neutral-200 rounded-full flex justify-center items-center group  transition-all duration-500 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95">
+                                                            <ArrowDownToLine className="w-2.5 h-2.5 md:w-3 md:h-3 lg:w-4 lg:h-4 text-white" />
                                                         </div>
                                                         <div className="text-center text-Colors-Neutral-100 text-[9px] md:text-[10px] font-semibold">
                                                             {t('wallet.receive')}
@@ -1236,8 +1236,8 @@ export default function WalletPage() {
                                                 </div>
                                                 <div className="flex flex-col justify-start items-center gap-1">
                                                     <button onClick={() => router.replace('/universal-account?type=withdraw')} className="flex flex-col justify-start items-center gap-0.5 md:gap-1">
-                                                        <div className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 gradient-overlay border border-neutral-200 rounded-full flex justify-center items-center transition-all hover:scale-105">
-                                                            <ArrowUpFromLine className="w-2.5 h-2.5 md:w-3 md:h-3 lg:w-4 lg:h-4" />
+                                                        <div className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 bg-gradient-to-t from-theme-primary-500 to-theme-secondary-400 border border-neutral-200 rounded-full flex justify-center items-center transition-all hover:scale-105">
+                                                            <ArrowUpFromLine className="w-2.5 h-2.5 md:w-3 md:h-3 lg:w-4 lg:h-4 text-white" />
                                                         </div>
                                                         <div className="text-center text-Colors-Neutral-100 text-[9px] md:text-[10px] font-semibold">
                                                             {t('wallet.send')}
@@ -1348,10 +1348,10 @@ export default function WalletPage() {
                                                     <table className={`${tableStyles} w-full`}>
                                                         <thead>
                                                             <tr>
-                                                                <th className={`${tableHeaderStyles} dark:!bg-[#374151] h-12 w-[35%] text-left`}>{t('wallet.token')}</th>
-                                                                <th className={`${tableHeaderStyles} dark:!bg-[#374151] h-12 w-[20%] text-left`}>{t('wallet.balance')}</th>
-                                                                <th className={`${tableHeaderStyles} dark:!bg-[#374151] h-12 w-[17.5%] text-left`}>{t('wallet.price')}</th>
-                                                                <th className={`${tableHeaderStyles} dark:!bg-[#374151] h-12 w-[17.5%] text-left`}>{t('wallet.value')}</th>
+                                                                <th className={`${tableHeaderStyles} h-12 w-[35%] text-left`}>{t('wallet.token')}</th>
+                                                                <th className={`${tableHeaderStyles} h-12 w-[20%] text-left`}>{t('wallet.balance')}</th>
+                                                                <th className={`${tableHeaderStyles} h-12 w-[17.5%] text-left`}>{t('wallet.price')}</th>
+                                                                <th className={`${tableHeaderStyles} h-12 w-[17.5%] text-left`}>{t('wallet.value')}</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -1359,7 +1359,7 @@ export default function WalletPage() {
                                                                 <tr key={index} className="border-t border-gray-700 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onClick={() => router.push(`/trading?address=${token.token_address}`)}>
                                                                     <td className={`${tableCellStyles} w-[35%] text-left`}>
                                                                         <div className="flex items-center gap-2">
-                                                                            {token.token_logo_url && (
+                                                                            {token.token_logo_url ? (
                                                                                 <img
                                                                                     src={token.token_logo_url}
                                                                                     alt={token.token_name}
@@ -1367,6 +1367,12 @@ export default function WalletPage() {
                                                                                     onError={(e) => {
                                                                                         e.currentTarget.src = '/placeholder.png';
                                                                                     }}
+                                                                                />
+                                                                            ) : (
+                                                                                <img
+                                                                                    src="/placeholder.png"
+                                                                                    alt={token.token_name}
+                                                                                    className="w-5 h-5 sm:w-6 sm:h-6 rounded-full"
                                                                                 />
                                                                             )}
                                                                             <div>
