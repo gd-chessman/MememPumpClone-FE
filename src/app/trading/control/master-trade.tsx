@@ -202,7 +202,7 @@ export default function MasterTradeChat() {
             <div className="flex-none flex h-[25px] bg-gray-300 my-2 mx-3 rounded-full relative dark:bg-theme-neutral-800">
                 {walletInfor?.role === "master" ? (
                     <button
-                        className={`px-[14%] rounded-xl text-xs cursor-pointer font-medium uppercase text-center ${activeTab === "trade" ? "bg-gradient-to-t dark:bg-gradient-to-t linear-gradient-blue text-white dark:from-theme-primary-500 dark:to-theme-secondary-400" : "text-neutral-400"
+                        className={`px-[14%] rounded-full text-xs cursor-pointer font-medium uppercase text-center ${activeTab === "trade" ? "bg-gradient-to-t dark:bg-gradient-to-t linear-gradient-blue text-white dark:from-theme-primary-500 dark:to-theme-secondary-400" : "text-neutral-400"
                             }`}
                         onClick={() => handleTabChange("trade")}
                         data-active-tab={activeTab}
@@ -211,7 +211,7 @@ export default function MasterTradeChat() {
                     </button>
                 ) : (
                     <button
-                        className={`px-[14%] rounded-md text-xs cursor-pointer font-medium uppercase text-center ${activeTab === "chatAll" ? "bg-gradient-to-t dark:bg-gradient-to-t linear-gradient-blue text-white dark:from-theme-primary-500 dark:to-theme-secondary-400" : "text-neutral-400"
+                        className={`px-[14%] rounded-full text-xs cursor-pointer font-medium uppercase text-center ${activeTab === "chatAll" ? "bg-gradient-to-t dark:bg-gradient-to-t linear-gradient-blue text-white dark:from-theme-primary-500 dark:to-theme-secondary-400" : "text-neutral-400"
                             }`}
                         onClick={() => setActiveTab("chatAll")}
                         data-active-tab={activeTab}
@@ -220,7 +220,7 @@ export default function MasterTradeChat() {
                     </button>
                 )}
                 <button
-                    className={`flex-1 rounded-xl cursor-pointer text-xs font-medium uppercase text-center ${activeTab === "chat" ? "bg-gradient-to-t dark:bg-gradient-to-t linear-gradient-blue text-white dark:from-theme-primary-500 dark:to-theme-secondary-400" : "text-neutral-400"
+                    className={`flex-1 rounded-full cursor-pointer text-xs font-medium uppercase text-center ${activeTab === "chat" ? "bg-gradient-to-t dark:bg-gradient-to-t linear-gradient-blue text-white dark:from-theme-primary-500 dark:to-theme-secondary-400" : "text-neutral-400"
                         }`}
                     onClick={() => handleTabChange("chat")}
                     data-active-tab={activeTab}

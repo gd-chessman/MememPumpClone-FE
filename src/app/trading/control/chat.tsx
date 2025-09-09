@@ -152,7 +152,7 @@ const ChatTradingContent = () => {
       </div>
 
       {/* Message Input */}
-      <div className="py-1 border-none border-gray-100 dark:border-neutral-800 bg-transparent dark:bg-[#0e0e0e] shadow-sm">
+      <div className="py-2 border-none border-gray-100 dark:border-neutral-800 bg-transparent dark:bg-[#0e0e0e] shadow-sm">
         <div className="relative">
           {/* Emoji Picker */}
           {showEmojiPicker && (
@@ -168,7 +168,7 @@ const ChatTradingContent = () => {
             </div>
           )}
 
-          <div className="flex items-center gap-2 px-2">
+          <div className="flex items-center gap-2">
             <div className="relative flex-1">
               <input
                 type="text"

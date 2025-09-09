@@ -327,20 +327,20 @@ export default function Trading() {
         <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab}>
           <div className="flex flex-wrap gap-4 mb-4">
             <button
-              className={`rounded-sm text-sm font-medium  flex items-center gap-2  px-3 py-1.5 border-1 z-10 border-solid border-theme-primary-300 cursor-pointer transition-all ${activeTab === '1' ? 'dark:bg-theme-black-100 bg-theme-blue-100 text-neutral-100' : 'border-transparent hover:dark:bg-theme-black-100/50'}`}
+              className={`rounded-full text-sm font-medium  flex items-center gap-2  px-3 py-1.5 border-1 z-10 border-solid border-theme-primary-300 cursor-pointer transition-all ${activeTab === '1' ? 'dark:bg-theme-black-100 linear-gradient-blue text-neutral-100' : 'border-transparent hover:dark:bg-theme-black-100/50'}`}
               onClick={() => setActiveTab('1')}
             >
               <svg width="20" height="20" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_5675_7005)"><path d="M19.4015 8.23374C19.1741 8.12861 18.9087 8.14648 18.6984 8.27954C18.4875 8.41401 18.3594 8.64717 18.3594 8.89751V10.1191C18.3594 10.5232 18.0311 10.8516 17.627 10.8516C17.2651 10.8516 16.9589 10.5912 16.8996 10.2372C16.3037 6.54356 13.59 0.5 12.5 0.5C11.41 0.5 8.69629 6.54355 8.10117 10.2329C8.04111 10.5912 7.73496 10.8516 7.37305 10.8516C6.96895 10.8516 6.64062 10.5232 6.64062 10.1191V8.89746C6.64062 8.64712 6.5126 8.41397 6.30161 8.27949C6.09063 8.14644 5.82666 8.12856 5.59854 8.23369C3.10513 9.39673 1.51367 14.465 1.51367 17.4434C1.51367 22.1869 6.03125 25.5 12.5 25.5C18.9688 25.5 23.4863 22.1869 23.4863 17.4434C23.4863 14.465 21.8949 9.39673 19.4015 8.23374Z" fill="url(#paint0_linear_5675_7005)"></path><path d="M16.0529 15.5937C15.9192 15.3777 15.6838 15.2461 15.4299 15.2461H13.8048L13.2105 12.8715C13.1361 12.5739 12.885 12.3543 12.5803 12.3207C12.2692 12.2886 11.9824 12.448 11.845 12.7213L8.91534 18.5807C8.80162 18.8074 8.81378 19.077 8.94752 19.2931C9.08126 19.5091 9.31661 19.6407 9.57052 19.6407H11.1956L11.79 22.0153C11.8643 22.3129 12.1154 22.5325 12.4201 22.5661C12.7335 22.5991 13.021 22.4335 13.1554 22.1655L16.0851 16.3062C16.1988 16.0794 16.1866 15.8098 16.0529 15.5937Z" fill="url(#paint1_linear_5675_7005)"></path></g><defs><linearGradient id="paint0_linear_5675_7005" x1="12.5" y1="25.5" x2="12.5" y2="0.5" gradientUnits="userSpaceOnUse"><stop stop-color="#FD5900"></stop><stop offset="1" stop-color="#FFDE00"></stop></linearGradient><linearGradient id="paint1_linear_5675_7005" x1="12.5002" y1="22.5703" x2="12.5002" y2="12.3166" gradientUnits="userSpaceOnUse"><stop stop-color="#FFE59A"></stop><stop offset="1" stop-color="#FFFFD5"></stop></linearGradient><clipPath id="clip0_5675_7005"><rect width="25" height="25" fill="white" transform="translate(0 0.5)"></rect></clipPath></defs></svg>
               <span className={`${activeTab === '1' ? 'dark:gradient-hover' : ''}`}>{t('tableDashboard.tabs.trending')}</span>
             </button>
             <button
-              className={`rounded-sm  text-sm font-medium px-2 py-1 border-1 z-10 border-solid border-theme-primary-300 cursor-pointer transition-all ${activeTab === '2' ? 'dark:bg-theme-black-100 bg-theme-blue-100 text-neutral-100' : 'border-transparent hover:dark:bg-theme-black-100/50'}`}
+              className={`rounded-full  text-sm font-medium px-2 py-1 border-1 z-10 border-solid border-theme-primary-300 cursor-pointer transition-all ${activeTab === '2' ? 'dark:bg-theme-black-100 linear-gradient-blue text-neutral-100' : 'border-transparent hover:dark:bg-theme-black-100/50'}`}
               onClick={() => setActiveTab('2')}
             >
               <span className={`${activeTab === '2' ? 'dark:gradient-hover flex items-center gap-2' : 'flex items-center gap-2'}`}>{t('tableDashboard.tabs.new')} ( Pumpfun<PumpFun />)</span>
             </button>
             {isAuthenticated && (<button
-              className={`rounded-sm flex items-center gap-2 text-sm font-medium px-2 py-1 border-1 z-10 border-solid border-theme-primary-300 cursor-pointer transition-all ${activeTab === '3' ? 'dark:bg-theme-black-100 bg-theme-blue-100 text-neutral-100' : 'border-transparent hover:dark:bg-theme-black-100/50'}`}
+              className={`rounded-full flex items-center gap-2 text-sm font-medium px-2 py-1 border-1 z-10 border-solid border-theme-primary-300 cursor-pointer transition-all ${activeTab === '3' ? 'dark:bg-theme-black-100 linear-gradient-blue text-neutral-100' : 'border-transparent hover:dark:bg-theme-black-100/50'}`}
               onClick={() => setActiveTab('3')}
             >
               <img src="/star-icon.png" alt="star" className="w-5 h-5" />
@@ -349,7 +349,7 @@ export default function Trading() {
 
             <div className="relative inline-block">
               <button
-                className={`rounded-sm text-sm font-medium px-2 py-1 border-1 z-10 border-solid flex items-center gap-2 border-theme-primary-300 cursor-pointer transition-all ${activeTab === '4' ? 'dark:bg-theme-black-100 bg-theme-blue-100 text-neutral-100' : 'border-transparent hover:dark:bg-theme-black-100/50'}`}
+                className={`rounded-full text-sm font-medium px-2 py-1 border-1 z-10 border-solid flex items-center gap-2 border-theme-primary-300 cursor-pointer transition-all ${activeTab === '4' ? 'dark:bg-theme-black-100 linear-gradient-blue text-neutral-100' : 'border-transparent hover:dark:bg-theme-black-100/50'}`}
                 onClick={() => setActiveTab('4')}
               >
                 <img src="/category-icon.png" alt="star" className="w-5 h-5" />

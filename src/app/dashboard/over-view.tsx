@@ -83,7 +83,7 @@ const OverView = () => {
                         </div>
                         <button
                             onClick={() => router.push('/create-coin/pumpfun')}
-                            className='lg:max-w-auto max-w-[120px] group relative bg-gradient-to-t from-theme-primary-500 to-theme-secondary-400 py-1.5 md:py-2 px-3 md:px-4 lg:px-5 rounded-full text-[11px] md:text-xs transition-all duration-500 hover:from-theme-blue-100 hover:to-theme-blue-200 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95 w-full md:w-auto'
+                            className='lg:max-w-auto max-w-[120px] group relative bg-gradient-to-t dark:from-theme-primary-500 dark:to-theme-secondary-400 linear-gradient-blue from-theme-blue-100 to-theme-blue-200 py-1.5 md:py-2 px-3 md:px-4 lg:px-5 rounded-full text-[11px] md:text-xs transition-all duration-500 hover:from-theme-blue-100 hover:to-theme-blue-200 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95 w-full md:w-auto'
                         >
                             <span className='relative z-10 text-neutral-100'>{t('overview.launchToken.createNow')}</span>
                             <div className='absolute inset-0 rounded-full bg-gradient-to-r from-theme-primary-300 to-theme-secondary-200 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm'></div>
@@ -206,7 +206,7 @@ const OverView = () => {
                         </div>}
                     {isAuthenticated && <div className="absolute 2xl:bottom-2 bottom-1 right-0 w-[36%] z-20 flex justify-around px-3 gap-4">
                         <button onClick={() => router.replace('/universal-account?type=deposit')} className="flex flex-col justify-start items-center gap-0.5 md:gap-1">
-                            <div className="w-6 h-6 md:w-7 md:h-7 2xl:w-8 2xl:h-8 bg-gradient-to-t from-theme-primary-500 to-theme-secondary-400 border border-neutral-200 rounded-full flex justify-center items-center group  transition-all duration-500 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95 bg-theme-blue-100">
+                            <div className="w-6 h-6 md:w-7 md:h-7 2xl:w-8 2xl:h-8 bg-gradient-to-t dark:from-theme-primary-500 dark:to-theme-secondary-400 linear-gradient-blue from-theme-blue-100 to-theme-blue-200 border border-neutral-200 rounded-full flex justify-center items-center group  transition-all duration-500 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95 bg-theme-blue-100">
                                 <ArrowDownToLine className="w-2.5 h-2.5 md:w-3 md:h-3 2xl:w-4 2xl:h-4 text-neutral-100 z-10" />
                                 <div className='absolute inset-0 rounded-full w-[30px] h-[30px] bg-gradient-to-r from-theme-primary-300 to-theme-secondary-200 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm'></div>
                             </div>
@@ -215,14 +215,14 @@ const OverView = () => {
                             </div>
                         </button>
                         <button onClick={() => router.replace('/universal-account?type=withdraw')} className="flex flex-col justify-start items-center gap-0.5 md:gap-1">
-                            <div className="w-6 h-6 md:w-7 md:h-7 2xl:w-8 2xl:h-8 bg-gradient-to-t from-theme-primary-500 to-theme-secondary-400 border border-neutral-200 rounded-full flex justify-center items-center group  transition-all duration-500 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95 bg-theme-blue-100">
+                            <div className="w-6 h-6 md:w-7 md:h-7 2xl:w-8 2xl:h-8 bg-gradient-to-t dark:from-theme-primary-500 dark:to-theme-secondary-400 linear-gradient-blue from-theme-blue-100 to-theme-blue-200 border border-neutral-200 rounded-full flex justify-center items-center group  transition-all duration-500 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95 bg-theme-blue-100">
                                 <ArrowUpFromLine className="w-2.5 h-2.5 md:w-3 md:h-3 2xl:w-4 2xl:h-4 text-neutral-100 z-10" />
                                 <div className='absolute inset-0 rounded-full w-[30px] h-[30px] bg-gradient-to-r from-theme-primary-300 to-theme-secondary-200 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm'></div>
                             </div>
                             <div className="text-center text-theme-brown-100 dark:text-theme-neutral-100 text-[9px] 2xl:text-[10px] font-semibold">
                                 {t('overview.universalAccount.send')}
                             </div>
-                        </button>
+                        </button>   
                     </div>}
                     <svg className='absolute bottom-0 right-0 w-[48%] h-auto' xmlns="http://www.w3.org/2000/svg" width="247" height="113" viewBox="0 0 247 113" fill="none">
                         <path d="M82.2805 1C75.8978 1 70.7348 6.03471 69.4407 12.2848C63.4038 41.4413 40.4414 64.403 11.2849 70.4398C5.03471 71.7338 0 76.8968 0 83.2795V101C0 107.627 5.37259 113 12 113H234C240.627 113 246 107.627 246 101V13C246 6.37258 240.627 1 234 1H82.2805Z" className="dark:fill-[url(#paint0_linear_1465_20342)] fill-[#F0F8FF]" />
@@ -349,7 +349,7 @@ const OverView = () => {
                             </div>
                             <button
                                 onClick={() => router.push('/master-trade')}
-                                className='lg:max-w-auto max-w-[120px] group relative bg-gradient-to-t from-theme-primary-500 to-theme-secondary-400 py-1.5 md:py-2 px-3 md:px-4 lg:px-5 rounded-full text-[11px] md:text-xs transition-all duration-500 hover:from-theme-blue-100 hover:to-theme-blue-200 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95 w-full md:w-auto'
+                                className='lg:max-w-auto max-w-[120px] group relative bg-gradient-to-t dark:from-theme-primary-500 dark:to-theme-secondary-400 linear-gradient-blue from-theme-blue-100 to-theme-blue-200 py-1.5 md:py-2 px-3 md:px-4 lg:px-5 rounded-full text-[11px] md:text-xs transition-all duration-500 hover:from-theme-blue-100 hover:to-theme-blue-200 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95 w-full md:w-auto'
                             >
                                 <span className='relative z-10 text-neutral-100'>{t('overview.masterTrade.explore')}</span>
                                 <div className='absolute inset-0 rounded-full bg-gradient-to-r from-theme-primary-300 to-theme-secondary-200 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm'></div>

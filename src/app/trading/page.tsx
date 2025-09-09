@@ -55,7 +55,7 @@ const TradingPage = () => {
   if(windowWidth < 905) withDesktop = 'w-[35%]';
   
   return (
-    <div className={`h-[92.5vh] flex flex-col gap-2 container-trading relative z-40  ${
+    <div className={`h-[92.5vh] mt-2 flex flex-col gap-2 container-trading relative z-40  ${
       isMobile ? 'px-2' : 'px-2'
     }`}>
       {/* {!isMobile && <Interface />} */}
