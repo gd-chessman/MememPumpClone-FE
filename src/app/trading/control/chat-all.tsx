@@ -166,7 +166,7 @@ const ChatAllContent = () => {
       </div>
 
       {/* Message Input */}
-      <div className="px-3 pt-1 border-t border-gray-100 dark:border-neutral-800 ">
+      <div className="py-1 border-t border-gray-100 dark:border-neutral-800 ">
         <div className="relative">
           {/* Emoji Picker */}
           {showEmojiPicker && (
