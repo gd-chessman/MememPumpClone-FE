@@ -769,7 +769,7 @@ export function WalletTable({ wallets, onCopyAddress, onUpdateWallet, refetchWal
                             </div>
                         </div>
                     ) : (
-                        <div className="md:h-[52px] h-[50px]">
+                        <div className="h-[50px]">
                             <div className="md:hidden flex items-center gap-2 px-2 h-full">
                                 <Checkbox
                                     checked={isAllSelected()}
