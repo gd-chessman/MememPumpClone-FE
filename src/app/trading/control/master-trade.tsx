@@ -211,7 +211,7 @@ export default function MasterTradeChat() {
                     </button>
                 ) : (
                     <button
-                        className={`px-[14%] rounded-md text-xs cursor-pointer font-medium uppercase text-center ${activeTab === "chatAll" ? "bg-theme-primary-500" : "text-neutral-400"
+                        className={`px-[14%] rounded-md text-xs cursor-pointer font-medium uppercase text-center ${activeTab === "chatAll" ? "bg-gradient-to-t dark:bg-gradient-to-t linear-gradient-blue text-white dark:from-theme-primary-500 dark:to-theme-secondary-400" : "text-neutral-400"
                             }`}
                         onClick={() => setActiveTab("chatAll")}
                         data-active-tab={activeTab}
