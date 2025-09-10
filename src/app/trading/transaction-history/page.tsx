@@ -797,25 +797,25 @@ function TransactionHistoryContent() {
     <div className="shadow-inset dark:bg-[#0e0e0e] rounded-md p-2 sm:p-2 lg:overflow-hidden bg-white dark:bg-neutral-1000 flex flex-col w-full h-full ">
       <div className="flex border-gray-200 dark:border-neutral-800 2xl:h-[30px] h-[24px] bg-gray-100  rounded-full dark:bg-[#333] overflow-x-auto md:overflow-x-hidden mb-1">
         <button
-          className={`flex-1 rounded-full text-[9px] 2xl:text-sm cursor-pointer font-medium uppercase text-center ${activeTab === "all" ? "text-white linear-gradient-blue dark:linear-gradient-connect" : "text-gray-500 dark:text-neutral-400"}`}
+          className={`flex-1 rounded-full text-[9px] 2xl:text-sm cursor-pointer font-medium uppercase text-center ${activeTab === "all" ? "text-white from-theme-purple-100 to-theme-blue-100 dark:linear-gradient-connect" : "text-gray-500 dark:text-neutral-400"}`}
           onClick={() => setActiveTab("all")}
         >
           {t("transactionHistory.allTransactions")}
         </button>
         <button
-          className={`flex-1 rounded-full cursor-pointer text-[9px] 2xl:text-sm font-medium uppercase text-center ${activeTab === "my" ? "text-white linear-gradient-blue dark:linear-gradient-connect" : "text-gray-500 dark:text-neutral-400"}`}
+          className={`flex-1 rounded-full cursor-pointer text-[9px] 2xl:text-sm font-medium uppercase text-center ${activeTab === "my" ? "text-white from-theme-purple-100 to-theme-blue-100 dark:linear-gradient-connect" : "text-gray-500 dark:text-neutral-400"}`}
           onClick={() => setActiveTab("my")}
         >
           {t("transactionHistory.myTransactions")}
         </button>
         <button
-          className={`px-5 md:flex-1 rounded-full cursor-pointer text-[9px] 2xl:text-sm font-medium uppercase text-center ${activeTab === "holder" ? "text-white linear-gradient-blue dark:linear-gradient-connect" : "text-gray-500 dark:text-neutral-400"}`}
+          className={`px-5 md:flex-1 rounded-full cursor-pointer text-[9px] 2xl:text-sm font-medium uppercase text-center ${activeTab === "holder" ? "text-white from-theme-purple-100 to-theme-blue-100 dark:linear-gradient-connect" : "text-gray-500 dark:text-neutral-400"}`}
           onClick={() => setActiveTab("holder")}
         >
           {t("transactionHistory.holders")}
         </button>
         <button
-          className={`px-5 md:flex-1 rounded-full cursor-pointer text-[9px] 2xl:text-sm font-medium uppercase text-center ${activeTab === "asset" ? "text-white linear-gradient-blue dark:linear-gradient-connect" : "text-red-500 dark:text-red-500"}`}
+          className={`px-5 md:flex-1 rounded-full cursor-pointer text-[9px] 2xl:text-sm font-medium uppercase text-center ${activeTab === "asset" ? "text-white from-theme-purple-100 to-theme-blue-100 dark:linear-gradient-connect" : "text-red-500 dark:text-red-500"}`}
           onClick={() => setActiveTab("asset")}
         >
           {t("transactionHistory.assets")}

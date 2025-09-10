@@ -1,14 +1,19 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Check, Copy, ChevronDown } from "lucide-react"
+import { Check, Copy, ChevronDown, Wallet, Search, AlertCircle } from "lucide-react"
 import { toast } from 'react-hot-toast';
 import React from "react";
 import { createMultiTokenTransaction, getTransactionHistory } from "@/services/api/HistoryTransactionWallet";
 import { useLang } from "@/lang/useLang";
 import { useQuery } from "@tanstack/react-query";
-import { getInforWallet, getListBuyToken } from "@/services/api/TelegramWalletService";
+import { getInforWallet, getListBuyToken, getMyWallets } from "@/services/api/TelegramWalletService";
 import { useAuth } from "@/hooks/useAuth";
+import { cn } from "@/lib/utils";
+import { Card, CardContent, CardHeader, CardTitle } from "@/ui/card";
+import { Input } from "@/ui/input";
+import { truncateString } from "@/utils/format";
+import { Badge } from "@/ui/badge";
 
 // Token type definition
 interface TokenOption {
@@ -46,6 +51,11 @@ export default function WithdrawWallet({ walletInfor }: { walletInfor: any }) {
     staleTime: 0,
   });
 
+  const { data: listWallets = [] } = useQuery({
+    queryKey: ['my-wallets'],
+    queryFn: () => getMyWallets(1, 1000),
+  });
+
   const { t } = useLang();
 
   // State management
@@ -59,11 +69,13 @@ export default function WithdrawWallet({ walletInfor }: { walletInfor: any }) {
   const [googleAuthError, setGoogleAuthError] = useState<string>("");
   const [selectedToken, setSelectedToken] = useState<TokenOption | null>(null);
   const [showTokenDropdown, setShowTokenDropdown] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [filteredWallets, setFilteredWallets] = useState<any[]>([]);
 
   // Set default selected token when available tokens are loaded
   useEffect(() => {
     if (availableTokens?.tokens && availableTokens.tokens.length > 0 && !selectedToken) {
-      setSelectedToken(availableTokens.tokens[0]);
+      setSelectedToken(availableTokens.tokens.filter((token: TokenOption) => token.token_balance_usd > 0.05)[0]);
     }
   }, [availableTokens, selectedToken]);
 
@@ -93,6 +105,21 @@ export default function WithdrawWallet({ walletInfor }: { walletInfor: any }) {
     };
   }, [amount, walletInfor, isSending, error, selectedToken, availableTokens]);
   console.log("amount", amount)
+
+  useEffect(() => {
+    if (recipientWallet.trim() === '') {
+      setFilteredWallets(listWallets);
+    } else {
+      const filtered = listWallets.filter((wallet: any) => 
+        wallet.wallet_nick_name.toLowerCase().includes(recipientWallet.toLowerCase()) ||
+        wallet.wallet_name.toLowerCase().includes(recipientWallet.toLowerCase()) ||
+        wallet.solana_address.toLowerCase().includes(recipientWallet.toLowerCase()) ||
+        wallet.eth_address.toLowerCase().includes(recipientWallet.toLowerCase())
+      );
+      setFilteredWallets(filtered);
+    }
+  }, [recipientWallet, listWallets]);
+
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
 
@@ -275,6 +302,11 @@ export default function WithdrawWallet({ walletInfor }: { walletInfor: any }) {
     );
   }
 
+  const selectWallet = (address: string) => {
+    setRecipientWallet(address);
+    setShowDropdown(false);
+  };
+
   return (
     <div className="flex flex-col gap-6 items-center">
       {/* Token Selection */}
@@ -297,7 +329,7 @@ export default function WithdrawWallet({ walletInfor }: { walletInfor: any }) {
 
           {showTokenDropdown && (
             <div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-theme-black-200 border border-gray-300 rounded-md shadow-lg z-10">
-              {availableTokens?.tokens?.filter((token: TokenOption) => token.token_balance > 0).map((token: TokenOption) => (
+              {availableTokens?.tokens?.filter((token: TokenOption) => token.token_balance_usd > 0.05).map((token: TokenOption) => (
                 <button
                   key={token.token_symbol}
                   onClick={() => handleTokenSelect(token)}
@@ -350,7 +382,7 @@ export default function WithdrawWallet({ walletInfor }: { walletInfor: any }) {
                     }
                   }}
                   disabled={isDisabled.input || !selectedToken || !availableTokens?.tokens}
-                  className="px-3 py-1 text-xs font-medium bg-theme-purple-100 hover:bg-theme-purple-200 text-theme-purple-600 rounded-md transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-3 py-1 text-xs font-medium bg-theme-purple-100 hover:bg-theme-purple-200 text-white rounded-md transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {t('universal_account.max_button')}
                 </button>
@@ -386,28 +418,71 @@ export default function WithdrawWallet({ walletInfor }: { walletInfor: any }) {
         </div>
       </div>
 
-      {/* Recipient Address */}
-      <div className="w-full max-w-[600px] ">
-        <label htmlFor="name" className={"block md:text-sm lg:text-base font-normal dark:text-neutral-100 text-black mb-1 text-xs"}>
-          {t('universal_account.recipient_address')} <span className="text-theme-red-200">*</span>
-        </label>
-        <div className={`p-[1px] rounded-md bg-transparent w-full group hover:from-theme-purple-200 hover:to-theme-gradient-linear-end transition-all duration-300`}>
-          <div className="bg-white dark:bg-theme-black-200 border border-gray-500 rounded-md group-hover:border-theme-purple-200 transition-all duration-300">
-            <input
-              type="text"
-              value={recipientWallet}
-              onChange={(e) => setRecipientWallet(e.target.value)}
-              className="w-full bg-transparent h-10 rounded-md pl-3 text-sm font-normal focus:outline-none transition-colors duration-300"
-              placeholder={t('universal_account.recipient_placeholder')}
-            />
+      <Card className="border-0 shadow-lg  w-full max-w-[600px] ">
+        <CardHeader className="pb-4">
+          <CardTitle className="text-lg font-semibold text-gray-800 dark:text-gray-200 flex items-center gap-2">
+            <Wallet className="w-5 h-5" />
+            {t('universal_account.recipient_address')} <span className="text-red-500">*</span>
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="relative">
+            <div className="relative">
+              <Input
+                type="text"
+                value={recipientWallet}
+                onChange={(e) => {
+                  setRecipientWallet(e.target.value);
+                  setShowDropdown(true);
+                }}
+                onFocus={() => setShowDropdown(true)}
+                className="h-12 text-sm bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 pr-10"
+                placeholder={t('universal_account.recipient_placeholder')}
+              />
+              <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+                <Search className="w-4 h-4 text-gray-400" />
+              </div>
+            </div>
+            
+            {/* Custom Styled Dropdown */}
+            {showDropdown && filteredWallets.length > 0 && (
+              <div className="absolute z-50 w-full mt-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+                {filteredWallets.map((wallet: any) => (
+                  <div key={wallet.wallet_id} className="space-y-1">
+                    {/* Solana Address Option */}
+                    <div
+                      onClick={() => selectWallet(wallet.solana_address)}
+                      className="flex items-center justify-between p-3 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer border-b border-gray-100 dark:border-gray-700 last:border-b-0 transition-colors duration-200"
+                    >
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-1">
+                          <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                          <span className="font-medium text-gray-900 dark:text-gray-100 text-sm">
+                            {wallet.wallet_nick_name} &ensp;•&ensp; {wallet.wallet_country?.toUpperCase()}
+                          </span>
+                          <Badge variant="outline" className={`text-xs ml-3 bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-900/20 dark:text-purple-300 dark:border-purple-800 ${wallet.wallet_type === "main" ? "bg-yellow-50 text-yellow-700 border-yellow-200 dark:bg-yellow-900/20 dark:text-yellow-300 dark:border-yellow-800" : "bg-cyan-50 text-cyan-700 border-cyan-200 dark:bg-cyan-900/20 dark:text-cyan-300 dark:border-cyan-800"}`}>
+                            {t(`listWalletss.walletType.${wallet.wallet_type}`)}
+                          </Badge>
+                        </div>
+                        <div className="text-xs text-yellow-500 italic ml-4">
+                          {truncateString(wallet.solana_address, 10)}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
+          
           {recipientError && (
-            <div className="text-xs text-red-500 mt-1 pl-3">
+            <div className="flex items-center gap-2 text-sm text-red-500">
+              <AlertCircle className="w-4 h-4" />
               {recipientError}
             </div>
           )}
-        </div>
-      </div>
+        </CardContent>
+      </Card>
 
       {/* Google Authenticator Input */}
       {walletInforAccount?.isGGAuth && (

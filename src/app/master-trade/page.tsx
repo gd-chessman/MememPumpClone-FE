@@ -446,37 +446,37 @@ export default function MasterTradeTable() {
                     <div className={filterButtonsWrapperClass}>
                         <button
                             onClick={() => setActiveFilter("All")}
-                            className={`${mobileFilterButtonClass} ${activeFilter === "All" ? 'dark:bg-[#0F0F0F] bg-theme-blue-100' : 'border-transparent'}`}
+                            className={`${mobileFilterButtonClass} ${activeFilter === "All" ? 'dark:bg-[#0F0F0F] bg-gradient-to-b from-theme-purple-100 to-theme-blue-100 text-white' : 'border-transparent'}`}
                         >
                             <span className={`text-theme-black-100 dark:text-theme-neutral-100`}>{t('masterTrade.page.filters.all')} ({tradeData.length})</span>
                         </button>
                         <button
                             onClick={() => setActiveFilter("Not Connected")}
-                            className={`${mobileFilterButtonClass} ${activeFilter === "Not Connected" ? 'dark:bg-[#0F0F0F] bg-theme-blue-100' : 'border-transparent'}`}
+                            className={`${mobileFilterButtonClass} ${activeFilter === "Not Connected" ? 'dark:bg-[#0F0F0F] bg-gradient-to-b from-theme-purple-100 to-theme-blue-100 text-white ' : 'border-transparent'}`}
                         >
                             <span className={`text-theme-black-100 dark:text-theme-neutral-100`}>{t('masterTrade.page.filters.notConnected')} ({notConnectedCount})</span>
                         </button>
                         <button
                             onClick={() => setActiveFilter("connect")}
-                            className={`${mobileFilterButtonClass} ${activeFilter === "connect" ? 'dark:bg-[#0F0F0F] bg-theme-blue-100' : 'border-transparent'}`}
+                            className={`${mobileFilterButtonClass} ${activeFilter === "connect" ? 'dark:bg-[#0F0F0F] bg-gradient-to-b from-theme-purple-100 to-theme-blue-100 text-white' : 'border-transparent'}`}
                         >
                             <span className={`text-theme-black-100 dark:text-theme-neutral-100`}>{t('masterTrade.page.filters.connected')} ({connectedCount})</span>
                         </button>
                         <button
                             onClick={() => setActiveFilter("disconnect")}
-                            className={`${mobileFilterButtonClass} ${activeFilter === "disconnect" ? 'dark:bg-[#0F0F0F] bg-theme-blue-100' : 'border-transparent'}`}
+                            className={`${mobileFilterButtonClass} ${activeFilter === "disconnect" ? 'dark:bg-[#0F0F0F] bg-gradient-to-b from-theme-purple-100 to-theme-blue-100 text-white ' : 'border-transparent'}`}
                         >
                             <span className={`text-theme-black-100 dark:text-theme-neutral-100`}>{t('masterTrade.page.filters.disconnected')} ({disconnectedCount})</span>
                         </button>
                         <button
                             onClick={() => setActiveFilter("pause")}
-                            className={`${mobileFilterButtonClass} ${activeFilter === "pause" ? 'dark:bg-[#0F0F0F] bg-theme-blue-100' : 'border-transparent'}`}
+                            className={`${mobileFilterButtonClass} ${activeFilter === "pause" ? 'dark:bg-[#0F0F0F] bg-gradient-to-b from-theme-purple-100 to-theme-blue-100 text-white  ' : 'border-transparent'}`}
                         >
                             <span className={`text-theme-black-100 dark:text-theme-neutral-100`}>{t('masterTrade.page.filters.paused')} ({pausedCount})</span>
                         </button>
                         <button
                             onClick={() => setActiveFilter("pending")}
-                            className={`${mobileFilterButtonClass} ${activeFilter === "pending" ? 'dark:bg-[#0F0F0F] bg-theme-blue-100' : 'border-transparent'}`}
+                            className={`${mobileFilterButtonClass} ${activeFilter === "pending" ? 'dark:bg-[#0F0F0F] bg-gradient-to-b from-theme-purple-100 to-theme-blue-100 text-white' : 'border-transparent'}`}
                         >
                             <span className={`text-theme-black-100 dark:text-theme-neutral-100`}>{t('masterTrade.page.filters.pending')} ({pendingCount})</span>
                         </button>

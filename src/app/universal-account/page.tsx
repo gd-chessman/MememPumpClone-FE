@@ -64,13 +64,13 @@ const UniversalAccountContent = () => {
                     <div className="flex items-center justify-center flex-col gap-3 sm:gap-4 lg:gap-6">
                         <div className="flex w-full border-gray-200 dark:border-neutral-800 max-w-[280px] sm:max-w-[320px] h-[36px] sm:h-[40px] bg-gray-100 dark:bg-theme-neutral-1000 rounded-full">
                             <button
-                                className={`flex-1 rounded-full text-sm sm:text-base cursor-pointer font-medium uppercase text-center ${tab === "deposit" ? "bg-blue-500 text-white dark:linear-gradient-connect" : "text-gray-500 dark:text-neutral-400"}`}
+                                className={`flex-1 rounded-full text-sm sm:text-base cursor-pointer font-medium uppercase text-center bg-gradient-to-t ${tab === "deposit" ? "  dark:from-theme-primary-500 dark:to-theme-secondary-400 to-theme-purple-100 from-theme-blue-100 text-white dark:linear-gradient-connect" : "text-gray-500 dark:text-neutral-400"}`}
                                 onClick={() => setTab("deposit")}
                             >
                                 {t('universal_account.deposit')}
                             </button>
                             <button
-                                className={`flex-1 rounded-full cursor-pointer text-sm sm:text-base font-medium uppercase text-center ${tab === "withdraw" ? "bg-blue-500 text-white dark:linear-gradient-connect" : "text-gray-500 dark:text-neutral-400"}`}
+                                className={`flex-1 rounded-full cursor-pointer text-sm sm:text-base font-medium uppercase text-center bg-gradient-to-t ${tab === "withdraw" ? " dark:from-theme-primary-500 dark:to-theme-secondary-400 to-theme-purple-100 from-theme-blue-100 text-white dark:linear-gradient-connect" : "text-gray-500 dark:text-neutral-400"}`}
                                 onClick={() => setTab("withdraw")}
                             >
                                 {t('universal_account.withdraw')}

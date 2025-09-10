@@ -1138,7 +1138,7 @@ export default function WalletPage() {
                                         {walletInfor && <div className="flex justify-center items-center mx-auto mt-1">
                                             <button
                                                 onClick={() => setShowPrivateKeys(true)}
-                                                className="lg:max-w-auto group relative bg-gradient-to-t from-theme-primary-500 to-theme-secondary-400 py-1.5 md:py-2 px-3 md:px-4 lg:px-5 rounded-full text-[11px] md:text-xs transition-all duration-500 hover:from-theme-blue-100 hover:to-theme-blue-200 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95 w-auto flex items-center justify-center gap-1"
+                                                className="lg:max-w-auto group relative bg-gradient-to-t dark:bg-gradient-to-t dark:from-theme-primary-500 dark:to-theme-secondary-400 text-sm to-theme-purple-100 from-theme-blue-100 py-1.5 md:py-2 px-3 md:px-4 lg:px-5 rounded-full text-[11px] md:text-xs transition-all duration-500 hover:from-theme-blue-100 hover:to-theme-blue-200 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95 w-auto flex items-center justify-center gap-1"
                                             >
                                                 <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 relative overflow-hidden">
                                                     <KeyIcon className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-theme-neutral-100" />
@@ -1151,7 +1151,7 @@ export default function WalletPage() {
                                         <div className="grid grid-cols-2 md:grid-cols-4 w-full md:w-auto justify-start items-center gap-3 sm:gap-6 z-10 ">
                                             <button
                                                 onClick={() => setShowAddWallets(true)}
-                                                className="lg:max-w-auto group relative bg-gradient-to-t from-[#377bf8] to-theme-secondary-400 py-1.5 px-3 md:pl-3 pr-4 rounded-full text-[10px] md:text-xs transition-all duration-500 hover:from-theme-blue-100 hover:to-theme-blue-200 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95 w-full md:w-auto flex items-center justify-center gap-1"
+                                                className="lg:max-w-auto group relative bg-gradient-to-t dark:bg-gradient-to-t dark:from-theme-primary-500 dark:to-theme-secondary-400 text-sm to-theme-purple-100 from-theme-blue-100 py-1.5 px-3 md:pl-3 pr-4 rounded-full text-[10px] md:text-xs transition-all duration-500 hover:from-theme-blue-100 hover:to-theme-blue-200 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95 w-full md:w-auto flex items-center justify-center gap-1"
                                             >
                                                 <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 relative overflow-hidden text-theme-neutral-100">
                                                     <PlusIcon className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
@@ -1162,18 +1162,18 @@ export default function WalletPage() {
                                             </button>
                                             <button
                                                 onClick={() => setShowImportWallets(true)}
-                                                className="lg:max-w-auto group relative bg-transparent border py-1.5 px-4 md:pl-3 pr-4 rounded-full text-[10px] md:text-xs transition-all duration-500 hover:from-theme-blue-100 hover:bg-gradient-to-t hover:border-transparent hover:to-theme-blue-200 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95 w-full md:w-auto flex items-center justify-center gap-1 lg:bg-white shadow-inset dark:lg:bg-transparent  lg:border-transparent dark:lg:border-theme-neutral-100"
+                                                className="lg:max-w-auto group relative bg-transparent border py-1.5 px-4 md:pl-3 pr-4 rounded-full text-[10px] md:text-xs transition-all duration-500  hover:from-theme-blue-100 hover:bg-gradient-to-t hover:border-transparent hover:to-theme-blue-200 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95 w-full md:w-auto flex items-center justify-center gap-1 lg:bg-white shadow-inset dark:lg:bg-transparent  lg:border-transparent dark:lg:border-theme-neutral-100"
                                             >
-                                                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 relative overflow-hidden dark:text-theme-neutral-100 text-black">
+                                                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 relative overflow-hidden dark:text-theme-neutral-100 text-black group-hover:text-white">
                                                     <ArrowDownToLine className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                                                 </div>
-                                                <div className="text-xs sm:text-sm font-medium leading-tight dark:text-theme-neutral-100 text-black">
+                                                <div className="text-xs sm:text-sm font-medium leading-tight dark:text-theme-neutral-100 text-black group-hover:text-white">
                                                     {t('wallet.importWallets')}
                                                 </div>
                                             </button>
                                             <button
                                                 onClick={() => setShowAddWallet(true)}
-                                                className="lg:max-w-auto  group relative bg-gradient-to-t from-theme-primary-500 to-theme-secondary-400 py-1.5 px-3 md:pl-3 pr-4 rounded-full text-[10px] md:text-xs transition-all duration-500 hover:from-theme-blue-100 hover:to-theme-blue-200 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95 w-full md:w-auto flex items-center justify-center gap-1"
+                                                className="lg:max-w-auto  group relative bg-gradient-to-t dark:bg-gradient-to-t dark:from-theme-primary-500 dark:to-theme-secondary-400 text-sm to-theme-purple-100 from-theme-blue-100 py-1.5 px-3 md:pl-3 pr-4 rounded-full text-[10px] md:text-xs transition-all duration-500 hover:from-theme-blue-100 hover:to-theme-blue-200 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95 w-full md:w-auto flex items-center justify-center gap-1"
                                             >
                                                 <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 relative overflow-hidden text-theme-neutral-100">
                                                     <PlusIcon className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
@@ -1186,8 +1186,8 @@ export default function WalletPage() {
                                                 onClick={() => setShowImportWallet(true)}
                                                 className="lg:max-w-auto group relative bg-transparent border py-1.5  px-3 md:pl-3 pr-4 rounded-full text-[10px] md:text-xs transition-all duration-500 hover:from-theme-blue-100 hover:bg-gradient-to-t hover:border-transparent hover:to-theme-blue-200 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95 w-full md:w-auto flex items-center justify-center gap-1 lg:bg-white shadow-inset dark:lg:bg-transparent  lg:border-transparent dark:lg:border-theme-neutral-100"
                                             >
-                                                <ArrowDownToLine className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                                                <div className="text-xs sm:text-sm font-medium leading-tight dark:text-theme-neutral-100 text-black">
+                                                <ArrowDownToLine className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:text-white" />
+                                                <div className="text-xs sm:text-sm font-medium leading-tight dark:text-theme-neutral-100 text-black group-hover:text-white">
                                                     {t('wallet.importWallet')}
                                                 </div>
                                             </button>
@@ -1225,7 +1225,7 @@ export default function WalletPage() {
 
 
                                                     <button onClick={() => router.replace('/universal-account?type=deposit')} className="flex flex-col justify-start items-center gap-0.5 md:gap-1">
-                                                        <div className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 bg-gradient-to-t from-theme-primary-500 to-theme-secondary-400 border border-neutral-200 rounded-full flex justify-center items-center group  transition-all duration-500 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95">
+                                                        <div className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 bg-gradient-to-t  dark:from-theme-primary-500 dark:to-theme-secondary-400 text-sm from-theme-purple-100 to-theme-blue-100 border border-neutral-200 rounded-full flex justify-center items-center group  transition-all duration-500 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95">
                                                             <ArrowDownToLine className="w-2.5 h-2.5 md:w-3 md:h-3 lg:w-4 lg:h-4 text-white" />
                                                         </div>
                                                         <div className="text-center text-Colors-Neutral-100 text-[9px] md:text-[10px] font-semibold">
@@ -1236,7 +1236,7 @@ export default function WalletPage() {
                                                 </div>
                                                 <div className="flex flex-col justify-start items-center gap-1">
                                                     <button onClick={() => router.replace('/universal-account?type=withdraw')} className="flex flex-col justify-start items-center gap-0.5 md:gap-1">
-                                                        <div className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 bg-gradient-to-t from-theme-primary-500 to-theme-secondary-400 border border-neutral-200 rounded-full flex justify-center items-center transition-all hover:scale-105">
+                                                        <div className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 bg-gradient-to-t  dark:from-theme-primary-500 dark:to-theme-secondary-400 text-sm from-theme-purple-100 to-theme-blue-100 border border-neutral-200 rounded-full flex justify-center items-center transition-all hover:scale-105">
                                                             <ArrowUpFromLine className="w-2.5 h-2.5 md:w-3 md:h-3 lg:w-4 lg:h-4 text-white" />
                                                         </div>
                                                         <div className="text-center text-Colors-Neutral-100 text-[9px] md:text-[10px] font-semibold">

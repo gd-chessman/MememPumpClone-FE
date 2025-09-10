@@ -285,7 +285,7 @@ const Header = () => {
                                 ) : walletInfor && (
                                     <DropdownMenu>
                                         <DropdownMenuTrigger asChild>
-                                            <button className="bg-gradient-to-t dark:bg-gradient-to-t dark:from-theme-primary-500 dark:to-theme-secondary-400 text-sm linear-gradient-blue text-theme-neutral-100 dark:text-neutral-100 font-medium px-3 md:px-4 py-[6px] rounded-full transition-colors whitespace-nowrap flex items-center">
+                                            <button className="bg-gradient-to-b dark:bg-gradient-to-t dark:from-theme-primary-500 dark:to-theme-secondary-400 text-sm from-theme-purple-100 to-theme-blue-100 text-theme-neutral-100 dark:text-neutral-100 font-medium px-3 md:px-4 py-[6px] rounded-full transition-colors whitespace-nowrap flex items-center">
                                                 <Wallet2 className="h-3 w-3 mr-1" />
                                                 <span className='text-xs md:text-sm'>{truncateString(walletInfor.solana_address, 10) || truncateString(phantomPublicKey, 10)}</span>
                                             </button>
@@ -342,7 +342,7 @@ const Header = () => {
 
                     <div className='hidden lg:flex items-center gap-2 2xl:gap-6'>
                         {isAuthenticated && walletInfor && (
-                            <button className='bg-gradient-to-t dark:bg-gradient-to-t dark:from-theme-primary-500 dark:to-theme-secondary-400 2xl:text-sm text-xs linear-gradient-blue text-theme-neutral-100 dark:text-neutral-100 font-medium px-3 md:px-4 py-[6px] rounded-full transition-colors whitespace-nowrap flex flex-col'>
+                            <button className='bg-gradient-to-t dark:bg-gradient-to-t dark:from-theme-primary-500 dark:to-theme-secondary-400 2xl:text-sm text-xs from-theme-purple-100 to-theme-blue-100 text-theme-neutral-100 dark:text-neutral-100 font-medium px-3 md:px-4 py-[6px] rounded-full transition-colors whitespace-nowrap flex flex-col'>
                                 {walletInfor.solana_balance?.toFixed(4)} SOL &ensp; {'$' + formatNumberWithSuffix3(walletInfor.solana_balance_usd)}
                             </button>
                         )}
@@ -375,14 +375,14 @@ const Header = () => {
                                             setIsSigninModalOpen(true);
                                             setIsMobileMenuOpen(false);
                                         }}
-                                        className="bg-gradient-to-t dark:bg-gradient-to-t dark:from-theme-primary-500 dark:to-theme-secondary-400 text-sm linear-gradient-blue text-theme-neutral-100 dark:text-neutral-100 font-medium px-3 md:px-4 py-[6px] rounded-full transition-colors whitespace-nowrap flex items-center gap-1"
+                                        className="bg-gradient-to-t dark:bg-gradient-to-t dark:from-theme-primary-500 dark:to-theme-secondary-400 text-sm from-theme-purple-100 to-theme-blue-100 text-theme-neutral-100 dark:text-neutral-100 font-medium px-3 md:px-4 py-[6px] rounded-full transition-colors whitespace-nowrap flex items-center gap-1"
                                     >
                                         {t('connect')}
                                     </button>
                                 ) : walletInfor && walletInfor.solana_address ? (
                                     <DropdownMenu>
                                         <DropdownMenuTrigger asChild>
-                                            <button className="bg-gradient-to-t dark:bg-gradient-to-t dark:from-theme-primary-500 dark:to-theme-secondary-400 text-sm linear-gradient-blue text-theme-neutral-100 dark:text-neutral-100 font-medium px-3 md:px-4 py-[6px] rounded-full transition-colors whitespace-nowrap flex items-center gap-1 outline-none">
+                                            <button className="bg-gradient-to-t dark:bg-gradient-to-t dark:from-theme-primary-500 dark:to-theme-secondary-400 text-sm from-theme-purple-100 to-theme-blue-100 text-theme-neutral-100 dark:text-neutral-100 font-medium px-3 md:px-4 py-[6px] rounded-full transition-colors whitespace-nowrap flex items-center gap-1 outline-none">
                                                 <Wallet2 className="2xl:h-4 2xl:w-4 h-3 w-3 mr-1" />
                                                 <span className="2xl:text-sm text-xs hidden md:inline">{truncateString(walletInfor.solana_address, 10)}</span>
                                                 <ChevronDown size={14} className="ml-1" />
@@ -445,7 +445,7 @@ const Header = () => {
                                 ) : phantomConnected && phantomPublicKey ? (
                                     <DropdownMenu>
                                         <DropdownMenuTrigger asChild>
-                                            <button className="bg-gradient-to-t dark:bg-gradient-to-t dark:from-theme-primary-500 dark:to-theme-secondary-400 text-sm linear-gradient-blue text-theme-neutral-100 dark:text-neutral-100 font-medium px-3 md:px-4 py-[6px] rounded-full transition-colors whitespace-nowrap flex items-center gap-1">
+                                            <button className="bg-gradient-to-t dark:bg-gradient-to-t dark:from-theme-primary-500 dark:to-theme-secondary-400 text-sm from-theme-purple-100 to-theme-blue-100 text-theme-neutral-100 dark:text-neutral-100 font-medium px-3 md:px-4 py-[6px] rounded-full transition-colors whitespace-nowrap flex items-center gap-1">
                                                 <Wallet2 className="h-4 w-4 mr-1" />
                                                 <span className="text-sm hidden md:inline">{truncateString(phantomPublicKey, 12)}</span>
                                                 <ChevronDown size={16} className="ml-1" />
@@ -587,7 +587,7 @@ const Header = () => {
                                     </div>
                                     {isAuthenticated && walletInfor && (
                                         <div className="flex flex-col space-y-2">
-                                            <button className='bg-gradient-to-t dark:bg-gradient-to-t dark:from-theme-primary-500 dark:to-theme-secondary-400 text-sm linear-gradient-blue text-theme-neutral-100 dark:text-neutral-100 font-medium px-3 md:px-4 py-[6px] rounded-full transition-colors whitespace-nowrap'>
+                                            <button className='bg-gradient-to-t dark:bg-gradient-to-t dark:from-theme-primary-500 dark:to-theme-secondary-400 text-sm from-theme-purple-100 to-theme-blue-100 text-theme-neutral-100 dark:text-neutral-100 font-medium px-3 md:px-4 py-[6px] rounded-full transition-colors whitespace-nowrap'>
                                                 {walletInfor.solana_balance?.toFixed(4)} SOL &ensp; {'$' + formatNumberWithSuffix3(walletInfor.solana_balance_usd)}
                                             </button>
                                         </div>
@@ -613,7 +613,7 @@ const Header = () => {
                                                             setIsMobileMenuOpen(false);
                                                             refetch();
                                                         }}
-                                                        className="bg-gradient-to-t dark:bg-gradient-to-t dark:from-theme-primary-500 dark:to-theme-secondary-400 text-sm linear-gradient-blue text-theme-neutral-100 dark:text-neutral-100 font-medium px-3 md:px-4 py-[6px] rounded-full transition-colors whitespace-nowrap"
+                                                        className="bg-gradient-to-t dark:bg-gradient-to-t dark:from-theme-primary-500 dark:to-theme-secondary-400 text-sm from-theme-purple-100 to-theme-blue-100 text-theme-neutral-100 dark:text-neutral-100 font-medium px-3 md:px-4 py-[6px] rounded-full transition-colors whitespace-nowrap"
                                                     >
                                                         {t('header.wallet.logout')}
                                                     </button>

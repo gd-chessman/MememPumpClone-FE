@@ -106,7 +106,7 @@ export const ConnectionList: React.FC<ConnectionListProps> = ({
                         </div>
                         <button
                             className={`w-4 h-4 rounded-full border ${selectedConnections.includes(item.member_id.toString())
-                                    ? "border-transparent linear-gradient-blue"
+                                    ? "border-transparent from-theme-purple-100 to-theme-blue-100"
                                     : "border-gray-600 hover:border-gray-400"
                                 }`}
                         />

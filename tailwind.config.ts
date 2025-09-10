@@ -301,7 +301,7 @@ const config: Config = {
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
         },
-        '.linear-gradient-blue': {
+        '.from-theme-purple-100 to-theme-blue-100': {
           background: 'linear-gradient(0deg, #5558FF 0%, #00C0FF 100%)',
         },
         '.hover-bg-delay': {

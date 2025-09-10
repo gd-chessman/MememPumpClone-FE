@@ -223,7 +223,7 @@ function SingleTokenCard({ token }: any) {
             <div className="flex justify-between items-center w-full flex-row-reverse px-2">
               <button
                 onClick={handleTrade}
-                className="text-white lg:max-w-auto max-w-[120px] group relative bg-gradient-to-t dark:from-theme-primary-500 dark:to-theme-secondary-400 linear-gradient-blue from-theme-blue-100 to-theme-blue-200 py-1.5 md:py-2 px-3 md:px-4 lg:px-5 rounded-full text-[11px] md:text-xs transition-all duration-500 hover:from-theme-blue-100 hover:to-theme-blue-200 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95 w-full md:w-auto flex items-center justify-center"
+                className="text-white lg:max-w-auto max-w-[120px] group relative bg-gradient-to-t dark:from-theme-primary-500 dark:to-theme-secondary-400 from-theme-purple-100 to-theme-blue-100 py-1.5 md:py-2 px-3 md:px-4 lg:px-5 rounded-full text-[11px] md:text-xs transition-all duration-500 hover:from-theme-blue-100 hover:to-theme-blue-200 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95 w-full md:w-auto flex items-center justify-center"
               >
                 <Zap className="h-4 w-4 mr-1.5 text-green-400" />
                 {t("trading.trade")}
