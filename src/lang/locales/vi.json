@@ -1010,7 +1010,7 @@
     "copied_description": "Đã sao chép mã giao dịch vào clipboard",
     "enter_amount": "Nhập số tiền gửi",
     "transaction_progress": "Đang xử lý giao dịch...",
-    "available": "Số dư: {amount}",
+    "available": "Số dư: {amount} {token_symbol}",
     "select_token": "Chọn Token",
     "recipient_address": "Địa chỉ người nhận",
     "recipient_placeholder": "Nhập địa chỉ người nhận...",
@@ -1025,9 +1025,9 @@
       "copy_success": "Đã sao chép địa chỉ ví vào clipboard!"
     },
     "errors": {
-      "max_withdrawal": "Số tiền rút tối đa là 1 SOL",
-      "min_withdrawal": "Số tiền rút tối thiểu là 0.001 SOL",
-      "insufficient_balance": "Số tiền không được vượt quá số dư {balance} SOL",
+      "max_withdrawal": "Số tiền rút tối đa là 1 {token_symbol}",
+      "min_withdrawal": "Số tiền rút tối thiểu là 0.001 {token_symbol}",
+      "insufficient_balance": "Số tiền không được vượt quá số dư {balance} {token_symbol}",
       "transaction_failed": "Giao dịch thất bại. Vui lòng thử lại.",
       "transaction_success": "Gửi giao dịch thành công!",
       "network_error": "Lỗi kết nối. Vui lòng kiểm tra kết nối của bạn.",
