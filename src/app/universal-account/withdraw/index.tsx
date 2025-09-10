@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Check, Copy, ChevronDown, Wallet, Search, AlertCircle } from "lucide-react"
 import { toast } from 'react-hot-toast';
 import React from "react";
@@ -71,6 +71,7 @@ export default function WithdrawWallet({ walletInfor }: { walletInfor: any }) {
   const [showTokenDropdown, setShowTokenDropdown] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [filteredWallets, setFilteredWallets] = useState<any[]>([]);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Set default selected token when available tokens are loaded
   useEffect(() => {
@@ -85,6 +86,7 @@ export default function WithdrawWallet({ walletInfor }: { walletInfor: any }) {
 
     // Find the selected token in availableTokens to get current balance
     const tokenData = availableTokens.tokens.find((token: TokenOption) => token.token_symbol === selectedToken.token_symbol);
+    console.log("tokenData", tokenData?.token_balance)
     return tokenData?.token_balance?.toString() || "0";
   };
 
@@ -119,6 +121,23 @@ export default function WithdrawWallet({ walletInfor }: { walletInfor: any }) {
       setFilteredWallets(filtered);
     }
   }, [recipientWallet, listWallets]);
+
+  // Handle click outside dropdown to close it
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setShowDropdown(false);
+      }
+    };
+
+    if (showDropdown) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showDropdown]);
 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -391,8 +410,8 @@ export default function WithdrawWallet({ walletInfor }: { walletInfor: any }) {
                 {selectedToken?.token_symbol}
               </span>
             </div>
-            <div className="text-center text-xs text-gray-500 mb-1 group-hover:text-gray-400 transition-colors duration-300">
-              {t('universal_account.available', { amount: getCurrentTokenBalance() })}
+            <div className="text-center text-xs text-black dark:text-white mb-1 group-hover:text-gray-400 transition-colors duration-300">
+              {t('universal_account.available', { amount: getCurrentTokenBalance(), token_symbol: selectedToken?.token_symbol })}
               {availableTokens?.tokens && selectedToken && (() => {
                 const tokenData = availableTokens.tokens.find((token: TokenOption) => token.token_symbol === selectedToken.token_symbol);
                 return tokenData?.token_balance_usd ? ` ($${tokenData.token_balance_usd.toFixed(2)})` : '';
@@ -404,7 +423,7 @@ export default function WithdrawWallet({ walletInfor }: { walletInfor: any }) {
             {availableTokens?.tokens && selectedToken && (() => {
               const tokenData = availableTokens.tokens.find((token: TokenOption) => token.token_symbol === selectedToken.token_symbol);
               return tokenData?.token_price_usd ? (
-                <div className="text-center text-xs text-gray-400 mb-1">
+                <div className="text-center text-xs text-black dark:text-white mb-1">
                   {t('wallet.price')}: ${tokenData.token_price_usd.toFixed(6)} USD
                 </div>
               ) : null;
@@ -426,7 +445,7 @@ export default function WithdrawWallet({ walletInfor }: { walletInfor: any }) {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="relative">
+          <div className="relative" ref={dropdownRef}>
             <div className="relative">
               <Input
                 type="text"
@@ -522,7 +541,7 @@ export default function WithdrawWallet({ walletInfor }: { walletInfor: any }) {
       <button
         onClick={handleSend}
         disabled={isDisabled.send || recipientWallet.length === 0 || !selectedToken || Number(amount) === 0}
-        className={`lg:max-w-auto min-w-[160px] group relative bg-theme-primary-500 py-1.5 md:py-2 px-3 md:px-4 lg:px-6 rounded-full text-[11px] md:text-sm text-theme-neutral-100 transition-all duration-500 hover:from-theme-blue-100 hover:to-theme-blue-200 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95 w-full md:w-auto ${(isDisabled.send || recipientWallet.length === 0 || !selectedToken || Number(amount) === 0) ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+        className={`lg:max-w-auto min-w-[160px] group relative bg-gradient-to-t dark:bg-gradient-to-b dark:from-theme-primary-500 dark:to-theme-secondary-400 from-theme-purple-100 to-theme-blue-100 py-1.5 md:py-2 px-3 md:px-4 lg:px-6 rounded-full text-[11px] md:text-sm text-theme-neutral-100 transition-all duration-500 hover:from-theme-blue-100 hover:to-theme-blue-200 hover:scale-105 hover:shadow-lg hover:shadow-theme-primary-500/30 active:scale-95 w-full md:w-auto ${(isDisabled.send || recipientWallet.length === 0 || !selectedToken || Number(amount) === 0) ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
       >
         {isSending ? (
           <span className="flex items-center gap-2">

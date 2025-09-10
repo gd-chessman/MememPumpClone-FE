@@ -975,16 +975,16 @@
     "copied_description": "거래 해시가 클립보드에 복사되었습니다",
     "enter_amount": "보낼 금액 입력",
     "transaction_progress": "거래 처리 중...",
-    "available": "전송 가능한 잔액: {amount} SOL",
+    "available": "전송 가능한 잔액: {amount} {token_symbol}",
     "recipient_address": "받는 지갑 주소",
     "recipient_placeholder": "받는 지갑 주소 입력...",
     "sending": "전송 중...",
     "send": "전송",
-    "minimum_withdrawal_amount": "최소 출금 금액은 {amount} SOL입니다",
+    "minimum_withdrawal_amount": "최소 출금 금액은 {amount} {token_symbol}입니다",
     "deposit_wallet": {
       "title": "당신의 솔라나 주소",
       "warning": {
-        "title": "솔라나 네트워크에서의 SOL 출금만 지원됩니다.",
+        "title": "솔라나 네트워크에서의 {token_symbol} 출금만 지원됩니다.",
         "description": "솔라나 네트워크에서 SOL을 출금하고 올바른 솔라나 지갑 주소를 사용하세요."
       },
       "copy_success": "지갑 주소가 클립보드에 복사되었습니다!"
@@ -992,7 +992,7 @@
     "errors": {
       "max_withdrawal": "최대 출금 금액은 1 SOL입니다",
       "min_withdrawal": "최소 출금 금액은 0.001 SOL입니다",
-      "insufficient_balance": "잔액 {balance} SOL을 초과할 수 없습니다",
+      "insufficient_balance": "잔액 {balance} {token_symbol}을 초과할 수 없습니다",
       "transaction_failed": "거래 실패. 다시 시도해 주세요.",
       "transaction_success": "거래가 성공적으로 전송되었습니다!",
       "network_error": "네트워크 오류. 연결을 확인해 주세요.",

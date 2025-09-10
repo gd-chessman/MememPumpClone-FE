@@ -940,7 +940,7 @@
     "copied_description": "Transaction hash copied to clipboard",
     "enter_amount": "Enter send amount",
     "transaction_progress": "Transaction in progress...",
-    "available": "Available: {amount} SOL",
+    "available": "Available: {amount} {token_symbol}",
     "recipient_address": "Recipient Address",
     "recipient_placeholder": "Recipient address...",
     "sending": "Sending...",
@@ -956,7 +956,7 @@
     "errors": {
       "max_withdrawal": "Maximum withdrawal amount is 1 SOL",
       "min_withdrawal": "Minimum withdrawal amount is 0.001 SOL",
-      "insufficient_balance": "Amount cannot exceed your balance of {balance} SOL",
+      "insufficient_balance": "Amount cannot exceed your balance of {balance} {token_symbol}",
       "transaction_failed": "Transaction failed. Please try again.",
       "transaction_success": "Transaction sent successfully!",
       "network_error": "Network error. Please check your connection.",
@@ -964,9 +964,9 @@
       "recipient_required": "Recipient address is required",
       "user_wallet_not_found": "Wallet not found"
     },
-    "minimum_withdrawal_amount": "Minimum withdrawal amount is {amount} SOL",
-    "maximum_withdrawal_amount": "Maximum withdrawal amount is {amount} SOL",
-    "amount_cannot_exceed_balance": "Amount cannot exceed your balance of {balance} SOL",
+    "minimum_withdrawal_amount": "Minimum withdrawal amount is {amount} {token_symbol}",
+    "maximum_withdrawal_amount": "Maximum withdrawal amount is {amount} {token_symbol}",
+    "amount_cannot_exceed_balance": "Amount cannot exceed your balance of {balance} {token_symbol}",
     "loading": {
       "tokens": "Loading available tokens..."
     },
@@ -999,7 +999,7 @@
   },
   "connectMasterModal": {
     "title": "CONNECT TO MASTER",
-    "maximumCopyAmount": "Maximum Copy Amount (SOL)",
+    "maximumCopyAmount": "Maximum Copy Amount ({token_symbol})",
     "copyAddress": {
       "copy": "Copy address",
       "copied": "Copied!"
