@@ -928,6 +928,7 @@
     "history": "HISTORY",
     "time": "Time",
     "type": "Type",
+    "select_token": "Select Token",
     "status": "Status",
     "amount": "Amount",
     "transaction_id": "Transaction ID",
