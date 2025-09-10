@@ -988,11 +988,23 @@
       "network_error": "ネットワークエラー。接続を確認してください。",
       "unauthorized": "認証されていません",
       "recipient_required": "受取人アドレスが必要です",
-      "user_wallet_not_found": "ウォレットが存在しません"
+      "user_wallet_not_found": "ウォレットが存在しません",
+      "user_wallet_not_found_api": "ユーザーウォレットが見つかりません",
+      "invalid_google_auth": "Google Authenticatorコードが無効です",
+      "google_authenticator_text": "Google Authenticator"
     },
+    "loading": {
+      "tokens": "利用可能なトークンを読み込み中..."
+    },
+    "no_tokens": "出金可能なトークンがありません。",
+    "max_button": "最大",
     "minimum_withdrawal_amount": "最小出金額は{amount} SOLです",
     "maximum_withdrawal_amount": "最大出金額は{amount} SOLです",
-    "amount_cannot_exceed_balance": "残高{balance} SOLを超えることはできません"
+    "amount_cannot_exceed_balance": "残高{balance} SOLを超えることはできません",
+    "google_auth_required": "Google認証コードが必要です",
+    "please_select_token_first": "最初にトークンを選択してください",
+    "recipient_address_required": "受信者アドレスが必要です",
+    "not_available": "利用不可"
   },
   "searchModal": {
     "title": "検索",

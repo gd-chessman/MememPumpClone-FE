@@ -175,9 +175,9 @@ const UniversalAccountContent = () => {
                         <TableHeader>
                             <TableRow className="border-b border-theme-purple-200 hover:bg-transparent">
                                 <TableHead className="py-2 px-6 text-xs font-medium dark:text-gray-400 text-black">{t('universal_account.time')}</TableHead>
-                                <TableHead className="py-2 px-4 text-xs font-medium dark:text-gray-400 text-black">{t('universal_account.type')}</TableHead>
-                                <TableHead className="py-2 px-3 text-xs font-medium dark:text-gray-400 text-black">{t('universal_account.status')}</TableHead>
-                                <TableHead className="py-2 px-6 text-xs font-medium dark:text-gray-400 text-black text-right">{t('universal_account.amount')}</TableHead>
+                                <TableHead className="py-2 px-6 text-xs font-medium dark:text-gray-400 text-black">{t('universal_account.type')}</TableHead>
+                                <TableHead className="py-2 px-6 text-xs font-medium dark:text-gray-400 text-black">{t('universal_account.status')}</TableHead>
+                                <TableHead className="py-2 px-6 text-xs font-medium dark:text-gray-400 text-black ">{t('universal_account.amount')}</TableHead>
                                 <TableHead className="py-2 px-6 text-xs font-medium dark:text-gray-400 text-black">{t('universal_account.from_address')}</TableHead>
                                 <TableHead className="py-2 px-6 text-xs font-medium dark:text-gray-400 text-black">{t('universal_account.to_address')}</TableHead>
                                 <TableHead className="py-2 px-6 text-xs font-medium dark:text-gray-400 text-black">{t('universal_account.transaction_id')}</TableHead>
@@ -198,7 +198,7 @@ const UniversalAccountContent = () => {
                                                 {t(`universal_account.${tx.type}`)}
                                             </span>
                                         </TableCell>
-                                        <TableCell className="py-2 px-3">
+                                        <TableCell className="py-2 px-6">
                                             <span className={`px-2 py-1 rounded-full text-[10px] font-medium ${tx.status === "completed"
                                                     ? "bg-green-500/20 text-green-400"
                                                     : tx.status === "pending"
@@ -208,19 +208,19 @@ const UniversalAccountContent = () => {
                                                 {t(`transactionHistory.${tx.status}`)}
                                             </span>
                                         </TableCell>
-                                        <TableCell className="py-2 px-6 text-right dark:text-gray-300 text-black whitespace-nowrap">
-                                            {tx.amount} SOL
+                                        <TableCell className="py-2 px-6  dark:text-gray-300 text-black whitespace-nowrap">
+                                            {Number(tx.amount).toFixed(3)} SOL
                                         </TableCell>
-                                        <TableCell className="py-2 px-6 dark:text-gray-300 text-black">
-                                            {truncateString(tx.wallet_address_from, 12)}
+                                        <TableCell className="py-2 px-6 text-yellow-500 italic">
+                                            {truncateString(tx.wallet_address_from, 10)}
                                         </TableCell>
-                                        <TableCell className="py-2 px-6 dark:text-gray-300 text-black">
-                                            {truncateString(tx.wallet_address_to, 12)}
+                                        <TableCell className="py-2 px-6 text-yellow-500 italic">
+                                            {truncateString(tx.wallet_address_to, 10)}
                                         </TableCell>
-                                        <TableCell className="py-2 px-6 dark:text-gray-300 text-black">
+                                        <TableCell className="py-2 px-6 text-yellow-500 italic">
                                             {tx.transaction_hash && (
                                                 <div className="flex items-center gap-2">
-                                                    {truncateString(tx.transaction_hash, 12)}
+                                                    {truncateString(tx.transaction_hash, 10)}
                                                     <button
                                                         onClick={() => {
                                                             navigator.clipboard.writeText(tx.transaction_hash);

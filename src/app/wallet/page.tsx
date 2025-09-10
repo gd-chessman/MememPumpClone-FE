@@ -482,7 +482,7 @@ export default function WalletPage() {
         if (!tokenList || !tokenList.tokens || !Array.isArray(tokenList.tokens)) {
             return [];
         }
-        return tokenList.tokens.filter((token: Token) => token && typeof token.token_balance_usd === 'number');
+        return tokenList.tokens.filter((token: Token) => token && typeof token.token_balance_usd === 'number' && token.token_balance_usd > 0.005);
     }, [tokenList]);
 
     const { data: walletInfor = null, refetch, isLoading: isLoadingWalletInfor } = useQuery({

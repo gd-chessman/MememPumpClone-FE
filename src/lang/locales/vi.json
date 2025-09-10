@@ -1010,7 +1010,8 @@
     "copied_description": "Đã sao chép mã giao dịch vào clipboard",
     "enter_amount": "Nhập số tiền gửi",
     "transaction_progress": "Đang xử lý giao dịch...",
-    "available": "Số dư: {amount} SOL",
+    "available": "Số dư: {amount}",
+    "select_token": "Chọn Token",
     "recipient_address": "Địa chỉ người nhận",
     "recipient_placeholder": "Nhập địa chỉ người nhận...",
     "sending": "Đang gửi...",
@@ -1032,11 +1033,33 @@
       "network_error": "Lỗi kết nối. Vui lòng kiểm tra kết nối của bạn.",
       "unauthorized": "Xác thực không hợp lệ",
       "recipient_required": "Vui lòng nhập địa chỉ người nhận",
-      "user_wallet_not_found": "Ví không tồn tại"
+      "user_wallet_not_found": "Ví không tồn tại",
+      "user_wallet_not_found_api": "Không tìm thấy ví người dùng",
+      "invalid_google_auth": "Mã Google Authenticator không hợp lệ",
+      "google_authenticator_text": "Google Authenticator",
+      "transaction_failed_multi_token": "Lỗi khi tạo giao dịch nhiều token",
+      "invalid_solana_wallet_address": "Địa chỉ ví Solana không hợp lệ",
+      "insufficient_sol_balance": "Số dư SOL không đủ",
+      "source_token_account_not_found": "Không tìm thấy tài khoản token nguồn",
+      "token_mint_not_found": "Không tìm thấy token mint",
+      "token_mint_address_required": "Token mint address là bắt buộc",
+      "insufficient_wallet_balance_for_transaction_fee": "Số dư ví không đủ để trả phí giao dịch",
+      "google_auth_required": "Mã Google Authenticator là bắt buộc",
+      "sender_and_receiver_wallet_addresses_must_be_different": "Địa chỉ ví gửi và địa chỉ ví nhận phải khác nhau",
+      "insufficient_sol_for_ata_creation": "Số dư SOL không đủ để tạo tài khoản token"
     },
-    "minimum_withdrawal_amount": "Số tiền rút tối thiểu là {amount} SOL",
-    "maximum_withdrawal_amount": "Số tiền rút tối đa là {amount} SOL",
-    "amount_cannot_exceed_balance": "Số tiền không được vượt quá số dư {balance} SOL"
+    "loading": {
+      "tokens": "Đang tải danh sách token..."
+    },
+    "no_tokens": "Không có token nào khả dụng để rút tiền.",
+    "max_button": "Tối đa",
+    "minimum_withdrawal_amount": "Số tiền rút tối thiểu là {amount}",
+    "maximum_withdrawal_amount": "Số tiền rút tối đa là {amount}",
+    "amount_cannot_exceed_balance": "Số tiền không được vượt quá số dư {balance}",
+    "google_auth_required": "Mã Google Authenticator là bắt buộc",
+    "please_select_token_first": "Vui lòng chọn token trước",
+    "recipient_address_required": "Địa chỉ người nhận là bắt buộc",
+    "not_available": "Không có"
   },
   "searchModal": {
     "title": "TÌM KIẾM",

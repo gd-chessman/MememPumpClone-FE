@@ -981,8 +981,6 @@
     "sending": "전송 중...",
     "send": "전송",
     "minimum_withdrawal_amount": "최소 출금 금액은 {amount} SOL입니다",
-    "maximum_withdrawal_amount": "최대 출금 금액은 {amount} SOL입니다",
-    "amount_cannot_exceed_balance": "잔액 {balance} SOL을 초과할 수 없습니다",
     "deposit_wallet": {
       "title": "당신의 솔라나 주소",
       "warning": {
@@ -1001,8 +999,33 @@
       "unauthorized": "인증되지 않음",
       "recipient_required": "수신자 주소가 필요합니다",
       "invalid_recipient": "유효하지 않은 수신자 주소입니다",
-      "user_wallet_not_found": "지갑이 존재하지 않습니다"
-    }
+      "user_wallet_not_found": "지갑이 존재하지 않습니다",
+      "user_wallet_not_found_api": "사용자 지갑을 찾을 수 없습니다",
+      "google_authenticator_text": "Google Authenticator",
+      "transaction_failed_multi_token": "다중 토큰 입출금 생성 오류",
+      "invalid_solana_wallet_address": "유효하지 않은 솔라나 지갑 주소입니다",
+      "insufficient_sol_balance": "SOL 잔액이 부족합니다. 다시 시도해 주세요.",
+      "source_token_account_not_found": "소스 토큰 계좌를 찾을 수 없습니다. 다시 시도해 주세요.",
+      "token_mint_not_found": "토큰 민트를 찾을 수 없습니다. 다시 시도해 주세요.",
+      "token_mint_address_required": "토큰 민트 주소가 필요합니다.",
+      "insufficient_wallet_balance_for_transaction_fee": "거래 수수료를 지불할 충분한 잔액이 없습니다.",
+      "google_auth_required": "Google Authenticator 코드가 필요합니다.",
+      "invalid_google_auth": "Google Authenticator 코드가 올바르지 않습니다.",
+      "sender_and_receiver_wallet_addresses_must_be_different": "보내는 주소와 받는 주소는 다르야 합니다.",
+      "insufficient_sol_for_ata_creation": "ATA 생성에 필요한 SOL 잔액이 부족합니다. 다시 시도해 주세요."
+    },
+    "loading": {
+      "tokens": "사용 가능한 토큰을 로딩 중..."
+    },
+    "no_tokens": "출금 가능한 토큰이 없습니다.",
+    "max_button": "최대",
+    "select_token": "토큰 선택",
+    "maximum_withdrawal_amount": "최대 출금 금액은 {amount} SOL입니다",
+    "amount_cannot_exceed_balance": "잔액 {balance} SOL을 초과할 수 없습니다",
+    "google_auth_required": "Google 인증 코드가 필요합니다",
+    "please_select_token_first": "먼저 토큰을 선택하세요",
+    "recipient_address_required": "수신자 주소가 필요합니다",
+    "not_available": "사용 불가"
   },
   "searchModal": {
     "title": "검색",

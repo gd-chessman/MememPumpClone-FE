@@ -966,7 +966,16 @@
     },
     "minimum_withdrawal_amount": "Minimum withdrawal amount is {amount} SOL",
     "maximum_withdrawal_amount": "Maximum withdrawal amount is {amount} SOL",
-    "amount_cannot_exceed_balance": "Amount cannot exceed your balance of {balance} SOL"
+    "amount_cannot_exceed_balance": "Amount cannot exceed your balance of {balance} SOL",
+    "loading": {
+      "tokens": "Loading available tokens..."
+    },
+    "no_tokens": "No tokens available for withdrawal.",
+    "max_button": "Max",
+    "google_auth_required": "Google Authenticator code is required",
+    "please_select_token_first": "Please select a token first",
+    "recipient_address_required": "Recipient address is required",
+    "not_available": "N/A"
   },
   "chat": {
     "communityChatroom": "Community Chatroom"
