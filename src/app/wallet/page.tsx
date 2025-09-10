@@ -34,25 +34,6 @@ interface PrivateKeys {
     eth_private_key: string;
     bnb_private_key: string;
 }
-
-interface TokenListResponse {
-    status: number;
-    message: string;
-    data: {
-        wallet_address: string;
-        tokens: Token[];
-    };
-}
-
-interface WalletInfoResponse {
-    role: string;
-    solana_address: string;
-    wallet_country: string;
-    wallet_id: number;
-    wallet_name: string;
-    wallet_nick_name: string;
-}
-
 interface MasterTrader {
     id: number;
     solana_address: string;
@@ -1657,7 +1638,7 @@ export default function WalletPage() {
             {showImportWallets && (
                 <div className={`${modalContainerStyles} bg-theme-black-1/3 backdrop-blur-sm`}>
                     <div className={modalContentStyles}>
-                        <div ref={importWalletRef} className={`${modalInnerStyles} overflow-y-auto overflow-x-hidden max-h-[80vh]`}>
+                        <div ref={importWalletRef} className={`${modalInnerStyles} `}>
                             <div className="xl:w-[40vw] flex flex-col gap-4 sm:gap-6">
                                 <div className="flex flex-col gap-4">
                                     <div className="flex justify-between items-center">
@@ -1668,7 +1649,7 @@ export default function WalletPage() {
                                     <div className="flex flex-col">
                                         <div className={modalLabelStyles}>{t('wallet.solanaPrivateKey')} <span className="text-red-500">*</span></div>
                                         <div>
-                                            <div className="relative w-full">
+                                            <div className={`relative w-full border-l-[#03bdff] border-r-[#555aff] !text-xs border-b-[#03bdff] border-t-[#555aff] border-2 rounded-md pr-[1px] py-[2px] overflow-hidden`}>
                                                 <textarea
                                                     ref={descriptionTextareaRef}
                                                     value={privateKeyArray.join('\n')}
@@ -1709,7 +1690,7 @@ export default function WalletPage() {
                                                         }
                                                     }}
                                                     placeholder={t('wallet.enterSolanaPrivateKey')}
-                                                    className={`${modalInputStyles} !pt-2 border-l-[#03bdff] border-r-[#555aff] !text-xs border-b-[#03bdff] overflow-y-hidden border-t-[#555aff] border-2 rounded-md  ${privateKeyError ? 'border-red-500' : ''}`}
+                                                    className={`${modalInputStyles} !text-xs rounded-xl max-h-[180px] overflow-y-auto custom-scroll mr-1 ${privateKeyError ? 'border-red-500' : ''}`}
                                                     rows={5}
                                                 />
                                             </div>
@@ -1718,7 +1699,7 @@ export default function WalletPage() {
                                             {t('wallet.privateKeyFormatHint')}
                                         </div>
                                         {/* Wallet Name */}
-                                        <div className="flex flex-col gap-1">
+                                        <div className="flex flex-col gap-1 mt-2">
                                             <div className={modalLabelStyles}>{t('wallet.walletPerixName')} <span className="text-red-500">*</span></div>
                                             <div className={wrapGradientStyle}>
                                                 <input
