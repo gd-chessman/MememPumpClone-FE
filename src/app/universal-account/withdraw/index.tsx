@@ -86,7 +86,6 @@ export default function WithdrawWallet({ walletInfor }: { walletInfor: any }) {
 
     // Find the selected token in availableTokens to get current balance
     const tokenData = availableTokens.tokens.find((token: TokenOption) => token.token_symbol === selectedToken.token_symbol);
-    console.log("tokenData", tokenData?.token_balance)
     return tokenData?.token_balance?.toString() || "0";
   };
 
@@ -106,7 +105,6 @@ export default function WithdrawWallet({ walletInfor }: { walletInfor: any }) {
       copy: isSending || !walletInfor?.solana_address
     };
   }, [amount, walletInfor, isSending, error, selectedToken, availableTokens]);
-  console.log("amount", amount)
 
   useEffect(() => {
     if (recipientWallet.trim() === '') {
