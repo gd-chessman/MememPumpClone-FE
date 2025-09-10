@@ -25,6 +25,7 @@ type Transaction = {
     error_message: string | null
     created_at: string
     updated_at: string
+    token_symbol: string
 }
 
 // Create a client component for the content
@@ -128,7 +129,7 @@ const UniversalAccountContent = () => {
                                 </div>
                                 <div className="flex items-center justify-between">
                                     <span className="text-[10px] dark:text-gray-400 text-black">{t('universal_account.amount')}</span>
-                                    <span className="text-[11px] dark:text-gray-300 text-black">{tx.amount} SOL</span>
+                                    <span className="text-[11px] dark:text-gray-300 text-black">{tx.amount} {tx.token_symbol ?? "N/A"}</span>
                                 </div>
                                 <div className="flex items-center justify-between">
                                     <span className="text-[10px] dark:text-gray-400 text-black">{t('universal_account.transactionId')}</span>
@@ -209,7 +210,7 @@ const UniversalAccountContent = () => {
                                             </span>
                                         </TableCell>
                                         <TableCell className="py-2 px-6  dark:text-gray-300 text-black whitespace-nowrap">
-                                            {Number(tx.amount).toFixed(3)} SOL
+                                            {Number(tx.amount).toFixed(3)} {tx.token_symbol ?? "N/A"}
                                         </TableCell>
                                         <TableCell className="py-2 px-6 text-yellow-500 italic">
                                             {truncateString(tx.wallet_address_from, 10)}
