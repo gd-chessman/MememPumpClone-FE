@@ -370,6 +370,7 @@
   },
   "selectNetwork": "ネットワークを選択",
   "wallet": {
+    "avgPrice": "平均価格",
     "selectAll": "すべて選択",
     "toDeleteMultipleWallets": "複数のウォレットを削除するために",
     "solana": "Solana",

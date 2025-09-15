@@ -5,7 +5,7 @@ import { getInforWallet, getListBuyToken } from "@/services/api/TelegramWalletSe
 import { formatNumberWithSuffix, truncateString } from "@/utils/format"
 import { useQuery } from "@tanstack/react-query"
 import { useSearchParams } from "next/navigation"
-import { useState, Suspense, useEffect, useMemo } from "react"
+import { useState, Suspense, useEffect, useMemo, useRef } from "react"
 import { io as socketIO } from "socket.io-client"
 import { useLang } from "@/lang/useLang"
 import { getTokenInforByAddress } from "@/services/api/SolonaTokenService"
@@ -44,6 +44,8 @@ function TransactionHistoryContent() {
   const [realTimeTransactionsMy, setRealTimeTransactionsMy] = useState<any[]>([]);
   const [isSwapModalOpen, setIsSwapModalOpen] = useState(false);
   const [selectedToken, setSelectedToken] = useState<string>("");
+  const [tokenAveragePrices, setTokenAveragePrices] = useState<{[key: string]: {average_price: number, total_transactions: number}}>({});
+  const fetchedTokensRef = useRef<Set<string>>(new Set());
 
   const searchParams = useSearchParams();
   const address = searchParams?.get("address");
@@ -91,9 +93,17 @@ function TransactionHistoryContent() {
     refetchInterval: 5000, // Poll every 5 seconds
   });
   // Filter tokens: SOL/USDT tokens are always shown, others need balance >= 0.005
-  const filteredTokens = (tokenList && 'tokens' in tokenList ? tokenList.tokens : []).filter((token: any) =>
-    token.token_balance_usd >= 0.005
-  );
+  const filteredTokens = useMemo(() => {
+    return (tokenList && 'tokens' in tokenList ? tokenList.tokens : []).filter((token: any) =>
+      token.token_balance_usd >= 0.005
+    );
+  }, [tokenList]);
+
+  // Reset fetched tokens when tokenList changes completely
+  useEffect(() => {
+    fetchedTokensRef.current.clear();
+    setTokenAveragePrices({});
+  }, [tokenList]);
 
   // WebSocket connection setup
   useEffect(() => {
@@ -683,10 +693,11 @@ function TransactionHistoryContent() {
                 <thead className="sticky top-[-1px] z-10 bg-white dark:bg-theme-primary-500/70">
                   <tr className="border-b border-gray-200 dark:border-neutral-800">
                     <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-auto">{t("wallet.token")}</th>
-                    <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-[17%]">{t("wallet.address")}</th>
-                    <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-[17%]">{t("wallet.balance")}</th>
-                    <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-[17%]">{t("wallet.price")}</th>
-                    <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-[12%]">{t("wallet.value")}</th>
+                    <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-[15%]">{t("wallet.address")}</th>
+                    <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-[12%]">{t("wallet.balance")}</th>
+                    <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-[12%]">{t("wallet.price")}</th>
+                    <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-[12%]">{t("wallet.avgPrice")}</th>
+                    <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-[10%]">{t("wallet.value")}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -722,6 +733,9 @@ function TransactionHistoryContent() {
                       <td className="px-4 py-2 text-purple-600 text-xs font-medium truncate">
                         ${token.token_price_usd.toFixed(6)}
                       </td>
+                      <td className={`px-4 py-2 text-xs font-medium truncate ${token.average_price < token.token_price_usd ? "text-red-500" : "text-green-500 dark:text-green-400"}`}>
+                        {token.average_price != 0 ? token.average_price.toFixed(6) : 'N/A'}
+                      </td>
                       <td className="px-4 py-2 text-gray-600 dark:text-neutral-300 text-xs font-medium truncate">
                         ${token.token_balance_usd.toFixed(5)}
                       </td>
@@ -756,7 +770,7 @@ function TransactionHistoryContent() {
                           }}
                         />
                       )}
-                      <div className="min-w-0 flex gap-2">
+                      <div className="min-w-0 flex gap-2 items-center">
                         <div className="font-medium dark:text-theme-neutral-100 text-black text-sm truncate">{token.token_name}</div>
                         <div className="text-xs dark:text-gray-400 text-black">{token.token_symbol}</div>
                       </div>
@@ -776,6 +790,12 @@ function TransactionHistoryContent() {
                     <div className="text-xs dark:text-gray-400 text-black mb-1">{t("wallet.price")}</div>
                     <div className="text-sm sm:text-base font-medium dark:text-theme-neutral-100 text-black">
                       ${token.token_price_usd.toFixed(4)}
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-xs dark:text-gray-400 text-black mb-1">Avg Price</div>
+                    <div className={`text-sm sm:text-base font-medium ${token.average_price < token.token_price_usd ? "text-red-500" : "text-green-500 dark:text-green-400"}`}>
+                      {token.average_price != 0 ? token.average_price.toFixed(6) : 'N/A'}
                     </div>
                   </div>
                   <div>

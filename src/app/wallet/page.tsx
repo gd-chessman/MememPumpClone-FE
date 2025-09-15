@@ -27,6 +27,7 @@ interface Token {
     token_price_usd: number;
     token_price_sol: number;
     is_verified: boolean;
+    average_price: number;
 }
 
 interface PrivateKeys {
@@ -1332,6 +1333,7 @@ export default function WalletPage() {
                                                                 <th className={`${tableHeaderStyles} h-12 w-[35%] text-left`}>{t('wallet.token')}</th>
                                                                 <th className={`${tableHeaderStyles} h-12 w-[20%] text-left`}>{t('wallet.balance')}</th>
                                                                 <th className={`${tableHeaderStyles} h-12 w-[17.5%] text-left`}>{t('wallet.price')}</th>
+                                                                <th className={`${tableHeaderStyles} h-12 w-[17.5%] text-left`}>{t('wallet.avgPrice')}</th>
                                                                 <th className={`${tableHeaderStyles} h-12 w-[17.5%] text-left`}>{t('wallet.value')}</th>
                                                             </tr>
                                                         </thead>
@@ -1367,6 +1369,9 @@ export default function WalletPage() {
                                                                     </td>
                                                                     <td className={`${tableCellStyles} w-[17.5%] text-left`}>
                                                                         ${token.token_price_usd.toFixed(4)}
+                                                                    </td>
+                                                                    <td className={`${tableCellStyles} w-[17.5%] text-left ${token.average_price < token.token_price_usd ? "text-red-500" : "text-green-500 dark:text-green-400"}`}>
+                                                                        {token.average_price != 0 ? token.average_price.toFixed(6) : 'N/A'}
                                                                     </td>
                                                                     <td className={`${tableCellStyles} w-[17.5%] text-left`}>
                                                                         ${token.token_balance_usd.toFixed(4)}
@@ -1437,6 +1442,10 @@ export default function WalletPage() {
                                                             <div className={assetValueStyles}>
                                                                 <div className={assetLabelStyles}>{t('wallet.value')}</div>
                                                                 <div className={assetAmountStyles}>${token.token_balance_usd.toFixed(2)}</div>
+                                                            </div>
+                                                            <div>
+                                                                <div className={assetLabelStyles}>{t('wallet.avgPrice')}</div>
+                                                                <div className={`${token.average_price < token.token_price_usd ? "text-red-500" : "text-green-500 dark:text-green-400"} text-sm`}>{token.average_price != 0 ? token.average_price.toFixed(6) : 'N/A'}</div>
                                                             </div>
                                                         </div>
 

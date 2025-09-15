@@ -386,6 +386,7 @@
   },
   "selectNetwork": "Select Network",
   "wallet": {
+    "avgPrice": "Avg Price",
     "solana": "Solana",
     "eth": "ETH",
     "bnb": "BNB",
