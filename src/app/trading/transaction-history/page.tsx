@@ -697,7 +697,7 @@ function TransactionHistoryContent() {
                     <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-[12%]">{t("wallet.balance")}</th>
                     <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-[12%]">{t("wallet.price")}</th>
                     <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-[12%]">{t("wallet.avgPrice")}</th>
-                    <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-[10%]">{t("wallet.value")}</th>
+                    <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-[10%]">{t("wallet.total")}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -730,10 +730,10 @@ function TransactionHistoryContent() {
                         {token.token_balance.toFixed(4)}
                       </td>
 
-                      <td className="px-4 py-2 text-purple-600 text-xs font-medium truncate">
+                      <td className={`px-4 py-2 text-xs font-medium truncate ${(token.average_price > token.token_price_usd) && token.token_symbol !== "SOL" ? "text-red-500" : "text-green-500 dark:text-green-400"}`}>
                         ${token.token_price_usd.toFixed(6)}
                       </td>
-                      <td className={`px-4 py-2 text-xs font-medium truncate ${token.average_price < token.token_price_usd ? "text-red-500" : "text-green-500 dark:text-green-400"}`}>
+                      <td className="px-4 py-2 text-purple-600 text-xs font-medium truncate">
                         {token.average_price != 0 ? token.average_price.toFixed(6) : 'N/A'}
                       </td>
                       <td className="px-4 py-2 text-gray-600 dark:text-neutral-300 text-xs font-medium truncate">
@@ -788,13 +788,13 @@ function TransactionHistoryContent() {
                   </div>
                   <div>
                     <div className="text-xs dark:text-gray-400 text-black mb-1">{t("wallet.price")}</div>
-                    <div className="text-sm sm:text-base font-medium dark:text-theme-neutral-100 text-black">
+                    <div className={`text-sm sm:text-base font-medium ${token.average_price > token.token_price_usd ? "text-red-500" : "text-green-500 dark:text-green-400"}`}>
                       ${token.token_price_usd.toFixed(4)}
                     </div>
                   </div>
                   <div>
                     <div className="text-xs dark:text-gray-400 text-black mb-1">Avg Price</div>
-                    <div className={`text-sm sm:text-base font-medium ${token.average_price < token.token_price_usd ? "text-red-500" : "text-green-500 dark:text-green-400"}`}>
+                    <div className="text-sm sm:text-base font-medium dark:text-theme-neutral-100 text-black">
                       {token.average_price != 0 ? token.average_price.toFixed(6) : 'N/A'}
                     </div>
                   </div>

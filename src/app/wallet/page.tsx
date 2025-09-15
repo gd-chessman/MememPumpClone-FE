@@ -1367,10 +1367,10 @@ export default function WalletPage() {
                                                                     <td className={`${tableCellStyles} w-[20%] text-left`}>
                                                                         {token.token_balance.toFixed(4)}
                                                                     </td>
-                                                                    <td className={`${tableCellStyles} w-[17.5%] text-left`}>
+                                                                    <td className={`${tableCellStyles} w-[17.5%] text-left ${token.average_price > token.token_price_usd ? "!text-red-500" : "!text-green-500 dark:!text-green-400"}`}>
                                                                         ${token.token_price_usd.toFixed(4)}
                                                                     </td>
-                                                                    <td className={`${tableCellStyles} w-[17.5%] text-left ${token.average_price < token.token_price_usd ? "text-red-500" : "text-green-500 dark:text-green-400"}`}>
+                                                                    <td className={`${tableCellStyles} w-[17.5%] text-left !text-purple-600`}>
                                                                         {token.average_price != 0 ? token.average_price.toFixed(6) : 'N/A'}
                                                                     </td>
                                                                     <td className={`${tableCellStyles} w-[17.5%] text-left`}>

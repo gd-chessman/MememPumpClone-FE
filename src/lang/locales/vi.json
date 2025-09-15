@@ -417,6 +417,7 @@
   },
   "wallet": {
     "avgPrice": "Giá mua trung bình",
+    "total": "Tổng",
     "selectAll": "Chọn tất cả",
     "toDeleteMultipleWallets": "để xóa nhiều ví",
     "solana": "Solana",

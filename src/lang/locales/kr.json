@@ -388,6 +388,7 @@
   },
   "wallet": {
     "avgPrice": "매수단가",
+    "total": "총",
     "selectAll": "모두 선택",
     "toDeleteMultipleWallets": "여러 지갑을 삭제하기 위해",
     "solana": "Solana",
@@ -438,7 +439,7 @@
     "token": "토큰",
     "balance": "수량",
     "price": "매수평단가",
-    "value": "평가액",
+    "value": "총",
     "loadingMore": "지갑을 더 불러오는 중...",
     "address": "주소",
     "walletName": "지갑 이름",
