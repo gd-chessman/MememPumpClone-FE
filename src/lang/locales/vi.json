@@ -419,6 +419,8 @@
     "avgPrice": "Giá mua trung bình",
     "total": "Tổng",
     "selectAll": "Chọn tất cả",
+    "avgPriceSell": "Lượng bán / Avg MC",
+    "avgPriceBuy": "Lượng mua / Avg MC",
     "toDeleteMultipleWallets": "để xóa nhiều ví",
     "solana": "Solana",
     "eth": "ETH",

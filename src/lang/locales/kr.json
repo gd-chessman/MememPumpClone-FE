@@ -390,6 +390,8 @@
     "avgPrice": "매수단가",
     "total": "총",
     "selectAll": "모두 선택",
+    "avgPriceSell": "총 판매 / Avg MC",
+    "avgPriceBuy": "구매함 / Avg MC",
     "toDeleteMultipleWallets": "여러 지갑을 삭제하기 위해",
     "solana": "Solana",
     "eth": "ETH",

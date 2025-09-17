@@ -373,6 +373,8 @@
     "avgPrice": "平均価格",
     "total": "合計",
     "selectAll": "すべて選択",
+    "avgPriceSell": "合計売却 / Avg MC",
+    "avgPriceBuy": "合計購入 / Avg MC",
     "toDeleteMultipleWallets": "複数のウォレットを削除するために",
     "solana": "Solana",
     "eth": "ETH",

@@ -101,6 +101,8 @@ export default function TradingPanel({
         queryFn: () => getTokenInforByAddress(address),
     });
 
+    console.log("tokenInfor", tokenInfor)
+
     const { data: tokenBalance, refetch: refetchTokenBalance } = useQuery({
         queryKey: ["tokenBalance", address],
         queryFn: () => {
@@ -115,7 +117,7 @@ export default function TradingPanel({
         queryFn: () => getTokenBalance(walletInfor?.solana_address || "", address || ""),
         enabled: !!address && !!walletInfor?.solana_address, // Only fetch if address exists and walletInfor has solana_address
     })
-    console.log("tokenBalanceOnChain", tokenBalanceOnChain)
+    
 
     const { data: tokenAmount, refetch: refetchTokenAmount } = useQuery({
         queryKey: ["tokenAmount", address],
@@ -455,6 +457,7 @@ export default function TradingPanel({
                         ? numericAmount * (tokenAmount?.token_price || 0)
                         : numericAmount * (solPrice?.priceUSD || 0),
                 order_qlty: numericAmount,
+                order_marketcap: tokenInfor.marketCap,
                 user_wallet_address: walletAddress
             }
 
@@ -608,6 +611,7 @@ export default function TradingPanel({
                             ? Number(amount) * (tokenAmount?.token_price || 0)
                             : Number(amount) * (solPrice?.priceUSD || 0),
                     order_qlty: Number(amount),
+                    order_marketcap: tokenInfor.marketCap,
                     member_list: selectedConnections.map(id => Number(id))
                 })
             }

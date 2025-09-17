@@ -391,6 +391,8 @@
     "solana": "Solana",
     "eth": "ETH",
     "bnb": "BNB",
+    "avgPriceSell": "Total Sell / Avg MC",
+    "avgPriceBuy": "Total Buy / Avg MC",
     "wallet": "Wallet",
     "selectAll": "Select All",
     "toDeleteMultipleWallets": "to delete multiple wallets",

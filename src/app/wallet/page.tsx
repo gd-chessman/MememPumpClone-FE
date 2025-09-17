@@ -1,7 +1,7 @@
 "use client"
 import { TelegramWalletService } from "@/services/api";
 import { getInforWallet, getListBuyToken, getMyWallets, getPrivate } from "@/services/api/TelegramWalletService";
-import { formatNumberWithSuffix3, maskNickname, truncateString } from "@/utils/format";
+import { formatNumberWithSuffix, formatNumberWithSuffix3, maskNickname, truncateString } from "@/utils/format";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowDownToLine, ArrowUpFromLine, Badge, Copy, Edit, Eye, EyeOff, KeyIcon, PlusIcon, Check, Loader2, ChevronDown } from "lucide-react";
 import React, { useState, useRef, useEffect, useCallback } from "react";
@@ -28,6 +28,14 @@ interface Token {
     token_price_sol: number;
     is_verified: boolean;
     average_price: number;
+    avg_mc_buy: number;
+    avg_mc_sell: number;
+    total_usd_buy: number;
+    total_usd_sell: number;
+    total_quantity_buy: number;
+    total_quantity_sell: number;
+    buy_count: number;
+    sell_count: number;
 }
 
 interface PrivateKeys {
@@ -1302,7 +1310,7 @@ export default function WalletPage() {
                             </div>
                         </div>
 
-                        <div className="w-full flex flex-col xl:gap-4 gap-2 md:max-w-[32%]">
+                        <div className="w-full flex flex-col xl:gap-4 gap-2 md:max-w-[40%]">
                             {/* Assets Section */}
                             <div className="flex justify-center items-center gap-2 sm:gap-2.5 mb-9">
                                 <img src="/ethereum.png" alt="Ethereum" className="w-3 h-3 sm:w-4 sm:h-4 object-cover" />
@@ -1330,17 +1338,18 @@ export default function WalletPage() {
                                                     <table className={`${tableStyles} w-full`}>
                                                         <thead>
                                                             <tr>
-                                                                <th className={`${tableHeaderStyles} h-12 w-[35%] text-left`}>{t('wallet.token')}</th>
-                                                                <th className={`${tableHeaderStyles} h-12 w-[20%] text-left`}>{t('wallet.balance')}</th>
-                                                                <th className={`${tableHeaderStyles} h-12 w-[17.5%] text-left`}>{t('wallet.price')}</th>
-                                                                <th className={`${tableHeaderStyles} h-12 w-[17.5%] text-left`}>{t('wallet.avgPrice')}</th>
+                                                                <th className={`${tableHeaderStyles} h-12 w-[25%] text-left`}>{t('wallet.token')}</th>
+                                                                <th className={`${tableHeaderStyles} h-12 w-[13%] text-left`}>{t('wallet.balance')}</th>
+                                                                <th className={`${tableHeaderStyles} h-12 w-[14%] text-left`}>{t('wallet.price')}</th>
+                                                                <th className={`${tableHeaderStyles} h-12 w-[25%] text-center`}>{t('wallet.avgPriceBuy')}</th>
+                                                                <th className={`${tableHeaderStyles} h-12 w-[25%] text-center`}>{t('wallet.avgPriceSell')}</th>
                                                                 <th className={`${tableHeaderStyles} h-12 w-[17.5%] text-left`}>{t('wallet.value')}</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             {filteredTokens.map((token: Token, index: number) => (
                                                                 <tr key={index} className="border-t border-gray-700 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onClick={() => router.push(`/trading?address=${token.token_address}`)}>
-                                                                    <td className={`${tableCellStyles} w-[35%] text-left`}>
+                                                                    <td className={`${tableCellStyles} w-[25%] text-left`}>
                                                                         <div className="flex items-center gap-2">
                                                                             {token.token_logo_url ? (
                                                                                 <img
@@ -1364,14 +1373,19 @@ export default function WalletPage() {
                                                                             </div>
                                                                         </div>
                                                                     </td>
-                                                                    <td className={`${tableCellStyles} w-[20%] text-left`}>
+                                                                    <td className={`${tableCellStyles} w-[13%] text-left`}>
                                                                         {token.token_balance.toFixed(4)}
                                                                     </td>
-                                                                    <td className={`${tableCellStyles} w-[17.5%] text-left ${token.average_price > token.token_price_usd ? "!text-red-500" : "!text-green-500 dark:!text-green-400"}`}>
+                                                                    <td className={`${tableCellStyles} w-[14%] text-left ${token.average_price > token.token_price_usd ? "!text-red-500" : "!text-green-500 dark:!text-green-400"}`}>
                                                                         ${token.token_price_usd.toFixed(4)}
                                                                     </td>
-                                                                    <td className={`${tableCellStyles} w-[17.5%] text-left !text-purple-600`}>
-                                                                        {token.average_price != 0 ? token.average_price.toFixed(6) : 'N/A'}
+                                                                    <td className={`${tableCellStyles} w-[25%] text-center`}>
+                                                                        <div className={`${token.total_usd_buy == 0 ? "!text-gray-400" : "!text-green-500"}`}>{formatNumberWithSuffix(token.total_usd_buy)} / {formatNumberWithSuffix(token.avg_mc_buy)}</div>
+                                                                        <div className="text-gray-400">{formatNumberWithSuffix(token.total_quantity_buy)} / {token.buy_count} TXs</div>
+                                                                    </td>
+                                                                    <td className={`${tableCellStyles} w-[25%] text-center`}>
+                                                                        <div className={`${token.total_usd_sell == 0 ? "!text-gray-400" : "!text-red-500"}`}>{formatNumberWithSuffix(token.total_usd_sell)} / {formatNumberWithSuffix(token.avg_mc_sell)}</div>
+                                                                        <div className="text-gray-400">{formatNumberWithSuffix(token.total_quantity_sell)} / {token.sell_count} TXs</div>
                                                                     </td>
                                                                     <td className={`${tableCellStyles} w-[17.5%] text-left`}>
                                                                         ${token.token_balance_usd.toFixed(4)}
@@ -1394,9 +1408,9 @@ export default function WalletPage() {
                                                 filteredTokens.map((token: Token, index: number) => (
                                                     <div key={index} className={assetCardStyles}>
                                                         {/* Token Info Header */}
-                                                        <div className={`w-fit ${assetHeaderStyles} flex-col `}>
+                                                        <div className={`w-fit ${assetHeaderStyles} justify-between items-center w-full`}>
                                                             <div className={assetTokenStyles}>
-                                                                {token.token_logo_url && (
+                                                                {token.token_logo_url ? (
                                                                     <img
                                                                         src={token.token_logo_url}
                                                                         alt={token.token_name}
@@ -1405,20 +1419,26 @@ export default function WalletPage() {
                                                                             e.currentTarget.src = '/placeholder.png';
                                                                         }}
                                                                     />
+                                                                ) : (
+                                                                    <img
+                                                                        src="/placeholder.png"
+                                                                        alt={token.token_name}
+                                                                        className="w-8 h-8 rounded-full"
+                                                                    />
                                                                 )}
-                                                                <div className="min-w-0 flex gap-2">
+                                                                <div className="min-w-0 flex items-center gap-2">
                                                                     <div className="font-medium dark:text-theme-neutral-100 text-black text-sm truncate">{token.token_name}</div>
                                                                     <div className="text-xs dark:text-gray-400 text-black">{token.token_symbol}</div>
                                                                 </div>
                                                             </div>
                                                             {/* Token Address */}
                                                             <div className="flex items-center gap-2">
-                                                                <span className="text-xs dark:text-neutral-200 text-black truncate flex-1">
-                                                                    {truncateString(token.token_address, 12)}
+                                                                <span className="text-xs text-yellow-500 italic truncate flex-1">
+                                                                    {truncateString(token.token_address, 10)}
                                                                 </span>
                                                                 <button
                                                                     onClick={(e) => handleCopyAddress(token.token_address, e)}
-                                                                    className="text-gray-400 hover:text-gray-200 p-1 transition-colors"
+                                                                    className="text-yellow-500 p-1 transition-colors"
                                                                 >
                                                                     {copyStates[token.token_address] ? (
                                                                         <Check className="w-4 h-4 text-green-500" />
@@ -1430,25 +1450,35 @@ export default function WalletPage() {
                                                         </div>
 
                                                         {/* Token Details */}
-                                                        <div className="flex justify-between gap-3 mt-1 lg:mt-3 lg:pt-3 pt-1 border-t border-gray-700">
-                                                            <div>
+                                                        <div className="flex flex-col gap-1 mt-1 lg:mt-3 lg:pt-3 pt-1 border-t border-gray-700">
+                                                            <div className="flex justify-between gap-1">
                                                                 <div className={assetLabelStyles}>{t('wallet.balance')}</div>
                                                                 <div className={assetAmountStyles}>{token.token_balance.toFixed(token.token_decimals)}</div>
                                                             </div>
-                                                            <div>
+                                                            <div className="flex justify-between gap-1">
                                                                 <div className={assetLabelStyles}>{t('wallet.price')}</div>
                                                                 <div className={assetPriceStyles}>${token.token_price_usd.toFixed(6)}</div>
                                                             </div>
-                                                            <div className={assetValueStyles}>
+                                                            
+                                                            <div className="flex justify-between gap-1">
+                                                                <div className={assetLabelStyles}>{t('wallet.avgPrice')}</div>
+                                                                <div className={`${token.average_price < token.token_price_usd ? "!text-red-500" : "!text-green-500 dark:!text-green-400"} ${assetAmountStyles}`}>{token.average_price != 0 ? token.average_price.toFixed(6) : 'N/A'}</div>
+                                                            </div>
+                                                            <div className="flex justify-between gap-1">
+                                                                <div className={assetLabelStyles}>{t('wallet.avgPriceBuy')}</div>
+                                                                <div className={`${token.total_usd_buy == 0 ? "!text-gray-400" : "!text-green-500"}`}>{formatNumberWithSuffix(token.total_usd_buy)} / {formatNumberWithSuffix(token.avg_mc_buy)}</div>
+                                                                <div className={`!text-gray-400`}>{formatNumberWithSuffix(token.total_quantity_buy)} / {token.buy_count} TXs</div>
+                                                            </div>
+                                                            <div className="flex justify-between gap-1">
+                                                                <div className={assetLabelStyles}>{t('wallet.avgPriceSell')}</div>
+                                                                <div className={`${token.total_usd_sell == 0 ? "!text-gray-400" : "!text-red-500"}`}>{formatNumberWithSuffix(token.total_usd_sell)} / {formatNumberWithSuffix(token.avg_mc_sell)}</div>
+                                                                <div className={`!text-gray-400`}>{formatNumberWithSuffix(token.total_quantity_sell)} / {token.sell_count} TXs</div>
+                                                            </div>
+                                                            <div className="flex justify-between gap-1">
                                                                 <div className={assetLabelStyles}>{t('wallet.value')}</div>
                                                                 <div className={assetAmountStyles}>${token.token_balance_usd.toFixed(2)}</div>
                                                             </div>
-                                                            <div>
-                                                                <div className={assetLabelStyles}>{t('wallet.avgPrice')}</div>
-                                                                <div className={`${token.average_price < token.token_price_usd ? "text-red-500" : "text-green-500 dark:text-green-400"} text-sm`}>{token.average_price != 0 ? token.average_price.toFixed(6) : 'N/A'}</div>
-                                                            </div>
                                                         </div>
-
                                                     </div>
                                                 ))
                                             )}

@@ -44,7 +44,7 @@ function TransactionHistoryContent() {
   const [realTimeTransactionsMy, setRealTimeTransactionsMy] = useState<any[]>([]);
   const [isSwapModalOpen, setIsSwapModalOpen] = useState(false);
   const [selectedToken, setSelectedToken] = useState<string>("");
-  const [tokenAveragePrices, setTokenAveragePrices] = useState<{[key: string]: {average_price: number, total_transactions: number}}>({});
+  const [tokenAveragePrices, setTokenAveragePrices] = useState<{ [key: string]: { average_price: number, total_transactions: number } }>({});
   const fetchedTokensRef = useRef<Set<string>>(new Set());
 
   const searchParams = useSearchParams();
@@ -693,11 +693,12 @@ function TransactionHistoryContent() {
                 <thead className="sticky top-[-1px] z-10 bg-white dark:bg-theme-primary-500/70">
                   <tr className="border-b border-gray-200 dark:border-neutral-800">
                     <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-auto">{t("wallet.token")}</th>
-                    <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-[15%]">{t("wallet.address")}</th>
+                    <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-[12%]">{t("wallet.address")}</th>
                     <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-[12%]">{t("wallet.balance")}</th>
                     <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-[12%]">{t("wallet.price")}</th>
-                    <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-[12%]">{t("wallet.avgPrice")}</th>
-                    <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-[10%]">{t("wallet.total")}</th>
+                    <th className="px-4 py-2S text-gray-700 dark:text-neutral-200 font-medium w-[20%] text-center">{t("wallet.avgPriceSell")}</th>
+                    <th className="px-4 py-2S text-gray-700 dark:text-neutral-200 font-medium w-[20%] text-center">{t("wallet.avgPriceBuy")}</th>
+                    <th className="px-4 py-2 text-left text-gray-700 dark:text-neutral-200 font-medium w-[8%]">{t("wallet.total")}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -705,7 +706,7 @@ function TransactionHistoryContent() {
                     <tr key={index} className={`hover:bg-gray-100 dark:hover:bg-neutral-800/30 border-b border-gray-100 dark:border-neutral-800/50 cursor-pointer ${index % 2 === 0 ? 'bg-gray-50 dark:bg-[#1A1A1A]' : 'bg-white dark:bg-[#0F0F0F]'}`} >
                       <td className="px-4 py-2 text-gray-600 dark:text-neutral-300 text-xs font-medium flex-1 group" onClick={() => router.push(`/trading?address=${token.token_address}`)}>
                         <div className="flex items-center gap-2" >
-                          {token.token_logo_url && (
+                          {token.token_logo_url ? (
                             <img
                               src={token.token_logo_url}
                               alt={token.token_name}
@@ -714,6 +715,8 @@ function TransactionHistoryContent() {
                                 e.currentTarget.src = '/placeholder.png';
                               }}
                             />
+                          ) : (
+                            <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center font-bold">{token.token_name.charAt(0)}</div>
                           )}
                           <div>
                             <div className="font-medium text-neutral-900 dark:text-theme-neutral-100 text-xs group-hover:text-blue-500 dark:group-hover:text-blue-400 group-hover:font-semibold">{token.token_name}</div>
@@ -726,15 +729,20 @@ function TransactionHistoryContent() {
                           navigator.clipboard.writeText(token.token_address)
                         }} className="ml-1 text-gray-400 hover:text-gray-600 dark:text-neutral-500 dark:hover:text-neutral-300 h-3 w-3" />
                       </td>
-                      <td className="px-4 py-2 text-green-600 text-xs font-medium truncate">
+                      <td className="px-4 py-2 text-gray-800 hover:text-gray-600 dark:text-neutral-200 text-xs font-medium truncate">
                         {token.token_balance.toFixed(4)}
                       </td>
 
-                      <td className={`px-4 py-2 text-xs font-medium truncate ${(token.average_price > token.token_price_usd) && token.token_symbol !== "SOL" ? "text-red-500" : "text-green-500 dark:text-green-400"}`}>
+                      <td className={`px-4 py-2 text-xs font-medium truncate text-gray-800 hover:text-gray-600 dark:text-neutral-200`}>
                         ${token.token_price_usd.toFixed(6)}
                       </td>
-                      <td className="px-4 py-2 text-purple-600 text-xs font-medium truncate">
-                        {token.average_price != 0 ? token.average_price.toFixed(6) : 'N/A'}
+                      <td className="px-4 py-2  text-xs font-medium truncate text-center">
+                        <div className={`${token.total_usd_buy == 0 ? "!text-gray-400" : "!text-green-500"}`}>{formatNumberWithSuffix(token.total_usd_buy)} / {formatNumberWithSuffix(token.avg_mc_buy)}</div>
+                        <div className="text-gray-400">{formatNumberWithSuffix(token.total_quantity_buy)} / {token.buy_count} TXs</div>
+                      </td>
+                      <td className="px-4 py-2  text-xs font-medium truncate flex flex-col gap-1 text-center">
+                        <div className={`${token.total_usd_sell == 0 ? "!text-gray-400" : "!text-red-500"}`}>{formatNumberWithSuffix(token.total_usd_sell)} / {formatNumberWithSuffix(token.avg_mc_sell)}</div>
+                        <div className="text-gray-400">{formatNumberWithSuffix(token.total_quantity_sell)} / {token.sell_count} TXs</div>
                       </td>
                       <td className="px-4 py-2 text-gray-600 dark:text-neutral-300 text-xs font-medium truncate">
                         ${token.token_balance_usd.toFixed(5)}
@@ -760,7 +768,7 @@ function TransactionHistoryContent() {
                 <div className="flex items-start gap-2 mb-3">
                   <div className="flex items-center gap-2 justify-between flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      {token.token_logo_url && (
+                      {token.token_logo_url ? (
                         <img
                           src={token.token_logo_url}
                           alt={token.token_name}
@@ -769,6 +777,8 @@ function TransactionHistoryContent() {
                             e.currentTarget.src = '/placeholder.png';
                           }}
                         />
+                      ) : (
+                        <div className="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center font-bold">{token.token_name.charAt(0)}</div>
                       )}
                       <div className="min-w-0 flex gap-2 items-center">
                         <div className="font-medium dark:text-theme-neutral-100 text-black text-sm truncate">{token.token_name}</div>
@@ -793,10 +803,14 @@ function TransactionHistoryContent() {
                     </div>
                   </div>
                   <div>
-                    <div className="text-xs dark:text-gray-400 text-black mb-1">Avg Price</div>
-                    <div className="text-sm sm:text-base font-medium dark:text-theme-neutral-100 text-black">
-                      {token.average_price != 0 ? token.average_price.toFixed(6) : 'N/A'}
-                    </div>
+                    <div className="text-xs dark:text-gray-400 text-black mb-1">{t("wallet.avgPriceBuy")}</div>
+                    <div className={`${token.total_usd_buy == 0 ? "!text-gray-400" : "!text-green-500"}`}>{formatNumberWithSuffix(token.total_usd_buy)} / {formatNumberWithSuffix(token.avg_mc_buy)}</div>
+                        <div className="text-gray-400">{formatNumberWithSuffix(token.total_quantity_buy)} / {token.buy_count} TXs</div>
+                  </div>
+                  <div>
+                    <div className="text-xs dark:text-gray-400 text-black mb-1">{t("wallet.avgPriceSell")}</div>
+                    <div className={`${token.total_usd_sell == 0 ? "!text-gray-400" : "!text-red-500"}`}>{formatNumberWithSuffix(token.total_usd_sell)} / {formatNumberWithSuffix(token.avg_mc_sell)}</div>
+                        <div className="text-gray-400">{formatNumberWithSuffix(token.total_quantity_sell)} / {token.sell_count} TXs</div>
                   </div>
                   <div>
                     <div className="text-xs dark:text-gray-400 text-black mb-1">{t("wallet.value")}</div>
